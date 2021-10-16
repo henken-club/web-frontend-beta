@@ -1,0 +1,14 @@
+{
+  "baseBranches": ["main"],
+  "extends": [
+    "config:base",
+
+    "schedule:monthly",
+    ":timezone(Asia/Tokyo)",
+
+    ":dependencyDashboard",
+
+    ":prHourlyLimit4",
+    ":prConcurrentLimit10"
+  ]
+}

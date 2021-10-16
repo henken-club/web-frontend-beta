@@ -1,0 +1,27 @@
+interface SearchContent {
+  id: ID!
+}
+
+extend type Author implements SearchContent {
+  id: ID!
+}
+
+extend type Book implements SearchContent {
+  id: ID!
+}
+
+extend type BookSeries implements SearchContent {
+  id: ID!
+}
+
+extend type Query {
+  search(query: String!, skip: Int = 0, limit: Int!): SearchPayload!
+}
+
+type SearchPayload {
+  nodes: [SearchResult!]!
+}
+
+type SearchResult {
+  content: SearchContent!
+}

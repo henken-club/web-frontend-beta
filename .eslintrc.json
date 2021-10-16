@@ -1,0 +1,60 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/react",
+    "plugin:@next/next/recommended"
+  ],
+  "plugins": ["unused-imports"],
+  "rules": {
+    "curly": [0, "multi-or-nest"],
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": [2],
+    "jsx-a11y/anchor-is-valid": [
+      2,
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": [2, "type"],
+    "@typescript-eslint/consistent-indexed-object-style": [2, "record"],
+    "@typescript-eslint/member-delimiter-style": [2, {
+      "multiline": { "delimiter": "semi", "requireLast": true },
+      "singleline": { "delimiter": "semi", "requireLast": true }
+    }],
+    "unused-imports/no-unused-imports": [2],
+    // quotes
+    "quotes": [0],
+    "@typescript-eslint/quotes": [2, "double"],
+    // curly-spacing
+    "object-curly-spacing": 0,
+    "babel/object-curly-spacing": 0,
+    "@typescript-eslint/object-curly-spacing": [2, "always"],
+    // no-extra-parens
+    "no-extra-parens": 0,
+    "@typescript-eslint/no-extra-parens": [2, "functions"]
+  },
+  "overrides": [
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "spaced-comment": [0],
+        "@typescript-eslint/triple-slash-reference": [0],
+        "@typescript-eslint/consistent-type-definitions": [0],
+        "@typescript-eslint/no-namespace": [0]
+      }
+    },
+    {
+      "files": ["*.js"],
+      "extends": ["plugin:@shopify/node"]
+    },
+    {
+      "files": ["test/*.ts"],
+      "rules": {
+        "import/no-anonymous-default-export": 0
+      }
+    }
+  ]
+}

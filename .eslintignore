@@ -1,0 +1,30 @@
+# dependencies
+package-lock.json
+
+# Next.js
+.next/
+dist/
+next-env.d.ts
+
+# Storybook
+storybook-static/
+
+# Jest
+coverage/
+
+# Vercel
+.vercel/
+
+# ESLint
+.eslintcache
+
+# msw
+public/mockServiceWorker.js
+
+# submodules
+.graphql/
+
+# generated
+src/**/codegen.ts
+src/**/*.codegen.ts
+src/i18n/i18n-*

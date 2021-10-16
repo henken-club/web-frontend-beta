@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+package-lock.json
+
+# logfiles
+*.log
+
+# env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# OS
+.DS_Store
+
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+
+# generated
+.next/
+.vercel/
+coverage/
+dist/
+storybook-static/
+
+.eslintcache
+
+# codegen
+src/**/codegen.ts
+src/**/*.codegen.ts
+
+# typesafe-i18n
+src/i18n/i18n-*
