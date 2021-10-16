@@ -33,10 +33,10 @@ Primary.args = { ...commonProps };
 export const HasSuggestion: Story<StoryProps> = ({ ...props }) => {
   return <Component {...props} />;
 };
-HasSuggestion.storyName = "ユーザの提案がある";
+HasSuggestion.storyName = "ユーザの提案を表示中";
 HasSuggestion.args = {
   ...commonProps,
-  focusSearchBox: false,
+  focusSearchBox: true,
   userSuggestions: [{
     id: "suggestion1",
     alias: "suggestion1",
@@ -63,5 +63,9 @@ HasSuggestion.args = {
 export const HasNoSuggestion: Story<StoryProps> = ({ ...props }) => {
   return <Component {...props} />;
 };
-HasNoSuggestion.storyName = "ユーザの提案が一件も無い";
-HasNoSuggestion.args = { ...commonProps, focusSearchBox: false, userSuggestions: [] };
+HasNoSuggestion.storyName = "ユーザの提案が一件も無い旨を表示中";
+HasNoSuggestion.args = {
+  ...commonProps,
+  focusSearchBox: true,
+  userSuggestions: [],
+};

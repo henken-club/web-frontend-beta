@@ -39,6 +39,17 @@ Primary.args = {
       avatar: "/.mock/avatar_2.png",
     },
     setTo: action("set-to-user"),
+    content: {
+      type: "book",
+      value: {
+        id: "content_book1",
+        title: "Book 1",
+        cover: "/.mock/bookcover_1.jpg",
+      },
+    },
+    setContent: action("set-content"),
+    comment: "",
+    setComment: action("set-comment"),
   },
 };
 
@@ -55,6 +66,10 @@ LoadingFrom.args = {
     from: undefined,
     to: null,
     setTo: action("set-to-user"),
+    content: null,
+    setContent: action("set-content"),
+    comment: "",
+    setComment: action("set-comment"),
   },
 };
 
@@ -71,6 +86,10 @@ NoFrom.args = {
     from: null,
     to: null,
     setTo: action("set-to-user"),
+    content: null,
+    setContent: action("set-content"),
+    comment: "",
+    setComment: action("set-comment"),
   },
 };
 
@@ -92,5 +111,9 @@ NoTo.args = {
     },
     to: null,
     setTo: action("set-to-user"),
+    content: null,
+    setContent: action("set-content"),
+    comment: "",
+    setComment: action("set-comment"),
   },
 };

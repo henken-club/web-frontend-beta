@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { ContextType, useMemo, useState } from "react";
 
+import { Content } from "./Content";
 import { CreateHenkenFormContext } from "./context";
 import { From } from "./From";
 import { To } from "./To";
@@ -49,11 +50,22 @@ export const CreateHenkenForm: React.VFC<
   { viewer, ...props },
 ) => {
   const [to, setTo] = useState<{ id: string; alias: string; displayName: string; avatar: string; } | null>(null);
+  const [content, setContent] = useState<ContextType<typeof CreateHenkenFormContext>["content"]>(null);
+  const [comment, setComment] = useState<string>("");
+
   const contextValue = useMemo<ContextType<typeof CreateHenkenFormContext>>(
     () => {
-      return ({ from: viewer, to, setTo: (user) => setTo(user) });
+      return ({
+        from: viewer,
+        to,
+        setTo: (user) => setTo(user),
+        content,
+        setContent: (value) => setContent(value),
+        comment,
+        setComment: (value) => setComment(value),
+      });
     },
-    [viewer, to],
+    [viewer, to, content, comment],
   );
 
   return (

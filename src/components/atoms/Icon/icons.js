@@ -7,3 +7,5 @@ export const IconLoading = (props) => <FontAwesomeIcon fixedWidth icon={solid("c
 export const IconUnknownUser = (props) => <FontAwesomeIcon fixedWidth icon={solid("question")} {...props} />;
 
 export const IconNoSuggestion = (props) => <FontAwesomeIcon fixedWidth icon={solid("circle-question")} {...props} />;
+
+export const IconNoImage = (props) => <FontAwesomeIcon fixedWidth icon={solid("image")} {...props} />;
