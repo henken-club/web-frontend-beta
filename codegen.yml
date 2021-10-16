@@ -1,0 +1,10 @@
+schema:
+  - ${GRAPHQL_API_SCHEMA:./schema.graphql}
+  - .graphql/*.graphql
+
+generates:
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+    config:
+      sort: true

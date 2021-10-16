@@ -1,0 +1,4 @@
+extend type Book {
+  isbn: String
+  cover: String
+}
