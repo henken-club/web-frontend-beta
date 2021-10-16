@@ -14,7 +14,7 @@
     "generate:i18n": "typesafe-i18n --no-watch",
     "typecheck": "tsc --noEmit",
     "spellcheck": "cspell",
-    "test": "jest --config=jest.config.ts",
+    "test": "jest --config=jest.config.ts --passWithNoTests",
     "test:watch": "yarn run test --watch",
     "test:update-snapshot": "yarn run test --updateSnapshot",
     "storybook:dev": "start-storybook -p 6006 -s public,.storybook/public",
