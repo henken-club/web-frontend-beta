@@ -51,7 +51,7 @@ export const Component: React.VFC<
           ["py-4"],
         ],
         [["inline-flex"], ["flex-col"], ["items-center"]],
-        ["bg-blue-300"],
+        ["bg-gray-100"],
       )}
     >
       <div className={clsx([["w-16"], ["h-16"]])}>
@@ -78,7 +78,12 @@ export const Component: React.VFC<
           ["mt-4"],
         )}
       >
-        <Input onChange={onChangeUserQuery} onFocus={onFocusSearchBox} onBlur={onBlurSearchBox} />
+        <Input
+          className={clsx(["w-full"])}
+          onChange={onChangeUserQuery}
+          onFocus={onFocusSearchBox}
+          onBlur={onBlurSearchBox}
+        />
         {focus &&
           (
             <Suggestions
@@ -92,12 +97,23 @@ export const Component: React.VFC<
             />
           )}
       </div>
-      {user && (
-        <div className={clsx(["flex", ["flex-col"], ["justify-start"]])}>
-          <span>{user.displayName}</span>
-          <span>{user.alias}</span>
-        </div>
-      )}
+      <div
+        className={clsx(
+          ["mt-4"],
+          ["w-full"],
+          ["h-16"],
+          ["flex", ["flex-col"], ["justify-start"]],
+        )}
+      >
+        {user && (
+          <>
+            <span className={clsx(["text-lg"])}>
+              <span className={clsx(["text-gray-900"])}>{user.displayName}</span>
+              <span className={clsx(["text-gray-500"])}>{LL.Format.Alias({ alias: user.alias })}</span>
+            </span>
+          </>
+        )}
+      </div>
     </div>
   );
 };
