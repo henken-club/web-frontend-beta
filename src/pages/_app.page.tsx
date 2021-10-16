@@ -1,9 +1,11 @@
 /* eslint-disable no-process-env */
 import { AppProps } from "next/app";
 import React from "react";
+import { RecoilRoot } from "recoil";
 
 import { localeDetector } from "~/i18n/detector";
 import TypesafeI18n from "~/i18n/i18n-react";
+import { DefaultLayout } from "~/layouts/default";
 
 import "~/styles/index.css";
 
@@ -16,10 +18,16 @@ const App = (
 ) => {
   const detectedLocales = localeDetector(router);
 
+  const PageLayout = DefaultLayout;
+
   return (
-    <TypesafeI18n initialLocale={detectedLocales}>
-      <Component {...pageProps} />
-    </TypesafeI18n>
+    <RecoilRoot>
+      <TypesafeI18n initialLocale={detectedLocales}>
+        <PageLayout>
+          <Component {...pageProps} />
+        </PageLayout>
+      </TypesafeI18n>
+    </RecoilRoot>
   );
 };
 

@@ -1,10 +1,12 @@
 {
   "incremental": true,
   "typescript": {
-    "lineWidth": 80,
+    "lineWidth": 120,
     "semiColons": "always",
     "indentWidth": 2,
-    "quoteStyle": "alwaysDouble"
+    "quoteStyle": "alwaysDouble",
+    "operatorPosition": "sameLine",
+    "conditionalExpression.operatorPosition": "nextLine"
   },
   "json": {},
   "markdown": {},
