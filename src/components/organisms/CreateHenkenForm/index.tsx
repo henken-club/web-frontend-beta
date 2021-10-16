@@ -15,33 +15,25 @@ export const Component: React.VFC<
     <div
       className={clsx(
         className,
-        ["max-w-screen-xl"],
-        ["inline-flex", ["flex-col", "sm:flex-row"], ["flex-wrap", "lg:flex-nowrap"]],
+        ["max-w-screen-lg"],
+        ["inline-grid", ["grid-cols-1", "sm:grid-cols-2"]],
         ["shadow-xl"],
       )}
     >
       <From
         className={clsx(
-          ["w-full", "sm:w-1/2", "lg:w-1/4"],
-          ["flex-col"],
-          ["bg-blue-100"],
-          ["order-1"],
+          ["col-span-1"],
         )}
       />
       <To
         className={clsx(
-          ["w-full", "sm:w-1/2", "lg:w-1/4"],
-          ["order-2", "lg:order-3"],
+          ["col-span-1"],
         )}
       />
-      <div
+      <Content
         className={clsx(
-          ["w-full", "lg:w-auto"],
-          ["flex-grow-0", "lg:flex-grow"],
-          ["flex-col"],
+          ["col-span-full"],
           ["bg-blue-200"],
-          ["h-24"],
-          ["order-3", "lg:order-2"],
         )}
       />
     </div>
