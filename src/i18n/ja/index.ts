@@ -1,9 +1,12 @@
 import type { BaseTranslation } from "typesafe-i18n";
 
 const ja: BaseTranslation = {
+  Login: "ログイン",
+
   Format: {
     Alias: "@{alias:string}",
   },
+
   CreateHenkenForm: {
     To: {
       SearchBox: {

@@ -12,6 +12,11 @@ export const useViewer = (): Viewer | null | undefined => {
   return viewer;
 };
 
+export const useSetViewer = () => {
+  const setter = useSetRecoilState(viewerState);
+  return (viewer: Viewer | null) => setter(viewer);
+};
+
 export const useUpdateViewer = () => {
   const setter = useSetRecoilState(viewerState);
   return (viewer: Viewer) => setter(viewer);

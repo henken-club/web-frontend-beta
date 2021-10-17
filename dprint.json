@@ -6,7 +6,8 @@
     "indentWidth": 2,
     "quoteStyle": "alwaysDouble",
     "operatorPosition": "sameLine",
-    "conditionalExpression.operatorPosition": "nextLine"
+    "conditionalExpression.operatorPosition": "nextLine",
+    "taggedTemplate.spaceBeforeLiteral": false
   },
   "json": {},
   "markdown": {},

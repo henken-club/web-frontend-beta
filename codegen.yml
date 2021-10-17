@@ -8,3 +8,29 @@ generates:
       - schema-ast
     config:
       sort: true
+
+  ./src/auth/codegen.ts:
+    documents:
+      - "src/auth/**/*.{ts,tsx}"
+      - "!src/auth/**/*.codegen.ts"
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
+    config:
+      scalars:
+        DateTime: string
+
+  ./src/mocks/codegen.ts:
+    documents:
+      - "src/**/*.{ts,tsx}"
+      - "!src/**/codegen.ts"
+      - "!src/**/*.codegen.ts"
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+    config:
+      nonOptionalTypename: true
+      scalars:
+        DateTime: string
