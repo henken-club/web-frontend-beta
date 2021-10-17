@@ -21,6 +21,19 @@ generates:
       scalars:
         DateTime: string
 
+  ./src/components/codegen.ts:
+    documents:
+      - "src/components/**/*.{ts,tsx}"
+      - "!src/components/**/*.codegen.ts"
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
+    config:
+      scalars:
+        DateTime: string
+      nonOptionalTypename: true
+
   ./src/mocks/codegen.ts:
     documents:
       - "src/**/*.{ts,tsx}"

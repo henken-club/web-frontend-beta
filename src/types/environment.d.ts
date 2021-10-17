@@ -6,6 +6,7 @@ declare namespace NodeJS {
 
     readonly NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: string;
     readonly NEXT_PUBLIC_MSW_ENABLED?: "true";
+    readonly NEXT_PUBLIC_MSW_FIRST_NEED_REGISTER?: "true";
     readonly NEXT_PUBLIC_MOCK_AUTH0_ENABLED?: "true";
 
     readonly NEXT_PUBLIC_AUTH0_DOMAIN: string;

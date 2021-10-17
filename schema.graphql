@@ -303,6 +303,7 @@ type Query {
   findRecommendation(id: ID!): FindRecommendationPayload!
   findUser(alias: String, id: ID): FindUserPayload!
   henken(id: ID!): Henken!
+  isAliasUnique(alias: String!): Boolean!
   manyAnswers(after: String, before: String, first: Int, last: Int, orderBy: AnswerOrder!): AnswerConnection!
   manyAuthors(after: String, before: String, first: Int, last: Int, orderBy: AuthorOrder!): AuthorConnection!
   manyBookSeries(after: String, before: String, first: Int, last: Int, orderBy: BookSeriesOrder!): BookSeriesConnection!
