@@ -11,6 +11,7 @@ import {
   RegisterUserIsAliasUniqueQuery,
   RegisterUserIsAliasUniqueQueryVariables,
 } from "~/components/codegen";
+import { useTranslation } from "~/i18n/useTranslation";
 
 const _RegisterUserIsAliasUniqueQuery = gql`
 query RegisterUserIsAliasUnique($alias:String!){
@@ -19,6 +20,7 @@ query RegisterUserIsAliasUnique($alias:String!){
 `;
 
 export const Alias: React.VFC<{ className?: string; }> = ({ className }) => {
+  const { LL } = useTranslation();
   const { register } = useFormContext<FormValue>();
   const client = useClient();
 
@@ -27,8 +29,13 @@ export const Alias: React.VFC<{ className?: string; }> = ({ className }) => {
       htmlFor="alias"
       className={clsx(className, ["inline-flex", ["flex-col"]])}
     >
+      <span className={clsx(["text-sm"])}>
+        {LL.RegisterUserForm.Alias.Label()}
+      </span>
       <input
         {...register("alias", {
+          minLength: 1,
+          maxLength: 15,
           validate: {
             unique: (alias) =>
               client.query<RegisterUserIsAliasUniqueQuery, RegisterUserIsAliasUniqueQueryVariables>(
@@ -40,6 +47,7 @@ export const Alias: React.VFC<{ className?: string; }> = ({ className }) => {
         name="alias"
         type="text"
         autoComplete="off"
+        className={clsx(["mt-2"])}
       />
     </label>
   );
