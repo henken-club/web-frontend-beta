@@ -30,10 +30,10 @@ searchUsers(query:$query,limit: 4, skip:0){
 export const Component: React.VFC<
   {
     className?: string;
-    focusSearchBox: boolean;
-    onChangeInput(query: string): void;
+    focus: boolean;
     onFocus(): void;
     onBlur(): void;
+    onUpdateInput(query: string): void;
     searching: boolean;
     suggestions: { id: string; displayName: string; alias: string; avatar: string; }[];
     onSelectSuggestion(user: { id: string; displayName: string; alias: string; avatar: string; }): void;
@@ -41,52 +41,54 @@ export const Component: React.VFC<
 > = (
   {
     className,
-    onChangeInput: onChangeUserQuery,
+    focus,
     onBlur,
     onFocus,
-    onSelectSuggestion,
-    focusSearchBox: focus,
+    onUpdateInput,
     suggestions,
+    onSelectSuggestion,
     searching,
   },
 ) => {
   const { LL } = useTranslation();
   return (
     <div
-      className={clsx(className, ["group"], ["relative"])}
+      className={clsx(className, ["relative"])}
     >
-      <label className={clsx(["flex-grow"])}>
+      <label className={clsx(["relative"], ["z-1"])}>
         <input
           type="search"
           autoComplete="on"
           aria-label={LL.CreateHenkenForm.To.SearchBox.aria.QueryInput()}
-          onChange={(event) => onChangeUserQuery(event.currentTarget.value)}
+          onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
-          onBlur={() => onBlur()}
-          className={clsx(
-            ["w-full"],
-            [["px-2"], ["py-1"]],
-            ["border"],
-            [["text-md"]],
-          )}
+          className={clsx(["w-full"], [["px-2"], ["py-1"]], ["border"], [["text-md"]])}
         />
       </label>
-      <div
-        className={clsx(
-          ["hidden", "focus-within:block"],
-          ["absolute", ["top-full"], ["left-0"]],
-          ["w-full"],
-          ["shadow-lg"],
+      {focus &&
+        (
+          <>
+            <div
+              className={clsx(["fixed", "inset-0"], ["z-0"])}
+              onClick={() => onBlur()}
+              onKeyPress={() => onBlur()}
+            />
+            <div
+              className={clsx(
+                ["absolute", ["top-full"], ["left-0"]],
+                ["w-full"],
+                ["z-1"],
+                ["shadow-lg"],
+              )}
+            >
+              <Suggestions
+                className={clsx(["w-full"])}
+                suggestions={suggestions}
+                onSelect={onSelectSuggestion}
+              />
+            </div>
+          </>
         )}
-      >
-        <Suggestions
-          className={clsx(
-            ["w-full"],
-          )}
-          suggestions={suggestions}
-          onSelect={onSelectSuggestion}
-        />
-      </div>
     </div>
   );
 };
@@ -103,29 +105,32 @@ export const SearchUser: React.VFC<{ className?: string; }> = ({ className }) =>
   );
   const { data: searchData, fetching: searching } = stateSearch;
 
-  useDebounce(() => setQuery(input), 1000, [input]);
+  useDebounce(() => setQuery(input), 500, [input]);
 
   const suggestions = useMemo<{ id: string; displayName: string; alias: string; avatar: string; }[]>(
-    () =>
-      searchData?.searchUsers.nodes.map(({ user }) => ({
+    () => {
+      if (Boolean(input) && input === "") return [];
+      return searchData?.searchUsers.nodes.map(({ user }) => ({
         id: user.id,
         alias: user.alias,
         displayName: user.displayName,
         avatar: user.avatar,
-      })) || [],
-    [searchData],
+      })) || [];
+    },
+    [input, searchData],
   );
 
   return (
     <Component
-      onChangeInput={(query) => {
+      onUpdateInput={(query) => {
         setInput(query);
       }}
-      focusSearchBox={focus}
+      focus={focus}
       onFocus={() => setFocus(true)}
       onBlur={() => setFocus(false)}
       onSelectSuggestion={(user) => {
         setTo(user);
+        setFocus(false);
       }}
       searching={searching}
       suggestions={suggestions}
