@@ -7,7 +7,7 @@ import { Modal } from "~/components/atoms/Modal";
 import { RegisterUserForm } from "~/components/organisms/RegisterUserForm";
 
 const manualRegisterUserModalState = atom<boolean>({
-  key: "modalRegsiterUserManual",
+  key: "modalRegisterUserManual",
   default: true,
 });
 
