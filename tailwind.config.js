@@ -26,6 +26,7 @@ module.exports = {
     extend: {
       textColor: ["disabled"],
       backgroundColor: ["disabled"],
+      display: ["group-focus", "focus-within"],
     },
   },
 };

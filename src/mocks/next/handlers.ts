@@ -2,6 +2,9 @@
 import { graphql } from "msw";
 
 import {
+  CreateHenkenFormSearchUserDocument,
+  CreateHenkenFormSearchUserQuery,
+  CreateHenkenFormSearchUserQueryVariables,
   FetchViewerDocument,
   FetchViewerQuery,
   FetchViewerQueryVariables,
@@ -66,4 +69,54 @@ export const handlers = [
       }),
     );
   }),
+  graphql.query<CreateHenkenFormSearchUserQuery, CreateHenkenFormSearchUserQueryVariables>(
+    CreateHenkenFormSearchUserDocument,
+    (req, res, ctx) => {
+      return res(
+        ctx.data({
+          __typename: "Query",
+          searchUsers: {
+            __typename: "SearchUsersPayload",
+            nodes: [{
+              __typename: "SearchUsersResult",
+              user: {
+                __typename: "User",
+                id: "search_1",
+                alias: "search_1",
+                displayName: "SearchUser1",
+                avatar: "/.mock/avatar_1.png",
+              },
+            }, {
+              __typename: "SearchUsersResult",
+              user: {
+                __typename: "User",
+                id: "search_2",
+                alias: "search_2",
+                displayName: "SearchUser2",
+                avatar: "/.mock/avatar_2.png",
+              },
+            }, {
+              __typename: "SearchUsersResult",
+              user: {
+                __typename: "User",
+                id: "search_3",
+                alias: "search_3",
+                displayName: "SearchUser3",
+                avatar: "/.mock/avatar_3.png",
+              },
+            }, {
+              __typename: "SearchUsersResult",
+              user: {
+                __typename: "User",
+                id: "search_4",
+                alias: "search_4",
+                displayName: "SearchUser4",
+                avatar: "/.mock/avatar_4.png",
+              },
+            }],
+          },
+        }),
+      );
+    },
+  ),
 ];

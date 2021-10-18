@@ -9,3 +9,15 @@ extend type User {
 extend type Query{
   isAliasUnique(alias:String!):Boolean!
 }
+
+extend type Query {
+  searchUsers(query: String!, skip: Int = 0, limit: Int!): SearchUsersPayload!
+}
+
+type SearchUsersPayload {
+  nodes: [SearchUsersResult!]!
+}
+
+type SearchUsersResult {
+  user: User!
+}
