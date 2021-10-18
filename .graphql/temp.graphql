@@ -1,0 +1,27 @@
+enum TempContentType {
+  UNKNOWN
+  AUTHOR
+  BOOK
+  BOOK_SERIES
+}
+
+type TempContent {
+  id: ID!
+
+  type: AnswerType!
+  title: String!
+
+  notes: String!
+}
+
+extend type Mutation {
+  createTempContent(
+    type: TempContentType!
+    title: String!
+    notes: String = ""
+  ): CreateTempContentPayload!
+}
+
+type CreateTempContentPayload {
+  content: TempContent!
+}

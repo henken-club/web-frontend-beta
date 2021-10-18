@@ -173,6 +173,10 @@ type CreateHenkenPayload {
   henken: Henken!
 }
 
+type CreateTempContentPayload {
+  content: TempContent!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -271,6 +275,7 @@ enum HenkenOrderField {
 
 type Mutation {
   createHenken(comment: String = "", content: ID!, to: ID!): CreateHenkenPayload!
+  createTempContent(notes: String = "", title: String!, type: TempContentType!): CreateTempContentPayload!
   registerUser(alias: String!, avatar: String!, displayName: String!): RegisterUserPayload!
 }
 
@@ -361,6 +366,20 @@ type SearchPayload {
 
 type SearchResult {
   content: SearchContent!
+}
+
+type TempContent {
+  id: ID!
+  notes: String!
+  title: String!
+  type: AnswerType!
+}
+
+enum TempContentType {
+  AUTHOR
+  BOOK
+  BOOK_SERIES
+  UNKNOWN
 }
 
 type User implements Node {
