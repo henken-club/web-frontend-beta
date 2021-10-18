@@ -31,7 +31,7 @@ export const handlers = [
               id: "viewer_id",
               alias: "viewer",
               displayName: "Viewer",
-              avatar: "/.mocks/viewer.png",
+              avatar: "/.mock/viewer.png",
             },
           }));
         }

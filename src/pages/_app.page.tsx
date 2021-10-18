@@ -8,6 +8,7 @@ import { FetchViewer } from "~/auth/FetchViewer";
 import { localeDetector } from "~/i18n/detector";
 import TypesafeI18n from "~/i18n/i18n-react";
 import { DefaultLayout } from "~/layouts/default";
+import { CreateHenkenModal } from "~/modals/CreateHenken";
 import { RegisterUserModal } from "~/modals/RegisterUser";
 import "~/styles/index.css";
 import { UrqlProvider } from "~/urql/UrqlProvider";
@@ -35,6 +36,7 @@ const App = (
           <FetchViewer />
           <TypesafeI18n initialLocale={detectedLocales}>
             <RegisterUserModal />
+            <CreateHenkenModal />
             <PageLayout>
               <Component {...pageProps} />
             </PageLayout>

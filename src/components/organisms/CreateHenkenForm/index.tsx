@@ -6,6 +6,7 @@ import { CreateHenkenFormContext } from "./context";
 import { From } from "./From";
 import { To } from "./To";
 
+import { useViewer } from "~/auth/useViewer";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const Component: React.VFC<
@@ -41,14 +42,10 @@ export const Component: React.VFC<
   );
 };
 
-export const CreateHenkenForm: React.VFC<
-  {
-    className?: string;
-    viewer: undefined | null | { id: string; alias: string; displayName: string; avatar: string; };
-  }
-> = (
-  { viewer, ...props },
+export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
+  { ...props },
 ) => {
+  const viewer = useViewer();
   const [to, setTo] = useState<{ id: string; alias: string; displayName: string; avatar: string; } | null>(null);
   const [content, setContent] = useState<ContextType<typeof CreateHenkenFormContext>["content"]>(null);
   const [comment, setComment] = useState<string>("");
