@@ -3,8 +3,7 @@ import React, { useContext, useState } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { Input } from "./SearchBox";
-import { Suggestions } from "./Suggestions";
+import { SearchUser } from "./SearchUser";
 
 import { AvatarLarge } from "~/components/atoms/Avatar";
 import { IconUnknownUser } from "~/components/atoms/Icon";
@@ -71,32 +70,7 @@ export const Component: React.VFC<
             </div>
           )}
       </div>
-      <div
-        className={clsx(
-          ["w-full"],
-          ["relative"],
-          ["mt-4"],
-        )}
-      >
-        <Input
-          className={clsx(["w-full"])}
-          onChange={onChangeUserQuery}
-          onFocus={onFocusSearchBox}
-          onBlur={onBlurSearchBox}
-        />
-        {focus &&
-          (
-            <Suggestions
-              className={clsx(
-                ["absolute", ["top-full"], ["left-0"]],
-                ["w-full"],
-                ["shadow-lg"],
-              )}
-              suggestions={userSuggestions}
-              onSelect={onSelectSuggestion}
-            />
-          )}
-      </div>
+      <SearchUser className={clsx(["w-full"], ["mt-4"])} />
       <div
         className={clsx(
           ["mt-4"],

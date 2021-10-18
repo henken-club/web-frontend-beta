@@ -313,6 +313,7 @@ type Query {
   manyUsers(after: String, before: String, first: Int, last: Int, orderBy: UserOrder!): UserConnection!
   recommendation(id: ID!): Recommendation!
   search(limit: Int!, query: String!, skip: Int = 0): SearchPayload!
+  searchUsers(limit: Int!, query: String!, skip: Int = 0): SearchUsersPayload!
   user(id: ID!): User!
 
   """Return current user. Return `null` if user not registered"""
@@ -361,6 +362,14 @@ type SearchPayload {
 
 type SearchResult {
   content: SearchContent!
+}
+
+type SearchUsersPayload {
+  nodes: [SearchUsersResult!]!
+}
+
+type SearchUsersResult {
+  user: User!
 }
 
 type User implements Node {
