@@ -69,7 +69,7 @@ input AuthorWritingsOrder {
 }
 
 type Book implements Content & Node & SearchContent {
-  cover: String
+  cover: String!
   id: ID!
   isbn: String
   title: String!
@@ -313,6 +313,7 @@ type Query {
   manyUsers(after: String, before: String, first: Int, last: Int, orderBy: UserOrder!): UserConnection!
   recommendation(id: ID!): Recommendation!
   search(limit: Int!, query: String!, skip: Int = 0): SearchPayload!
+  searchContent(limit: Int!, query: String!, skip: Int = 0): SearchContentPayload!
   searchUsers(limit: Int!, query: String!, skip: Int = 0): SearchUsersPayload!
   user(id: ID!): User!
 
@@ -354,6 +355,10 @@ type RegisterUserPayload {
 
 interface SearchContent {
   id: ID!
+}
+
+type SearchContentPayload {
+  nodes: [SearchResult!]!
 }
 
 type SearchPayload {

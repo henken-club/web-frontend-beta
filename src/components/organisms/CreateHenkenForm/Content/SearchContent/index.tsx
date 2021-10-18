@@ -1,30 +1,33 @@
 import clsx from "clsx";
 import { gql } from "graphql-tag";
-import React, { useContext, useMemo, useState } from "react";
+import React, { ComponentProps, useContext, useMemo, useState } from "react";
 import { useDebounce } from "react-use";
 
 import { CreateHenkenFormContext } from "../../context";
 
 import { Suggestions } from "./Suggestions";
 
-import { useCreateHenkenFormSearchUserQuery } from "~/components/codegen";
+import { useCreateHenkenFormSearchContentQuery } from "~/components/codegen";
 import { useTranslation } from "~/i18n/useTranslation";
 
-const _CreateHenkenFormSearchUserQuery = gql`
-  query CreateHenkenFormSearchUser( $query: String!
-  ) {
-searchUsers(query:$query,limit: 4, skip:0){
-  nodes{
-    user{
-      id
-      alias
-      displayName
-      avatar
+const _CreateHenkenFormSearchContentQuery = gql`
+  query CreateHenkenFormSearchContent( $query: String!) {
+    searchContent(query:$query,limit: 4, skip:0){
+      nodes{
+        content{
+          ... on Book {
+            id title cover
+          }
+          ... on BookSeries{
+            id title
+          }
+          ... on Author {
+            id name
+          }
+        }
+      }
     }
   }
-}
-
-    }
 `;
 
 export const Component: React.VFC<
@@ -35,8 +38,8 @@ export const Component: React.VFC<
     onBlur(): void;
     onUpdateInput(query: string): void;
     searching: boolean;
-    suggestions: { id: string; displayName: string; alias: string; avatar: string; }[];
-    onSelectSuggestion(user: { id: string; displayName: string; alias: string; avatar: string; }): void;
+    suggestions: ComponentProps<typeof Suggestions>["suggestions"];
+    onSelectSuggestion: ComponentProps<typeof Suggestions>["onSelect"];
   }
 > = (
   {
@@ -56,10 +59,11 @@ export const Component: React.VFC<
       className={clsx(className, ["relative", { "z-infinity": focus }])}
     >
       <label className={clsx(["relative"], ["z-1"])}>
+        <span>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
         <input
           type="search"
           autoComplete="on"
-          aria-label={LL.CreateHenkenForm.To.SearchBox.aria.QueryInput()}
+          aria-label={LL.CreateHenkenForm.Content.SearchBox.aria.QueryInput()}
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
           className={clsx(["w-full"], [["px-2"], ["py-1"]], ["border"], [["text-md"]])}
@@ -93,29 +97,33 @@ export const Component: React.VFC<
   );
 };
 
-export const SearchUser: React.VFC<{ className?: string; }> = ({ className }) => {
-  const { setTo } = useContext(CreateHenkenFormContext);
+export const SearchContent: React.VFC<{ className?: string; }> = ({ className }) => {
+  const { setContent } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
   const [query, setQuery] = useState<string | undefined>(undefined);
   const [focus, setFocus] = useState(false);
 
-  const [stateSearch] = useCreateHenkenFormSearchUserQuery(
+  const [stateSearch] = useCreateHenkenFormSearchContentQuery(
     query && query !== "" ? { pause: false, variables: { query } } : { pause: true },
   );
   const { data: searchData, fetching: searching } = stateSearch;
 
   useDebounce(() => setQuery(input), 500, [input]);
 
-  const suggestions = useMemo<{ id: string; displayName: string; alias: string; avatar: string; }[]>(
+  const suggestions = useMemo<ComponentProps<typeof Component>["suggestions"]>(
     () => {
       if (Boolean(input) && input === "") return [];
-      return searchData?.searchUsers.nodes.map(({ user }) => ({
-        id: user.id,
-        alias: user.alias,
-        displayName: user.displayName,
-        avatar: user.avatar,
-      })) || [];
+      return searchData?.searchContent.nodes.map(({ content }) => {
+        switch (content.__typename) {
+          case "Book":
+            return { type: "book", value: { id: content.id, title: content.title, cover: content.cover } };
+          case "BookSeries":
+            return { type: "bookseries", value: { id: content.id, title: content.title } };
+          case "Author":
+            return { type: "author", value: { id: content.id, name: content.name } };
+        }
+      }) || [];
     },
     [input, searchData],
   );
@@ -128,8 +136,8 @@ export const SearchUser: React.VFC<{ className?: string; }> = ({ className }) =>
       focus={focus}
       onFocus={() => setFocus(true)}
       onBlur={() => setFocus(false)}
-      onSelectSuggestion={(user) => {
-        setTo(user);
+      onSelectSuggestion={(content) => {
+        setContent(content);
         setFocus(false);
       }}
       searching={searching}

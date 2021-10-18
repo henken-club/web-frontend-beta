@@ -12,8 +12,8 @@ export const Component: React.VFC<{
   const { LL } = useTranslation();
   return (
     <div className={clsx(["h-64"], ["inline-flex", ["flex-col"], ["items-center"]])}>
-      <div className={clsx(["h-48"], ["flex", ["justify-center"]])}>
-        {image && <Image src={image} layout="fill" objectFit="contain" />}
+      <div className={clsx(["w-full"], ["h-48"], ["relative"])}>
+        {image && <Image src={image} className={clsx(["w-full"])} layout="fill" objectFit="contain" />}
         {!image && (
           <div
             className={clsx(

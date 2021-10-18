@@ -2,6 +2,9 @@
 import { graphql } from "msw";
 
 import {
+  CreateHenkenFormSearchContentDocument,
+  CreateHenkenFormSearchContentQuery,
+  CreateHenkenFormSearchContentQueryVariables,
   CreateHenkenFormSearchUserDocument,
   CreateHenkenFormSearchUserQuery,
   CreateHenkenFormSearchUserQueryVariables,
@@ -114,6 +117,46 @@ export const handlers = [
                 avatar: "/.mock/avatar_4.png",
               },
             }],
+          },
+        }),
+      );
+    },
+  ),
+  graphql.query<CreateHenkenFormSearchContentQuery, CreateHenkenFormSearchContentQueryVariables>(
+    CreateHenkenFormSearchContentDocument,
+    (req, res, ctx) => {
+      return res(
+        ctx.data({
+          __typename: "Query",
+          searchContent: {
+            __typename: "SearchContentPayload",
+            nodes: [
+              {
+                __typename: "SearchResult",
+                content: {
+                  __typename: "Book",
+                  id: "search_book_1",
+                  title: "Search Book 1",
+                  cover: "/.mock/bookcover_1.jpg",
+                },
+              },
+              {
+                __typename: "SearchResult",
+                content: {
+                  __typename: "BookSeries",
+                  id: "search_bookseries_1",
+                  title: "Search BookSeries 1",
+                },
+              },
+              {
+                __typename: "SearchResult",
+                content: {
+                  __typename: "Author",
+                  id: "search_author_1",
+                  name: "Search Author 1",
+                },
+              },
+            ],
           },
         }),
       );
