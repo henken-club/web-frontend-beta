@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 
 import { useAuth } from "~/auth/useAuth";
 import { useViewer } from "~/auth/useViewer";
+import { OpenCreateHenkenModalButton } from "~/components/atoms/Button";
 import { LoginButton } from "~/components/atoms/LoginButton";
 import { RegisterButton } from "~/components/atoms/RegisterButton";
 
@@ -12,9 +13,14 @@ export const Component: React.VFC<{
 }> = ({ viewer, needRegister, needLogin }) => {
   return (
     <>
-      {JSON.stringify(viewer)}
       {needLogin && <LoginButton />}
-      {needRegister && <RegisterButton />}
+      {!needLogin && JSON.stringify(viewer)}
+      {!needLogin && needRegister && <RegisterButton />}
+      {!needLogin && !needRegister && (
+        <>
+          <OpenCreateHenkenModalButton />
+        </>
+      )}
     </>
   );
 };

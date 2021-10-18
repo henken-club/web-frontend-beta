@@ -4,6 +4,10 @@ const ja: BaseTranslation = {
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
 
+  Button: {
+    CreateHenken: "偏見を送る",
+  },
+
   Format: {
     Alias: "@{alias:string}",
   },
