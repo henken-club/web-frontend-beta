@@ -17,7 +17,7 @@ export const useOpenCreateHenkenModal = () => {
 
 export const useCloseCreateHenkenModal = () => {
   const setter = useSetRecoilState(manualCreateHenkenModalState);
-  return () => setter(true);
+  return () => setter(false);
 };
 
 export const CreateHenkenModal: React.VFC = () => {

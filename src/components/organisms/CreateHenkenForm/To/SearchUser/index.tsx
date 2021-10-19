@@ -30,6 +30,9 @@ searchUsers(query:$query,limit: 4, skip:0){
 export const Component: React.VFC<
   {
     className?: string;
+
+    formDisabled: boolean;
+
     focus: boolean;
     onFocus(): void;
     onBlur(): void;
@@ -41,6 +44,7 @@ export const Component: React.VFC<
 > = (
   {
     className,
+    formDisabled,
     focus,
     onBlur,
     onFocus,
@@ -62,6 +66,7 @@ export const Component: React.VFC<
           aria-label={LL.CreateHenkenForm.To.SearchBox.aria.QueryInput()}
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
+          disabled={formDisabled}
           className={clsx(["w-full"], [["px-2"], ["py-1"]], ["border"], [["text-md"]])}
         />
       </label>
@@ -94,7 +99,7 @@ export const Component: React.VFC<
 };
 
 export const SearchUser: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const { setTo } = useContext(CreateHenkenFormContext);
+  const { setTo, formDisabled } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
   const [query, setQuery] = useState<string | undefined>(undefined);
@@ -122,6 +127,7 @@ export const SearchUser: React.VFC<{ className?: string; }> = ({ ...props }) => 
 
   return (
     <Component
+      formDisabled={formDisabled}
       onUpdateInput={(query) => {
         setInput(query);
       }}

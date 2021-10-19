@@ -35,6 +35,11 @@ const ja: BaseTranslation = {
   },
 
   CreateHenkenForm: {
+    Created: {
+      Title: "偏見を送信しました！",
+      Close: "閉じる",
+    },
+
     To: {
       SearchBox: {
         aria: {
