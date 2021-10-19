@@ -1,10 +1,10 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { Component } from "./Info";
+import { Component } from ".";
 
 export default {
-  title: "CreateHenkenForm/Content/Info",
+  title: "CreateHenkenForm/Content/Details",
   component: Component,
   argTypes: {},
 } as Meta;

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { useMemo } from "react";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
@@ -33,7 +34,7 @@ export const CreateHenkenModal: React.VFC = () => {
       {!open && <></>}
       {open && (
         <Modal onClose={() => setManual(false)}>
-          <CreateHenkenForm />
+          <CreateHenkenForm className={clsx("w-full")} />
         </Modal>
       )}
     </>

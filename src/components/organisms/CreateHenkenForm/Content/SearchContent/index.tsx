@@ -59,14 +59,19 @@ export const Component: React.VFC<
       className={clsx(className, ["relative", { "z-infinity": focus }])}
     >
       <label className={clsx(["relative"], ["z-1"])}>
-        <span>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
+        <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
         <input
           type="search"
           autoComplete="on"
           aria-label={LL.CreateHenkenForm.Content.SearchBox.aria.QueryInput()}
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
-          className={clsx(["w-full"], [["px-2"], ["py-1"]], ["border"], [["text-md"]])}
+          className={clsx(
+            ["w-full"],
+            [["px-2"], ["py-1"]],
+            ["border"],
+            [["text-base"]],
+          )}
         />
       </label>
       {focus &&
@@ -97,7 +102,7 @@ export const Component: React.VFC<
   );
 };
 
-export const SearchContent: React.VFC<{ className?: string; }> = ({ className }) => {
+export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const { setContent } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
@@ -142,6 +147,7 @@ export const SearchContent: React.VFC<{ className?: string; }> = ({ className })
       }}
       searching={searching}
       suggestions={suggestions}
+      {...props}
     />
   );
 };

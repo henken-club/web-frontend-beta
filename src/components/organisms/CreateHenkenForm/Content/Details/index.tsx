@@ -6,13 +6,26 @@ import { Image } from "~/components/atoms/Image";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const Component: React.VFC<{
+  className?: string;
   title: string;
   image: string | null;
-}> = ({ title, image }) => {
+}> = ({ className, title, image }) => {
   const { LL } = useTranslation();
   return (
-    <div className={clsx(["h-64"], ["inline-flex", ["flex-col"], ["items-center"]])}>
-      <div className={clsx(["w-full"], ["h-48"], ["relative"])}>
+    <div
+      className={clsx(
+        className,
+        ["inline-flex", ["flex-col"], ["items-center"]],
+      )}
+    >
+      <div
+        className={clsx(
+          ["w-full"],
+          ["h-32"],
+          ["relative"],
+          ["bg-gray-200"],
+        )}
+      >
         {image && <Image src={image} className={clsx(["w-full"])} layout="fill" objectFit="contain" />}
         {!image && (
           <div
@@ -20,21 +33,23 @@ export const Component: React.VFC<{
               ["w-full"],
               ["h-full"],
               ["flex", ["flex-col"], ["justify-center"], ["items-center"]],
+              ["select-none"],
+              ["text-gray-700"],
             )}
           >
-            <IconNoImage />
-            <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.Info.NoImage()}</span>
+            <IconNoImage className={clsx(["text-lg"])} />
+            <span className={clsx(["mt-2"], ["text-sm"])}>{LL.CreateHenkenForm.Content.Info.NoImage()}</span>
           </div>
         )}
       </div>
       <div className={clsx(["w-full"], ["flex-grow"], ["mt-2"])}>
-        <span className={clsx([["text-lg"]])}>{title}</span>
+        <span className={clsx([["text-base"]])}>{title}</span>
       </div>
     </div>
   );
 };
 
-export const Info: React.VFC<{
+export const Details: React.VFC<{
   className?: string;
   content:
     | { type: "book"; value: { id: string; title: string; cover: string; }; }

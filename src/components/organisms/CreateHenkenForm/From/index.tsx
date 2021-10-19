@@ -16,44 +16,57 @@ export const Component: React.VFC<
   const { LL } = useTranslation();
   return (
     <div
-      className={clsx(className, [
-        ["px-4"],
-        ["py-4"],
-      ], [
-        ["inline-flex"],
-        ["flex-col"],
-        ["items-center"],
-      ])}
+      className={clsx(
+        className,
+        [["px-6"], ["py-4"]],
+        [["inline-flex"], ["flex-col"], ["items-center"]],
+        ["bg-gray-100"],
+      )}
     >
-      <div className={clsx([["w-16"], ["h-16"]])}>
-        {user === undefined &&
-          (
-            <div
-              className={clsx(
-                ["w-full", "h-full"],
-                ["flex", ["items-center"], ["justify-center"]],
-                ["bg-blue-400"],
-                ["rounded-full"],
-              )}
-            >
-              <IconLoading className={clsx([["text-4xl"], ["text-blue-300"]])} />
-            </div>
-          )}
-        {user === null &&
-          (
-            <div
-              className={clsx(
-                ["w-full", "h-full"],
-                ["flex", ["items-center"], ["justify-center"]],
-                ["bg-blue-400"],
-                ["rounded-full"],
-              )}
-            >
-              <IconUnknownUser className={clsx([["text-4xl"], ["text-blue-300"]])} />
-            </div>
-          )}
-        {user &&
-          <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />}
+      <div
+        className={clsx(
+          ["w-full"],
+          ["flex", ["flex-row"], ["items-center"]],
+        )}
+      >
+        <div className={clsx([["w-8"], ["h-8"]])}>
+          {user === undefined &&
+            (
+              <div
+                className={clsx(
+                  ["w-full", "h-full"],
+                  ["flex", ["items-center"], ["justify-center"]],
+                  ["bg-blue-400"],
+                  ["rounded-full"],
+                )}
+              >
+                <IconLoading className={clsx([["text-2xl"], ["text-blue-300"]])} />
+              </div>
+            )}
+          {user === null &&
+            (
+              <div
+                className={clsx(
+                  ["w-full", "h-full"],
+                  ["flex", ["items-center"], ["justify-center"]],
+                  ["bg-blue-400"],
+                  ["rounded-full"],
+                )}
+              >
+                <IconUnknownUser className={clsx([["text-2xl"], ["text-blue-300"]])} />
+              </div>
+            )}
+          {user &&
+            <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />}
+        </div>
+        {user && (
+          <>
+            <span className={clsx(["text-sm"], ["ml-2"])}>
+              <span className={clsx(["text-gray-900"])}>{user.displayName}</span>
+              <span className={clsx(["text-gray-400"])}>{LL.Format.Alias({ alias: user.alias })}</span>
+            </span>
+          </>
+        )}
       </div>
     </div>
   );
