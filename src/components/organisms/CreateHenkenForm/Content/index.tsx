@@ -34,7 +34,7 @@ export const Component: React.VFC<
       className={clsx(
         className,
         [["px-6"], ["py-4"]],
-        [["inline-flex"], ["flex-col"], ["items-startz"]],
+        [["inline-flex"], ["flex-col"], ["items-starts"]],
         ["grid", ["grid-cols-3"], ["gap-x-4"]],
         ["bg-gray-50"],
       )}
@@ -62,6 +62,7 @@ export const Component: React.VFC<
               className={clsx(
                 ["w-full"],
                 [["px-2"], ["py-1"]],
+                ["mt-1"],
                 ["border"],
                 [["text-base"]],
               )}

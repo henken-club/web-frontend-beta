@@ -61,9 +61,13 @@ export const Component: React.VFC<
         </div>
         {user && (
           <>
-            <span className={clsx(["text-sm"], ["ml-2"])}>
-              <span className={clsx(["text-gray-900"])}>{user.displayName}</span>
-              <span className={clsx(["text-gray-400"])}>{LL.Format.Alias({ alias: user.alias })}</span>
+            <span className={clsx(["ml-4"], ["flex", "flex-col"])}>
+              <span className={clsx(["text-gray-900"], ["text-sm"], ["select-all"])}>
+                {user.displayName}
+              </span>
+              <span className={clsx(["text-gray-500"], ["mt-0.5"], ["text-xs"], ["select-all"])}>
+                {LL.Format.Alias({ alias: user.alias })}
+              </span>
             </span>
           </>
         )}
