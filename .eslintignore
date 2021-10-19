@@ -28,3 +28,6 @@ public/mockServiceWorker.js
 src/**/codegen.ts
 src/**/*.codegen.ts
 src/i18n/i18n-*
+
+# mocks
+__mocks__/

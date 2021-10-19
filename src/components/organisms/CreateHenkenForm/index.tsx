@@ -17,27 +17,15 @@ export const Component: React.VFC<
     <div
       className={clsx(
         className,
-        ["max-w-screen-lg"],
-        ["inline-grid", ["grid-cols-1", "sm:grid-cols-2"]],
+        ["max-w-screen-sm"],
+        ["inline-flex", ["flex-col"]],
+        ["divide-y", ["divide-gray-200"]],
         ["shadow-xl"],
       )}
     >
-      <From
-        className={clsx(
-          ["col-span-1"],
-        )}
-      />
-      <To
-        className={clsx(
-          ["col-span-1"],
-        )}
-      />
-      <Content
-        className={clsx(
-          ["col-span-full"],
-          ["bg-blue-200"],
-        )}
-      />
+      <From className={clsx()} />
+      <To className={clsx()} />
+      <Content className={clsx()} />
     </div>
   );
 };

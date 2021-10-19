@@ -93,7 +93,7 @@ export const Component: React.VFC<
   );
 };
 
-export const SearchUser: React.VFC<{ className?: string; }> = ({ className }) => {
+export const SearchUser: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const { setTo } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
@@ -134,6 +134,7 @@ export const SearchUser: React.VFC<{ className?: string; }> = ({ className }) =>
       }}
       searching={searching}
       suggestions={suggestions}
+      {...props}
     />
   );
 };

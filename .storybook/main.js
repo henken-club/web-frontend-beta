@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const TSConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
@@ -19,6 +20,12 @@ module.exports = {
         configFile: path.resolve(__dirname, "../tsconfig.json"),
       }),
     ];
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(
+        /next\/image/,
+        path.resolve(__dirname, "../__mocks__/next/image.js"),
+      ),
+    );
     return config;
   },
 };
