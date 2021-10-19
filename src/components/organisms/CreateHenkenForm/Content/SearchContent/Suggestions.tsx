@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { NoResult } from "./NoResult";
-import { Suggestion } from "./Suggestions";
+import { Suggestion } from "./Suggestion";
 
 import { useTranslation } from "~/i18n/useTranslation";
 

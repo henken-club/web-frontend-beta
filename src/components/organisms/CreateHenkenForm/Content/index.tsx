@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import React, { ComponentProps, useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
 import { Info } from "./Info";
-import { Suggestions } from "./Suggestions";
+import { SearchContent } from "./SearchContent";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -19,28 +19,12 @@ export const Component: React.VFC<
 
     // comment
     onUpdateChange(value: string): void;
-
-    // content search
-    focusContentSearchBox: boolean;
-    onFocusSearchContentBox(): void;
-    onBlurSearchContentBox(): void;
-    searchingContent: boolean;
-    onUpdateContentSearchQuery(value: string): void;
-    searchContentSuggestions: ComponentProps<typeof Suggestions>["suggestions"];
-    onSelectContentSearchSuggestion: ComponentProps<typeof Suggestions>["onSelect"];
   }
 > = (
   {
     className,
     content,
-    onBlurSearchContentBox,
-    focusContentSearchBox,
     onUpdateChange,
-    onUpdateContentSearchQuery,
-    onFocusSearchContentBox,
-    onSelectContentSearchSuggestion,
-    searchingContent,
-    searchContentSuggestions,
     ...props
   },
 ) => {
@@ -55,6 +39,7 @@ export const Component: React.VFC<
       )}
     >
       {content && <Info className={clsx(["col-span-1"])} content={content} />}
+      {!content && <div className={clsx(["col-span-1"], ["h-64"])} />}
       <div
         className={clsx(
           [
@@ -76,32 +61,7 @@ export const Component: React.VFC<
             />
           </label>
         </div>
-        <div className={clsx(["mt-4"], ["relative"])}>
-          <label>
-            <span>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
-            <input
-              type="search"
-              autoComplete="on"
-              aria-label={LL.CreateHenkenForm.Content.SearchBox.aria.QueryInput()}
-              onChange={(event) => onUpdateContentSearchQuery(event.currentTarget.value)}
-              onFocus={() => onFocusSearchContentBox()}
-              onBlur={() => onBlurSearchContentBox()}
-              className={clsx(["w-full"], [["px-2"], ["py-1"]], ["border"], [["text-md"]])}
-            />
-          </label>
-          {focusContentSearchBox &&
-            (
-              <Suggestions
-                className={clsx(
-                  ["absolute", ["top-full"], ["left-0"]],
-                  ["w-full"],
-                  ["shadow-lg"],
-                )}
-                suggestions={searchContentSuggestions}
-                onSelect={onSelectContentSearchSuggestion}
-              />
-            )}
-        </div>
+        <SearchContent className={clsx(["w-full"], ["mt-4"])} />
       </div>
     </div>
   );
@@ -110,22 +70,13 @@ export const Component: React.VFC<
 export const Content: React.VFC<{ className?: string; }> = (
   { ...props },
 ) => {
-  const { content, setContent, setComment } = useContext(CreateHenkenFormContext);
-  const [contentQuery, setContentQuery] = useState<string | undefined>(undefined);
-  const [focus, setFocus] = useState(false);
+  const { content, setComment } = useContext(CreateHenkenFormContext);
 
   return (
     <Component
       {...props}
       content={content}
-      focusContentSearchBox={focus}
-      onFocusSearchContentBox={() => setFocus(true)}
-      onBlurSearchContentBox={() => setFocus(false)}
-      onSelectContentSearchSuggestion={(target) => setContent(target)}
       onUpdateChange={(comment) => setComment(comment)}
-      onUpdateContentSearchQuery={(query) => setContentQuery(query)}
-      searchingContent
-      searchContentSuggestions={[]}
     />
   );
 };
