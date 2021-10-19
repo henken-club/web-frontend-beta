@@ -35,12 +35,12 @@ export const Component: React.VFC<
         className,
         [["px-6"], ["py-4"]],
         [["inline-flex"], ["flex-col"], ["items-starts"]],
-        ["grid", ["grid-cols-3"], ["gap-x-4"]],
+        ["grid", ["grid-cols-3"], ["gap-x-8"]],
         ["bg-gray-50"],
       )}
     >
-      {content && <Details className={clsx(["col-span-1"], ["h-52"])} content={content} />}
-      {!content && <div className={clsx(["col-span-1"], ["h-52"])} />}
+      {content && <Details className={clsx(["col-span-1"])} content={content} />}
+      {!content && <div className={clsx(["col-span-1"])} />}
       <div
         className={clsx(
           [
@@ -59,12 +59,14 @@ export const Component: React.VFC<
               autoComplete="off"
               aria-label={LL.CreateHenkenForm.Content.CommentBox.aria.CommentInput()}
               onChange={(event) => onUpdateChange(event.currentTarget.value)}
+              rows={4}
               className={clsx(
                 ["w-full"],
                 [["px-2"], ["py-1"]],
                 ["mt-1"],
                 ["border"],
                 [["text-base"]],
+                ["resize-none"],
               )}
             />
           </label>
