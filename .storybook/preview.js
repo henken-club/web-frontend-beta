@@ -7,11 +7,6 @@ import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from "@storybook/addon-viewport"
 import "~/styles/index.css";
 import { TAILWIND_VIEWPORTS } from "./tailwindViewports";
 
-Object.defineProperty(nextImage, "default", {
-  configurable: true,
-  value: (props) => <img {...props} />,
-});
-
 export const decorators = [
   (Story) => (
     <TypesafeI18n>
