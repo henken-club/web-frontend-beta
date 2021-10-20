@@ -11,7 +11,17 @@ export default {
 
 type StoryProps = ComponentProps<typeof Component>;
 
-const commonProps: Partial<StoryProps> = {
+export const NotSelected: Story<StoryProps> = ({ ...props }) => {
+  return <Component {...props} />;
+};
+NotSelected.storyName = "ユーザーを選択していない";
+NotSelected.args = { user: null };
+
+export const Selected: Story<StoryProps> = ({ ...props }) => {
+  return <Component {...props} />;
+};
+Selected.storyName = "ユーザーを選択している";
+Selected.args = {
   user: {
     id: "to",
     alias: "to",
@@ -19,8 +29,3 @@ const commonProps: Partial<StoryProps> = {
     avatar: "/.mock/avatar_2.png",
   },
 };
-
-export const Primary: Story<StoryProps> = ({ ...props }) => {
-  return <Component {...props} />;
-};
-Primary.args = { ...commonProps };
