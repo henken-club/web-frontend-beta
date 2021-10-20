@@ -31,6 +31,10 @@ type ContextType = {
 
   comment: string;
   setComment(value: string): void;
+
+  createHenken(): void;
+  formDisabled: boolean;
+  created: boolean;
 };
 
 export const CreateHenkenFormContext = React.createContext<ContextType>({
@@ -44,4 +48,8 @@ export const CreateHenkenFormContext = React.createContext<ContextType>({
 
   comment: "",
   setComment: () => {},
+
+  created: false,
+  createHenken: () => {},
+  formDisabled: false,
 });

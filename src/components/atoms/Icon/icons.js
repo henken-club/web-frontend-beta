@@ -9,3 +9,5 @@ export const IconUnknownUser = (props) => <FontAwesomeIcon fixedWidth icon={soli
 export const IconNoSuggestion = (props) => <FontAwesomeIcon fixedWidth icon={solid("circle-question")} {...props} />;
 
 export const IconNoImage = (props) => <FontAwesomeIcon fixedWidth icon={solid("image")} {...props} />;
+
+export const IconCreateHenken = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-kiss-beam")} {...props} />;

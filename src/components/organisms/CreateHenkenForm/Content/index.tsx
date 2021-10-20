@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
+import { Comment } from "./Comment";
 import { Details } from "./Details";
 import { SearchContent } from "./SearchContent";
 
@@ -11,20 +12,17 @@ import { useTranslation } from "~/i18n/useTranslation";
 export const Component: React.VFC<
   {
     className?: string;
+
     content:
       | null
       | { type: "book"; value: { id: string; title: string; cover: string; }; }
       | { type: "bookseries"; value: { id: string; title: string; }; }
       | { type: "author"; value: { id: string; name: string; }; };
-
-    // comment
-    onUpdateChange(value: string): void;
   }
 > = (
   {
     className,
     content,
-    onUpdateChange,
     ...props
   },
 ) => {
@@ -52,25 +50,7 @@ export const Component: React.VFC<
         )}
       >
         <SearchContent className={clsx(["w-full"])} />
-        <div className={clsx(["w-full"], ["mt-2"])}>
-          <label>
-            <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.CommentBox.Label()}</span>
-            <textarea
-              autoComplete="off"
-              aria-label={LL.CreateHenkenForm.Content.CommentBox.aria.CommentInput()}
-              onChange={(event) => onUpdateChange(event.currentTarget.value)}
-              rows={4}
-              className={clsx(
-                ["w-full"],
-                [["px-2"], ["py-1"]],
-                ["mt-1"],
-                ["border"],
-                [["text-base"]],
-                ["resize-none"],
-              )}
-            />
-          </label>
-        </div>
+        <Comment className={clsx(["w-full"], ["mt-2"])} />
       </div>
     </div>
   );
@@ -79,13 +59,12 @@ export const Component: React.VFC<
 export const Content: React.VFC<{ className?: string; }> = (
   { ...props },
 ) => {
-  const { content, setComment } = useContext(CreateHenkenFormContext);
+  const { content } = useContext(CreateHenkenFormContext);
 
   return (
     <Component
       {...props}
       content={content}
-      onUpdateChange={(comment) => setComment(comment)}
     />
   );
 };

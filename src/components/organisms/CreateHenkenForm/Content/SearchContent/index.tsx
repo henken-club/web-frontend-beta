@@ -33,6 +33,9 @@ const _CreateHenkenFormSearchContentQuery = gql`
 export const Component: React.VFC<
   {
     className?: string;
+
+    formDisabled: boolean;
+
     focus: boolean;
     searching: boolean;
     suggestions: ComponentProps<typeof SuggestionsList>["suggestions"];
@@ -44,6 +47,7 @@ export const Component: React.VFC<
 > = (
   {
     className,
+    formDisabled,
     focus,
     onBlur,
     onFocus,
@@ -66,6 +70,7 @@ export const Component: React.VFC<
           aria-label={LL.CreateHenkenForm.Content.SearchBox.aria.QueryInput()}
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
+          disabled={formDisabled}
           className={clsx(
             ["w-full"],
             [["px-2"], ["py-1"]],
@@ -99,7 +104,7 @@ export const Component: React.VFC<
 };
 
 export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const { setContent } = useContext(CreateHenkenFormContext);
+  const { setContent, formDisabled } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
   const [query, setQuery] = useState<string | undefined>(undefined);
@@ -131,6 +136,7 @@ export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) 
 
   return (
     <Component
+      formDisabled={formDisabled}
       onUpdateInput={(query) => {
         setInput(query);
       }}
