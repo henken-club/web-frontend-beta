@@ -50,6 +50,9 @@ Primary.args = {
     setContent: action("set-content"),
     comment: "",
     setComment: action("set-comment"),
+    createHenken: action("create-henken"),
+    formDisabled: false,
+    created: false,
   },
 };
 
@@ -70,6 +73,9 @@ LoadingFrom.args = {
     setContent: action("set-content"),
     comment: "",
     setComment: action("set-comment"),
+    createHenken: action("create-henken"),
+    formDisabled: false,
+    created: false,
   },
 };
 
@@ -90,6 +96,9 @@ NoFrom.args = {
     setContent: action("set-content"),
     comment: "",
     setComment: action("set-comment"),
+    createHenken: action("create-henken"),
+    formDisabled: false,
+    created: false,
   },
 };
 
@@ -115,5 +124,32 @@ NoTo.args = {
     setContent: action("set-content"),
     comment: "",
     setComment: action("set-comment"),
+    createHenken: action("create-henken"),
+    formDisabled: false,
+    created: false,
+  },
+};
+
+export const Created: Story<StoryProps> = ({ contextValue, ...props }) => {
+  return (
+    <CreateHenkenFormContext.Provider value={contextValue}>
+      <Component {...props} />
+    </CreateHenkenFormContext.Provider>
+  );
+};
+Created.storyName = "作成済み";
+Created.args = {
+  created: true,
+  contextValue: {
+    from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+    to: { id: "to", alias: "to", displayName: "To User", avatar: "/.mock/avatar_2.png" },
+    setTo: action("set-to-user"),
+    content: { type: "book", value: { id: "content_book1", title: "Book 1", cover: "/.mock/bookcover_1.jpg" } },
+    setContent: action("set-content"),
+    comment: "",
+    setComment: action("set-comment"),
+    createHenken: action("create-henken"),
+    formDisabled: true,
+    created: true,
   },
 };

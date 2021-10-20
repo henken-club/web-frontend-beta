@@ -2,6 +2,9 @@
 import { graphql } from "msw";
 
 import {
+  CreateHenkenFormCreateHenkenDocument,
+  CreateHenkenFormCreateHenkenMutation,
+  CreateHenkenFormCreateHenkenMutationVariables,
   CreateHenkenFormSearchContentDocument,
   CreateHenkenFormSearchContentQuery,
   CreateHenkenFormSearchContentQueryVariables,
@@ -160,6 +163,21 @@ export const handlers = [
           },
         }),
       );
+    },
+  ),
+  graphql.mutation<CreateHenkenFormCreateHenkenMutation, CreateHenkenFormCreateHenkenMutationVariables>(
+    CreateHenkenFormCreateHenkenDocument,
+    (req, res, ctx) => {
+      return res(ctx.data({
+        __typename: "Mutation",
+        createHenken: {
+          __typename: "CreateHenkenPayload",
+          henken: {
+            __typename: "Henken",
+            id: "created_henken_1",
+          },
+        },
+      }));
     },
   ),
 ];
