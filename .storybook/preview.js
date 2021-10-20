@@ -3,7 +3,6 @@ import { RouterContext } from "next/dist/shared/lib/router-context";
 import * as nextImage from "next/image";
 
 import TypesafeI18n from "~/i18n/i18n-react";
-O;
 
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
 import "~/styles/index.css";
