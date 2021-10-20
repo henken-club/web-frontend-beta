@@ -11,6 +11,8 @@ module.exports = {
       name: "@storybook/addon-postcss",
       options: { postcssLoaderOptions: { implementation: require("postcss") } },
     },
+    "@storybook/addon-a11y",
+    "@storybook/addon-storysource",
     "storybook-addon-next-router",
   ],
   webpackFinal: async (config) => {
