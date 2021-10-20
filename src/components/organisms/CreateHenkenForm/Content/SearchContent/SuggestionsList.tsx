@@ -1,8 +1,10 @@
 import clsx from "clsx";
 import React from "react";
 
-import { NoResult } from "./NoResult";
-import { Suggestion } from "./Suggestion";
+import { AuthorSuggestion } from "./AuthorSuggestion";
+import { BookSeriesSuggestion } from "./BookSeriesSuggestion";
+import { BookSuggestion } from "./BookSuggestion";
+import { NoSuggestions } from "./NoSuggestions";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -32,15 +34,41 @@ export const Component: React.VFC<
         ["divide-y", ["divide-gray-100"]],
       )}
     >
+      {suggestions.length === 0 && <NoSuggestions className={clsx(["w-full"])} />}
       {suggestions.length > 0 &&
-        suggestions.map((content) => <Suggestion key={content.value.id} content={content} onSelect={onSelect} />)}
-      {suggestions.length === 0 &&
-        <NoResult className={clsx(["w-full"])} />}
+        suggestions.map((content) => {
+          switch (content.type) {
+            case "author":
+              return (
+                <AuthorSuggestion
+                  key={content.value.id}
+                  content={content}
+                  onSelect={() => onSelect(content)}
+                />
+              );
+            case "book":
+              return (
+                <BookSuggestion
+                  key={content.value.id}
+                  content={content}
+                  onSelect={onSelect}
+                />
+              );
+            case "bookseries":
+              return (
+                <BookSeriesSuggestion
+                  key={content.value.id}
+                  content={content}
+                  onSelect={() => onSelect(content)}
+                />
+              );
+          }
+        })}
     </div>
   );
 };
 
-export const Suggestions: React.VFC<
+export const SuggestionsList: React.VFC<
   {
     className?: string;
     suggestions: (
