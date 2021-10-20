@@ -1,24 +1,9 @@
 import clsx from "clsx";
 import React from "react";
 
-import { Suggestion } from "./Suggestion";
+import { UserSuggestionItem } from "./UserSuggestionItem";
 
-import { IconNoSuggestion } from "~/components/atoms/Icon";
-import { useTranslation } from "~/i18n/useTranslation";
-
-export const NoUser: React.VFC<{ className?: string; }> = ({ className }) => {
-  const { LL } = useTranslation();
-  return (
-    <div
-      className={clsx(className, [["px-6"], ["py-4"]], ["flex", ["flex-col"], ["items-center"]])}
-    >
-      <IconNoSuggestion
-        className={clsx([["text-2xl"], ["text-blue-300"]])}
-      />
-      <span className={clsx(["mt-4"], ["text-xs"])}>{LL.CreateHenkenForm.To.SearchBox.NoSuggestion()}</span>
-    </div>
-  );
-};
+import { NoSuggestions } from "~/components/atoms/NoSuggestions";
 
 export const Component: React.VFC<
   {
@@ -27,7 +12,6 @@ export const Component: React.VFC<
     onSelect(user: { id: string; displayName: string; alias: string; avatar: string; }): void;
   }
 > = ({ className, suggestions, onSelect, ...props }) => {
-  const { LL } = useTranslation();
   return (
     <div
       className={clsx(
@@ -37,15 +21,15 @@ export const Component: React.VFC<
         ["divide-y", ["divide-gray-100"]],
       )}
     >
-      {suggestions.length > 0 &&
-        suggestions.map((user) => <Suggestion key={user.id} user={user} onSelect={onSelect} />)}
       {suggestions.length === 0 &&
-        <NoUser className={clsx(["w-full"])} />}
+        <NoSuggestions className={clsx(["w-full"])} />}
+      {suggestions.length > 0 &&
+        suggestions.map((user) => <UserSuggestionItem key={user.id} user={user} onSelect={onSelect} />)}
     </div>
   );
 };
 
-export const Suggestions: React.VFC<
+export const SuggestionsList: React.VFC<
   {
     className?: string;
     suggestions: { id: string; displayName: string; alias: string; avatar: string; }[];
