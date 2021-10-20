@@ -10,7 +10,10 @@ import { IconUnknownUser } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const Component: React.VFC<
-  { className?: string; user: null | { id: string; alias: string; displayName: string; avatar: string; }; }
+  {
+    className?: string;
+    user: null | { id: string; alias: string; displayName: string; avatar: string; };
+  }
 > = ({ className, user, ...props }) => {
   const { LL } = useTranslation();
   return (
@@ -28,7 +31,7 @@ export const Component: React.VFC<
           ["flex", ["flex-row"], ["items-center"]],
         )}
       >
-        <div className={clsx([["w-8"], ["h-8"]])}>
+        <div className={clsx([["w-12"], ["h-12"]])}>
           {user &&
             <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />}
           {!user &&

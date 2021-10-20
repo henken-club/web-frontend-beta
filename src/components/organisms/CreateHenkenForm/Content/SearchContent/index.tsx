@@ -5,7 +5,7 @@ import { useDebounce } from "react-use";
 
 import { CreateHenkenFormContext } from "../../context";
 
-import { Suggestions } from "./Suggestions";
+import { SuggestionsList } from "./SuggestionsList";
 
 import { useCreateHenkenFormSearchContentQuery } from "~/components/codegen";
 import { useTranslation } from "~/i18n/useTranslation";
@@ -34,12 +34,12 @@ export const Component: React.VFC<
   {
     className?: string;
     focus: boolean;
+    searching: boolean;
+    suggestions: ComponentProps<typeof SuggestionsList>["suggestions"];
     onFocus(): void;
     onBlur(): void;
     onUpdateInput(query: string): void;
-    searching: boolean;
-    suggestions: ComponentProps<typeof Suggestions>["suggestions"];
-    onSelectSuggestion: ComponentProps<typeof Suggestions>["onSelect"];
+    onSelectSuggestion: ComponentProps<typeof SuggestionsList>["onSelect"];
   }
 > = (
   {
@@ -58,7 +58,7 @@ export const Component: React.VFC<
     <div
       className={clsx(className, ["relative", { "z-infinity": focus }])}
     >
-      <label className={clsx(["relative"], ["z-1"])}>
+      <label className={clsx(["flex", ["flex-col"]], ["relative"], ["z-1"])}>
         <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
         <input
           type="search"
@@ -84,14 +84,9 @@ export const Component: React.VFC<
               onKeyPress={() => onBlur()}
             />
             <div
-              className={clsx(
-                ["absolute", ["top-full"], ["left-0"]],
-                ["w-full"],
-                ["z-1"],
-                ["shadow-lg"],
-              )}
+              className={clsx(["absolute", ["top-full"], ["left-0"]], ["w-full"], ["z-1"], ["shadow-lg"])}
             >
-              <Suggestions
+              <SuggestionsList
                 className={clsx(["w-full"])}
                 suggestions={suggestions}
                 onSelect={onSelectSuggestion}

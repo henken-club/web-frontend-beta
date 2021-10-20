@@ -4,12 +4,16 @@ const ja: BaseTranslation = {
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
 
+  Format: {
+    Alias: "@{alias:string}",
+  },
+
   Button: {
     CreateHenken: "偏見を送る",
   },
 
-  Format: {
-    Alias: "@{alias:string}",
+  SearchBox: {
+    NoSuggestion: "検索結果がありません",
   },
 
   RegisterUserForm: {
@@ -37,10 +41,7 @@ const ja: BaseTranslation = {
   CreateHenkenForm: {
     To: {
       SearchBox: {
-        aria: {
-          QueryInput: "",
-        },
-        NoSuggestion: "ユーザーが見つかりませんでした",
+        aria: { QueryInput: "" },
       },
     },
     Content: {
@@ -49,9 +50,7 @@ const ja: BaseTranslation = {
       },
       CommentBox: {
         Label: "コメント入力欄",
-        aria: {
-          CommentInput: "コメント入力欄",
-        },
+        aria: { CommentInput: "コメント入力欄" },
       },
       SearchBox: {
         aria: {
