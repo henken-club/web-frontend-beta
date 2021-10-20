@@ -29,7 +29,7 @@ export const Component: React.VFC<
           ["flex", ["flex-row"], ["items-center"]],
         )}
       >
-        <div className={clsx([["w-8"], ["h-8"]])}>
+        <div className={clsx([["w-12"], ["h-12"]])}>
           {user === undefined &&
             (
               <div
