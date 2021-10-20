@@ -5,7 +5,7 @@ import { useDebounce } from "react-use";
 
 import { CreateHenkenFormContext } from "../../context";
 
-import { Suggestions } from "./Suggestions";
+import { SuggestionsList } from "./SuggestionsList";
 
 import { useCreateHenkenFormSearchUserQuery } from "~/components/codegen";
 import { useTranslation } from "~/i18n/useTranslation";
@@ -31,11 +31,11 @@ export const Component: React.VFC<
   {
     className?: string;
     focus: boolean;
+    searching: boolean;
+    suggestions: { id: string; displayName: string; alias: string; avatar: string; }[];
     onFocus(): void;
     onBlur(): void;
     onUpdateInput(query: string): void;
-    searching: boolean;
-    suggestions: { id: string; displayName: string; alias: string; avatar: string; }[];
     onSelectSuggestion(user: { id: string; displayName: string; alias: string; avatar: string; }): void;
   }
 > = (
@@ -81,7 +81,7 @@ export const Component: React.VFC<
                 ["shadow-lg"],
               )}
             >
-              <Suggestions
+              <SuggestionsList
                 className={clsx(["w-full"])}
                 suggestions={suggestions}
                 onSelect={onSelectSuggestion}

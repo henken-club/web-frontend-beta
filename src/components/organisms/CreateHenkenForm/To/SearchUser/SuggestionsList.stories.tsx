@@ -2,10 +2,10 @@ import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { Component } from "./Suggestions";
+import { Component } from "./SuggestionsList";
 
 export default {
-  title: "CreateHenkenForm/To/Suggestions",
+  title: "CreateHenkenForm/To/SearchUser/SuggestionsList",
   component: Component,
   argTypes: {},
 } as Meta;
@@ -45,11 +45,11 @@ HasSuggestion.args = {
   }],
 };
 
-export const ZeroSuggestion: Story<StoryProps> = ({ ...props }) => {
+export const NoSuggestions: Story<StoryProps> = ({ ...props }) => {
   return <Component {...props} />;
 };
-ZeroSuggestion.storyName = "ユーザの提案が一件も無い";
-ZeroSuggestion.args = {
+NoSuggestions.storyName = "ユーザの提案が一件も無い";
+NoSuggestions.args = {
   ...commonProps,
   suggestions: [],
 };
