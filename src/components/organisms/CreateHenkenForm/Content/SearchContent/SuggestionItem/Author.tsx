@@ -2,8 +2,8 @@ import clsx from "clsx";
 import React from "react";
 
 export const Component: React.VFC<
-  { className?: string; title: string; onSelect(): void; }
-> = ({ className, title, onSelect }) => {
+  { className?: string; name: string; onSelect(): void; }
+> = ({ className, name, onSelect }) => {
   return (
     <div
       onClick={() => onSelect()}
@@ -15,21 +15,21 @@ export const Component: React.VFC<
         ["bg-white", "hover:bg-blue-50"],
       )}
     >
-      {title}
+      {name}
     </div>
   );
 };
 
-export const BookSuggestion: React.VFC<
+export const AuthorSuggestionItem: React.VFC<
   {
     className?: string;
-    content: { type: "book"; value: { id: string; title: string; cover: string; }; };
-    onSelect(content: { type: "book"; value: { id: string; title: string; cover: string; }; }): void;
+    content: { type: "author"; value: { id: string; name: string; }; };
+    onSelect(content: { type: "author"; value: { id: string; name: string; }; }): void;
   }
 > = ({ content, onSelect, ...props }) => (
   <Component
     {...props}
-    title={content.value.title}
+    name={content.value.name}
     onSelect={() => onSelect(content)}
   />
 );

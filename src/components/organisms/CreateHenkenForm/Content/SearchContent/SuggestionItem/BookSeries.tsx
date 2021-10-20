@@ -20,7 +20,7 @@ export const Component: React.VFC<
   );
 };
 
-export const BookSeriesSuggestion: React.VFC<
+export const BookSeriesSuggestionItem: React.VFC<
   {
     className?: string;
     content: { type: "bookseries"; value: { id: string; title: string; }; };

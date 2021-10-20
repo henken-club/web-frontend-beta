@@ -4,7 +4,7 @@ import React from "react";
 import { IconNoSuggestion } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
 
-export const Component: React.VFC<{ className?: string; }> = ({ className }) => {
+export const NoSuggestions: React.VFC<{ className?: string; }> = ({ className }) => {
   const { LL } = useTranslation();
   return (
     <div
@@ -15,5 +15,3 @@ export const Component: React.VFC<{ className?: string; }> = ({ className }) => 
     </div>
   );
 };
-
-export const NoSuggestions = Component;

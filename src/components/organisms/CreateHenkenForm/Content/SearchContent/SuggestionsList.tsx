@@ -1,11 +1,9 @@
 import clsx from "clsx";
 import React from "react";
 
-import { AuthorSuggestion } from "./AuthorSuggestion";
-import { BookSeriesSuggestion } from "./BookSeriesSuggestion";
-import { BookSuggestion } from "./BookSuggestion";
-import { NoSuggestions } from "./NoSuggestions";
+import { AuthorSuggestionItem, BookSeriesSuggestionItem, BookSuggestionItem } from "./SuggestionItem";
 
+import { NoSuggestions } from "~/components/atoms/NoSuggestions";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const Component: React.VFC<
@@ -40,7 +38,7 @@ export const Component: React.VFC<
           switch (content.type) {
             case "author":
               return (
-                <AuthorSuggestion
+                <AuthorSuggestionItem
                   key={content.value.id}
                   content={content}
                   onSelect={() => onSelect(content)}
@@ -48,7 +46,7 @@ export const Component: React.VFC<
               );
             case "book":
               return (
-                <BookSuggestion
+                <BookSuggestionItem
                   key={content.value.id}
                   content={content}
                   onSelect={onSelect}
@@ -56,7 +54,7 @@ export const Component: React.VFC<
               );
             case "bookseries":
               return (
-                <BookSeriesSuggestion
+                <BookSeriesSuggestionItem
                   key={content.value.id}
                   content={content}
                   onSelect={() => onSelect(content)}

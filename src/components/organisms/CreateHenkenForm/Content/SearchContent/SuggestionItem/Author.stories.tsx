@@ -2,10 +2,10 @@ import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { Component } from "./BookSeriesSuggestion";
+import { Component } from "./Author";
 
 export default {
-  title: "CreateHenkenForm/Content/SearchContent/BookSeriesSuggestion",
+  title: "CreateHenkenForm/Content/SearchContent/AuthorSuggestion",
   component: Component,
   argTypes: {},
 } as Meta;
@@ -16,6 +16,6 @@ export const Primary: Story<StoryProps> = ({ ...props }) => {
   return <Component {...props} />;
 };
 Primary.args = {
-  title: "Title",
+  name: "Name",
   onSelect: action("on-select"),
 };
