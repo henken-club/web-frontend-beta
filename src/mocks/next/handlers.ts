@@ -14,6 +14,9 @@ import {
   FetchViewerDocument,
   FetchViewerQuery,
   FetchViewerQueryVariables,
+  GlobalNavFetchNotificationsDocument,
+  GlobalNavFetchNotificationsQuery,
+  GlobalNavFetchNotificationsQueryVariables,
   RegisterUserDocument,
   RegisterUserIsAliasUniqueDocument,
   RegisterUserIsAliasUniqueQuery,
@@ -175,6 +178,46 @@ export const handlers = [
           henken: {
             __typename: "Henken",
             id: "created_henken_1",
+          },
+        },
+      }));
+    },
+  ),
+  graphql.query<GlobalNavFetchNotificationsQuery, GlobalNavFetchNotificationsQueryVariables>(
+    GlobalNavFetchNotificationsDocument,
+    (req, res, ctx) => {
+      return res(ctx.data({
+        __typename: "Query",
+        viewer: {
+          __typename: "User",
+          activities: {
+            __typename: "ActivityConnection",
+            pageInfo: {
+              __typename: "PageInfo",
+              hasNextPage: true,
+              endCursor: "cursor",
+            },
+            edges: [{
+              __typename: "ActivityEdge",
+              node: {
+                __typename: "ReceivedHenkenActivity",
+                id: "activity-1",
+                unread: false,
+                createdAt: "2021-01-01T12:00:00",
+                henken: {
+                  __typename: "Henken",
+                  id: "activity-1-henken",
+                  comment: "Comment",
+                  postedBy: {
+                    __typename: "User",
+                    id: "user_2",
+                    alias: "user_2",
+                    displayName: "User2",
+                    avatar: "/.mock/avatar_2.png",
+                  },
+                },
+              },
+            }],
           },
         },
       }));

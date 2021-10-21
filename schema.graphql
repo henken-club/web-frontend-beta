@@ -1,3 +1,34 @@
+interface Activity implements Node {
+  createdAt: DateTime!
+  id: ID!
+  unread: Boolean!
+}
+
+type ActivityConnection implements Connection {
+  edges: [ActivityEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ActivityEdge implements Edge {
+  cursor: String!
+  node: Activity!
+}
+
+input ActivityOrder {
+  direction: OrderDirection!
+  field: ActivityOrderField!
+}
+
+enum ActivityOrderField {
+  CREATED_AT
+}
+
+enum ActivityType {
+  RECEIVED_ANSWER
+  RECEIVED_HENKEN
+}
+
 type Answer implements Node {
   comment: String!
   createdAt: DateTime!
@@ -321,6 +352,20 @@ type Query {
   viewer: User
 }
 
+type ReceivedAnswerActivity implements Activity & Node {
+  answer: Answer!
+  createdAt: DateTime!
+  id: ID!
+  unread: Boolean!
+}
+
+type ReceivedHenkenActivity implements Activity & Node {
+  createdAt: DateTime!
+  henken: Henken!
+  id: ID!
+  unread: Boolean!
+}
+
 type Recommendation implements Node {
   content: Content!
   id: ID!
@@ -378,6 +423,7 @@ type SearchUsersResult {
 }
 
 type User implements Node {
+  activities(after: String, before: String, filter: UserActivitiesFilter, first: Int, last: Int, orderBy: ActivityOrder!): ActivityConnection!
   alias: String!
   avatar: String!
   canPostHenken(id: ID!): Boolean!
@@ -392,6 +438,10 @@ type User implements Node {
   receivedAnswers(after: String, before: String, filter: UserReceivedAnswersFilter, first: Int, last: Int, orderBy: AnswerOrder!): AnswerConnection!
   receivedHenkens(after: String, before: String, filter: UserReceivedHenkensFilter, first: Int, last: Int, orderBy: HenkenOrder!): HenkenConnection!
   recommendations(after: String, before: String, first: Int, last: Int, orderBy: RecommendationOrder!): RecommendationConnection!
+}
+
+input UserActivitiesFilter {
+  type: [ActivityType!]!
 }
 
 type UserConnection implements Connection {

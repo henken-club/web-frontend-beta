@@ -11,3 +11,5 @@ export const IconNoSuggestion = (props) => <FontAwesomeIcon fixedWidth icon={sol
 export const IconNoImage = (props) => <FontAwesomeIcon fixedWidth icon={solid("image")} {...props} />;
 
 export const IconCreateHenken = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-kiss-beam")} {...props} />;
+
+export const IconNotification = (props) => <FontAwesomeIcon fixedWidth icon={solid("bell")} {...props} />;

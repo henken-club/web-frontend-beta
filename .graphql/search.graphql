@@ -15,7 +15,11 @@ extend type BookSeries implements SearchContent {
 }
 
 extend type Query {
-  searchContent(query: String!, skip: Int = 0, limit: Int!): SearchContentPayload!
+  searchContent(
+    query: String!
+    skip: Int = 0
+    limit: Int!
+  ): SearchContentPayload!
 }
 
 type SearchContentPayload {

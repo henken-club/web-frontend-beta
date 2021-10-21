@@ -6,6 +6,7 @@ const ja: BaseTranslation = {
 
   Format: {
     Alias: "@{alias:string}",
+    CommentQuote: "「{comment:string}」",
   },
 
   Button: {
@@ -64,6 +65,16 @@ const ja: BaseTranslation = {
         Label: "コンテンツ入力欄",
         NoResult: "コンテンツが見つかりませんでした",
       },
+    },
+  },
+
+  Notifications: {
+    Unread: "未読",
+    ReceivedHenken: {
+      Label: "{displayName:string}さんから偏見を持たれました！",
+    },
+    ReceivedAnswer: {
+      Label: "{displayName:string}さんが回答しました",
     },
   },
 };
