@@ -14,7 +14,18 @@ export default {
 
 type StoryProps = ComponentProps<typeof View>;
 
-export const Primary: Story<StoryProps> = ({ ...props }) => {
+export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
   return <View {...props} />;
 };
-Primary.args = {};
+LoggedIn.storyName = "ログイン済み";
+LoggedIn.args = {
+  isLoggedIn: true,
+};
+
+export const NotLoggedIn: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+NotLoggedIn.storyName = "未ログイン";
+NotLoggedIn.args = {
+  isLoggedIn: false,
+};

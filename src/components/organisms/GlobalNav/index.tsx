@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useMemo } from "react";
 
+import { useViewer } from "~/auth/useViewer";
 import { useTranslation } from "~/i18n/useTranslation";
 
-export const View: React.VFC<{ className?: string; }> = ({ className }) => {
+export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ className, isLoggedIn }) => {
   const { LL } = useTranslation();
 
   return (
@@ -15,11 +16,17 @@ export const View: React.VFC<{ className?: string; }> = ({ className }) => {
           ["px-4"],
           [["flex"], ["items-center"]],
         )}
-      />
+      >
+        <div className={clsx(["flex-grow"])} />
+        {isLoggedIn && <div className={clsx([["flex"], ["items-center"]])} />}
+      </div>
     </nav>
   );
 };
 
 export const GlobalNav: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  return <View {...props} />;
+  const viewer = useViewer();
+  const isLoggedIn = useMemo(() => Boolean(viewer), [viewer]);
+
+  return <View {...props} isLoggedIn={isLoggedIn} />;
 };
