@@ -25,7 +25,6 @@ const _GlobalNavFetchNotifications = gql`
               henken{
                 id
                 comment
-                createdAt
                 postedBy{
                   id
                   alias
@@ -41,7 +40,6 @@ const _GlobalNavFetchNotifications = gql`
               answer {
                 id
                 comment
-                createdAt
                 henken{
                   comment
                   postsTo {
