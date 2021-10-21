@@ -1,6 +1,7 @@
 interface Activity implements Node {
   createdAt: DateTime!
   id: ID!
+  unread: Boolean!
 }
 
 type ActivityConnection implements Connection {
@@ -355,12 +356,14 @@ type ReceivedAnswerActivity implements Activity & Node {
   answer: Answer!
   createdAt: DateTime!
   id: ID!
+  unread: Boolean!
 }
 
 type ReceivedHenkenActivity implements Activity & Node {
   createdAt: DateTime!
   henken: Henken!
   id: ID!
+  unread: Boolean!
 }
 
 type Recommendation implements Node {
