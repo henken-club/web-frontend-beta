@@ -1,4 +1,5 @@
 interface Activity implements Node {
+  createdAt: DateTime!
   id: ID!
 }
 
@@ -23,8 +24,8 @@ enum ActivityOrderField {
 }
 
 enum ActivityType {
-  RECIEVED_ANSWER
-  RECIEVED_HENKEN
+  RECEIVED_ANSWER
+  RECEIVED_HENKEN
 }
 
 type Answer implements Node {
@@ -350,12 +351,14 @@ type Query {
   viewer: User
 }
 
-type RecievedAnswerActivity implements Activity & Node {
-  henken: Henken!
+type ReceivedAnswerActivity implements Activity & Node {
+  answer: Answer!
+  createdAt: DateTime!
   id: ID!
 }
 
-type RecievedHenkenActivity implements Activity & Node {
+type ReceivedHenkenActivity implements Activity & Node {
+  createdAt: DateTime!
   henken: Henken!
   id: ID!
 }
