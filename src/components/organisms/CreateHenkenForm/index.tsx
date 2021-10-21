@@ -38,7 +38,7 @@ export const Component: React.VFC<
     >
       <div
         className={clsx(
-          ["inline-flex", ["flex-col"]],
+          ["flex", ["flex-col"]],
           ["divide-y", ["divide-gray-200"]],
         )}
       >
