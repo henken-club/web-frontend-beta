@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 
 import { AuthProvider } from "~/auth/AuthProvider";
 import { FetchViewer } from "~/auth/FetchViewer";
-import { DefaultLayout } from "~/components/layouts/default";
+import { DefaultLayout } from "~/components/layouts/Default";
 import { localeDetector } from "~/i18n/detector";
 import TypesafeI18n from "~/i18n/i18n-react";
 import { CreateHenkenModal } from "~/modals/CreateHenken";
