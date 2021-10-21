@@ -1,13 +1,11 @@
-
-
 extend type User {
   isFollowing(id: ID!): Boolean!
   isFollowed(id: ID!): Boolean!
   canPostHenken(id: ID!): Boolean!
 }
 
-extend type Query{
-  isAliasUnique(alias:String!):Boolean!
+extend type Query {
+  isAliasUnique(alias: String!): Boolean!
 }
 
 extend type Query {
