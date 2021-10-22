@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import { Notification } from "./Notification";
 
 import { useViewer } from "~/auth/useViewer";
+import { OpenCreateHenkenModalButton } from "~/components/atoms/Button";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ className, isLoggedIn }) => {
@@ -23,6 +24,7 @@ export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ 
         {isLoggedIn && (
           <div className={clsx([["flex"], ["items-center"]])}>
             <Notification />
+            <OpenCreateHenkenModalButton className={clsx(["ml-4"])} />
           </div>
         )}
       </div>
