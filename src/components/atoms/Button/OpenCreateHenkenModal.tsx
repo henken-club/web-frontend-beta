@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
+import { IconCreateHenken } from "../Icon";
+
 import { useTranslation } from "~/i18n/useTranslation";
 import { useOpenCreateHenkenModal } from "~/modals/CreateHenken";
 
@@ -8,12 +10,31 @@ export const Component: React.VFC<{ className?: string; onClick(): void; }> = ({
   const { LL } = useTranslation();
   return (
     <button
-      className={clsx(className)}
       type="button"
       onClick={() => onClick()}
       onKeyPress={() => onClick()}
+      className={clsx(
+        className,
+        [["px-3"], ["py-1.5"]],
+        ["inline-flex", ["items-center"]],
+        ["bg-blue-500"],
+        [["text-white"]],
+        ["rounded-md"],
+      )}
     >
-      {LL.Button.CreateHenken()}
+      <IconCreateHenken
+        className={clsx(
+          [["text-base"]],
+        )}
+      />
+      <span
+        className={clsx(
+          ["ml-1"],
+          [["text-base"]],
+        )}
+      >
+        {LL.Button.CreateHenken()}
+      </span>
     </button>
   );
 };
