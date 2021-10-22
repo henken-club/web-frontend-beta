@@ -1,8 +1,10 @@
 import { Meta, Story } from "@storybook/react";
 import { graphql } from "msw";
 import React, { ComponentProps } from "react";
+import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";
 
+import { viewerState } from "~/auth/useViewer";
 import {
   GlobalNavFetchNotificationsDocument,
   GlobalNavFetchNotificationsQuery,
@@ -33,9 +35,20 @@ NotLoggedIn.args = {
 const defaultUrqlClient = createUrqlClient();
 export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
   return (
-    <UrqlProvider value={defaultUrqlClient}>
-      <View {...props} />
-    </UrqlProvider>
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(viewerState, {
+          id: "from",
+          alias: "from",
+          displayName: "From User",
+          avatar: "/.mock/avatar_1.png",
+        });
+      }}
+    >
+      <UrqlProvider value={defaultUrqlClient}>
+        <View {...props} />
+      </UrqlProvider>
+    </RecoilRoot>
   );
 };
 LoggedIn.storyName = "ログイン済み";

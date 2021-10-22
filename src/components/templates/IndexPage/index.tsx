@@ -13,7 +13,6 @@ export const Component: React.VFC<{
   return (
     <>
       {needLogin && <LoginButton />}
-      {!needLogin && JSON.stringify(viewer)}
       {!needLogin && needRegister && <RegisterButton />}
     </>
   );

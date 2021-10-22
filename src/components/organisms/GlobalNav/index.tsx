@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React, { useMemo } from "react";
 
 import { Notification } from "./Notification";
+import { Profile } from "./Profile";
 
 import { useViewer } from "~/auth/useViewer";
 import { OpenCreateHenkenModalButton } from "~/components/atoms/Button";
@@ -25,6 +26,7 @@ export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ 
           <div className={clsx([["flex"], ["items-center"]])}>
             <Notification />
             <OpenCreateHenkenModalButton className={clsx(["ml-4"])} />
+            <Profile className={clsx(["ml-4"])} />
           </div>
         )}
       </div>
