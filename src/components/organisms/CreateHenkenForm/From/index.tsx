@@ -36,11 +36,11 @@ export const Component: React.VFC<
                 className={clsx(
                   ["w-full", "h-full"],
                   ["flex", ["items-center"], ["justify-center"]],
-                  ["bg-blue-400"],
+                  ["bg-gray-400"],
                   ["rounded-full"],
                 )}
               >
-                <IconLoading className={clsx([["text-2xl"], ["text-blue-300"]])} />
+                <IconLoading className={clsx([["text-2xl"], ["text-white"]])} />
               </div>
             )}
           {user === null &&
@@ -49,11 +49,11 @@ export const Component: React.VFC<
                 className={clsx(
                   ["w-full", "h-full"],
                   ["flex", ["items-center"], ["justify-center"]],
-                  ["bg-blue-400"],
+                  ["bg-gray-400"],
                   ["rounded-full"],
                 )}
               >
-                <IconUnknownUser className={clsx([["text-2xl"], ["text-blue-300"]])} />
+                <IconUnknownUser className={clsx([["text-2xl"], ["text-white"]])} />
               </div>
             )}
           {user &&
