@@ -77,6 +77,13 @@ const ja: BaseTranslation = {
       Label: "{displayName:string}さんが回答しました",
     },
   },
+
+  HenkenPage: {
+    Header: {
+      UserFrom: "{displayName:string}さんから",
+      UserTo: "{displayName:string}さんへ",
+    },
+  },
 };
 
 export default ja;

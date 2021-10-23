@@ -17,9 +17,9 @@ export const users = [
   },
   {
     id: "3",
-    alias: "user_2",
-    displayName: "User 2",
-    avatar: "/.mock/avatar_2.png",
+    alias: "user_3",
+    displayName: "User 3",
+    avatar: "/.mock/avatar_3.png",
   },
 ];
 

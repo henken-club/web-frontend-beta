@@ -11,7 +11,8 @@ export const PageContainer: React.FC<{ className?: string; }> = ({
     className={clsx(
       className,
       ["container", ["mx-auto"]],
-      ["flex", ["items-center"], ["justify-center"]],
+      ["flex"],
+      [["px-4"], ["py-8"]],
     )}
   >
     {children}
