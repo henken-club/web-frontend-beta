@@ -54,6 +54,16 @@ query HenkenPage($id: ID!) {
           id
           title
           cover
+          writings(first: 6, orderBy: {direction: ASC,field:AUTHOR_NAME}){
+            edges{
+              node{
+                author{
+                  id
+                  name
+                }
+              }
+            }
+          }
         }
         ... on BookSeries {
           id

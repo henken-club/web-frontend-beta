@@ -20,7 +20,19 @@ export const View: React.VFC<{
       avatar: string;
     };
     content:
-      | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+      | {
+        type: "book";
+        content: {
+          id: string;
+          title: string;
+          cover: string | null;
+          authors: {
+            id: string;
+            name: string;
+            role: null;
+          }[];
+        };
+      }
       | { type: "bookseries"; content: { id: string; title: string; }; }
       | { type: "author"; content: { id: string; name: string; }; };
   };
@@ -53,7 +65,19 @@ export const TemplateHenkenPage: React.VFC<{
     postedBy: { id: string; alias: string; displayName: string; avatar: string; };
     postsTo: { id: string; alias: string; displayName: string; avatar: string; };
     content:
-      | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+      | {
+        type: "book";
+        content: {
+          id: string;
+          title: string;
+          cover: string | null;
+          authors: {
+            id: string;
+            name: string;
+            role: null;
+          }[];
+        };
+      }
       | { type: "bookseries"; content: { id: string; title: string; }; }
       | { type: "author"; content: { id: string; name: string; }; };
   };

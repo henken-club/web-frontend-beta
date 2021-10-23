@@ -7,9 +7,27 @@ import { BookSeries } from "./BookSeries";
 export const Content: React.VFC<{
   className?: string;
   content:
-    | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
-    | { type: "bookseries"; content: { id: string; title: string; }; }
-    | { type: "author"; content: { id: string; name: string; }; };
+    | {
+      type: "book";
+      content: {
+        id: string;
+        title: string;
+        cover: string | null;
+        authors: {
+          id: string;
+          name: string;
+          role: null;
+        }[];
+      };
+    }
+    | {
+      type: "bookseries";
+      content: { id: string; title: string; };
+    }
+    | {
+      type: "author";
+      content: { id: string; name: string; };
+    };
 }> = ({ content, ...props }) => {
   return (
     <>

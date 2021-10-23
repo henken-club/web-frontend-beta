@@ -5,7 +5,19 @@ type ResultHenken = Exclude<PageQueryResult["findHenken"]["henken"], null | unde
 export const deTypename = <T extends { __typename: string; }>(user: T): Omit<T, "__typename"> => ({ ...user });
 
 export const serializeContent = (content: ResultHenken["content"]):
-  | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+  | {
+    type: "book";
+    content: {
+      id: string;
+      title: string;
+      cover: string | null;
+      authors: {
+        id: string;
+        name: string;
+        role: null;
+      }[];
+    };
+  }
   | { type: "bookseries"; content: { id: string; title: string; }; }
   | { type: "author"; content: { id: string; name: string; }; } => {
   switch (content.__typename) {
@@ -16,6 +28,11 @@ export const serializeContent = (content: ResultHenken["content"]):
           id: content.id,
           title: content.title,
           cover: content.cover || null,
+          authors: content.writings.edges.map(({ node: { author } }) => ({
+            id: author.id,
+            name: author.name,
+            role: null,
+          })),
         },
       };
     case "BookSeries":

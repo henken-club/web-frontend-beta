@@ -9,31 +9,62 @@ export const View: React.VFC<{
   id: string;
   title: string;
   cover: string | null;
-}> = ({ className, title, cover }) => {
+  authors: {
+    id: string;
+    name: string;
+    role: null;
+  }[];
+}> = ({ className, title, cover, authors }) => {
   const { LL } = useTranslation();
   return (
     <div
       className={clsx(
         className,
-        ["inline-flex", ["flex-row", "md:flex-col"]],
-        ["bg-blue-200"],
+        ["inline-flex", ["flex-row"]],
       )}
     >
-      <span>{title}</span>
       <div
         className={clsx(
-          [["w-32"], ["h-32"]],
-          ["relative"],
+          ["flex-grow"],
+          ["flex", ["flex-col"]],
         )}
       >
-        {cover && (
-          <Image
-            src={cover}
-            className={clsx(["w-full"])}
-            layout="fill"
-            objectFit="contain"
-          />
-        )}
+        <span
+          className={clsx(
+            ["select-all"],
+            [
+              ["text-white"],
+              ["text-lg"],
+              ["font-bold"],
+            ],
+          )}
+        >
+          {title}
+        </span>
+        <div className={clsx(["mt-2"], ["flex", ["space-x-2"]])}>
+          {authors.map(({ id, name }) => (
+            <span key={id} className={clsx(["text-blue-300"])}>
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className={clsx(["flex-shrink"], ["ml-4"])}>
+        <div
+          className={clsx(
+            [["w-24"]],
+            ["relative"],
+          )}
+        >
+          {cover && (
+            <Image
+              src={cover}
+              className={clsx(["w-full"])}
+              width={128}
+              height={160}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

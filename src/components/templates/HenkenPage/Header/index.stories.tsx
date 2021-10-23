@@ -35,8 +35,12 @@ Book.args = {
     type: "book",
     content: {
       id: "book_1",
-      title: "Book",
+      title: "本 タイトル",
       cover: "/.mock/bookcover_1.jpg",
+      authors: [
+        { id: "author_1", name: "著者1", role: null },
+        { id: "author_2", name: "著者2", role: null },
+      ],
     },
   },
 };
@@ -53,7 +57,7 @@ BookSeries.args = {
     type: "bookseries",
     content: {
       id: "bookseries_1",
-      title: "BookSeries",
+      title: "本のシリーズ タイトル",
     },
   },
 };
@@ -70,7 +74,7 @@ Author.args = {
     type: "author",
     content: {
       id: "author_1",
-      name: "Author",
+      name: "著者 名前",
     },
   },
 };

@@ -2,7 +2,7 @@ import { graphql } from "msw";
 
 import { AllHenkenPagesDocument, HenkenPageDocument } from "../../codegen";
 
-import { books, henkens, users } from "./constants";
+import { authors, books, henkens, users } from "./constants";
 
 export const mockAllHenkenPagesQuery = graphql.query(AllHenkenPagesDocument, (req, res, ctx) => {
   return res(
@@ -57,6 +57,20 @@ export const mockHenkenPageQuery = graphql.query(HenkenPageDocument, (req, res, 
                   id: henken.content.id,
                   title: books[henken.content.id].title,
                   cover: books[henken.content.id].cover,
+                  writings: {
+                    __typename: "WritingConnection",
+                    edges: books[henken.content.id].writings.map(({ authorId }) => ({
+                      __typename: "WritingEdge",
+                      node: {
+                        __typename: "Writing",
+                        author: {
+                          __typename: "Author",
+                          id: authorId,
+                          name: authors[authorId].name,
+                        },
+                      },
+                    } as const)),
+                  },
                 } as const;
             }
           })(),
