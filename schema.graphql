@@ -100,7 +100,7 @@ input AuthorWritingsOrder {
 }
 
 type Book implements Content & Node & SearchContent {
-  cover: String!
+  cover: String
   id: ID!
   isbn: String
   title: String!

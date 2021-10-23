@@ -48,6 +48,22 @@ query HenkenPage($id: ID!) {
         displayName
         avatar
       }
+      content {
+        __typename
+        ... on Book {
+          id
+          title
+          cover
+        }
+        ... on BookSeries {
+          id
+          title
+        }
+        ... on Author {
+          id
+          name
+        }
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ import { graphql } from "msw";
 
 import { AllHenkenPagesDocument, HenkenPageDocument } from "../../codegen";
 
-import { henkens } from "./constants";
+import { books, henkens, users } from "./constants";
 
 export const mockAllHenkenPagesQuery = graphql.query(AllHenkenPagesDocument, (req, res, ctx) => {
   return res(
@@ -10,12 +10,9 @@ export const mockAllHenkenPagesQuery = graphql.query(AllHenkenPagesDocument, (re
       __typename: "Query",
       manyHenkens: {
         __typename: "HenkenConnection",
-        edges: henkens.map(({ id }) => ({
+        edges: Object.keys(henkens).map((id) => ({
           __typename: "HenkenEdge",
-          node: {
-            __typename: "Henken",
-            id,
-          },
+          node: { __typename: "Henken", id },
         })),
       },
     }),
@@ -23,16 +20,12 @@ export const mockAllHenkenPagesQuery = graphql.query(AllHenkenPagesDocument, (re
 });
 
 export const mockHenkenPageQuery = graphql.query(HenkenPageDocument, (req, res, ctx) => {
-  const found = henkens.find(({ id }) => id === req.variables.id);
-  if (!found) {
-    return res(ctx.data({
-      __typename: "Query",
-      findHenken: {
-        __typename: "FindHenkenPayload",
-        henken: null,
-      },
-    }));
+  const henkenId = req.variables.id;
+  if (!(Object.keys(henkens).includes as (k: string) => k is keyof typeof henkens)(henkenId)) {
+    return res(ctx.data({ __typename: "Query", findHenken: { __typename: "FindHenkenPayload", henken: null } }));
   }
+
+  const henken = henkens[henkenId];
   return res(
     ctx.data({
       __typename: "Query",
@@ -40,15 +33,33 @@ export const mockHenkenPageQuery = graphql.query(HenkenPageDocument, (req, res, 
         __typename: "FindHenkenPayload",
         henken: {
           __typename: "Henken",
-          ...found,
+          id: henkenId,
+          comment: henkens[henkenId].comment,
           postedBy: {
             __typename: "User",
-            ...found.postedBy,
+            id: henken.postedBy,
+            alias: users[henken.postedBy].alias,
+            displayName: users[henken.postedBy].displayName,
+            avatar: users[henken.postedBy].displayName,
           },
           postsTo: {
             __typename: "User",
-            ...found.postsTo,
+            id: henken.postsTo,
+            alias: users[henken.postsTo].alias,
+            displayName: users[henken.postsTo].displayName,
+            avatar: users[henken.postsTo].displayName,
           },
+          content: (() => {
+            switch (henken.content.type) {
+              case "book":
+                return {
+                  __typename: "Book",
+                  id: henken.content.id,
+                  title: books[henken.content.id].title,
+                  cover: books[henken.content.id].cover,
+                } as const;
+            }
+          })(),
         },
       },
     }),
