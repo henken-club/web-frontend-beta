@@ -41,5 +41,13 @@ Primary.args = {
       displayName: "User 2",
       avatar: "/.mock/avatar_2.png",
     },
+    content: {
+      type: "book",
+      content: {
+        id: "book_1",
+        title: "アー",
+        cover: "/.mock/bookcover_1.jpg",
+      },
+    },
   },
 };

@@ -40,14 +40,14 @@ export const mockHenkenPageQuery = graphql.query(HenkenPageDocument, (req, res, 
             id: henken.postedBy,
             alias: users[henken.postedBy].alias,
             displayName: users[henken.postedBy].displayName,
-            avatar: users[henken.postedBy].displayName,
+            avatar: users[henken.postedBy].avatar,
           },
           postsTo: {
             __typename: "User",
             id: henken.postsTo,
             alias: users[henken.postsTo].alias,
             displayName: users[henken.postsTo].displayName,
-            avatar: users[henken.postsTo].displayName,
+            avatar: users[henken.postsTo].avatar,
           },
           content: (() => {
             switch (henken.content.type) {

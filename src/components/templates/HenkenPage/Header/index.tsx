@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
+import { Content } from "./Content";
+
 import { AvatarSmall } from "~/components/atoms/Avatar";
 import { IconHenkenUserFrom, IconHenkenUserTo } from "~/components/atoms/Icon";
 import { LinkUser } from "~/components/atoms/Link";
@@ -11,7 +13,11 @@ export const View: React.VFC<{
   comment: string;
   postedBy: { id: string; alias: string; displayName: string; avatar: string; };
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
-}> = ({ className, comment, postedBy, postsTo }) => {
+  content:
+    | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+    | { type: "bookseries"; content: { id: string; title: string; }; }
+    | { type: "author"; content: { id: string; name: string; }; };
+}> = ({ className, comment, postedBy, postsTo, content }) => {
   const { LL } = useTranslation();
   return (
     <header
@@ -114,7 +120,7 @@ export const View: React.VFC<{
           </div>
         </div>
       </div>
-      <div
+      <Content
         className={clsx(
           [
             ["flex-grow"],
@@ -126,8 +132,8 @@ export const View: React.VFC<{
             ["ml-0", "lg:ml-8"],
           ],
           ["h-12"],
-          ["bg-blue-200"],
         )}
+        content={content}
       />
     </header>
   );
@@ -149,6 +155,10 @@ export const Header: React.VFC<{
       displayName: string;
       avatar: string;
     };
+    content:
+      | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+      | { type: "bookseries"; content: { id: string; title: string; }; }
+      | { type: "author"; content: { id: string; name: string; }; };
   };
 }> = ({ henken, ...props }) => {
   return <View {...henken} {...props} />;

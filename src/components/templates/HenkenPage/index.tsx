@@ -19,6 +19,10 @@ export const View: React.VFC<{
       displayName: string;
       avatar: string;
     };
+    content:
+      | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+      | { type: "bookseries"; content: { id: string; title: string; }; }
+      | { type: "author"; content: { id: string; name: string; }; };
   };
 }> = ({ henken }) => {
   return (
@@ -31,7 +35,12 @@ export const View: React.VFC<{
     >
       <Header
         className={clsx(["w-full"])}
-        henken={{ comment: henken.comment, postedBy: henken.postedBy, postsTo: henken.postsTo }}
+        henken={{
+          comment: henken.comment,
+          postedBy: henken.postedBy,
+          postsTo: henken.postsTo,
+          content: henken.content,
+        }}
       />
     </section>
   );
@@ -43,6 +52,10 @@ export const TemplateHenkenPage: React.VFC<{
     comment: string;
     postedBy: { id: string; alias: string; displayName: string; avatar: string; };
     postsTo: { id: string; alias: string; displayName: string; avatar: string; };
+    content:
+      | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+      | { type: "bookseries"; content: { id: string; title: string; }; }
+      | { type: "author"; content: { id: string; name: string; }; };
   };
 }> = ({ henken }) => {
   return <View henken={henken} />;
