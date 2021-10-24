@@ -48,6 +48,11 @@ query HenkenPage($id: ID!) {
         displayName
         avatar
       }
+      answer{
+        id
+        type
+        comment
+      }
       content {
         __typename
         ... on Book {

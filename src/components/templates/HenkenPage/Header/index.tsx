@@ -39,7 +39,10 @@ export const View: React.VFC<{
   comment: string;
   postedBy: { id: string; alias: string; displayName: string; avatar: string; };
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
-  answer: { comment: string; } | null;
+  answer: {
+    comment: string;
+    type: "right" | "wrong";
+  } | null;
   content:
     | {
       type: "book";
@@ -166,7 +169,10 @@ export const Header: React.VFC<{
       displayName: string;
       avatar: string;
     };
-    answer: { comment: string; } | null;
+    answer: {
+      comment: string;
+      type: "right" | "wrong";
+    } | null;
     content:
       | {
         type: "book";

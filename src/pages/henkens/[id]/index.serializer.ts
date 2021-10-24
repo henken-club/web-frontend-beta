@@ -1,4 +1,4 @@
-import { HenkenPageQuery as PageQueryResult } from "./index.page.codegen";
+import { AnswerType, HenkenPageQuery as PageQueryResult } from "./index.page.codegen";
 
 type ResultHenken = Exclude<PageQueryResult["findHenken"]["henken"], null | undefined>;
 
@@ -54,6 +54,25 @@ export const serializeContent = (content: ResultHenken["content"]):
   }
 };
 
+export const serializeAnswerType = (type: AnswerType): "right" | "wrong" => {
+  switch (type) {
+    case AnswerType.Right:
+      return "right";
+    case AnswerType.Wrong:
+      return "wrong";
+  }
+};
+
+export const serializeAnswer = (
+  answer: Exclude<ResultHenken["answer"], null | undefined>,
+): { id: string; type: "right" | "wrong"; comment: string; } => {
+  return {
+    id: answer.id,
+    type: serializeAnswerType(answer.type),
+    comment: answer.comment,
+  };
+};
+
 export const serializer = ({
   findHenken: { henken },
 }: PageQueryResult) => {
@@ -64,6 +83,7 @@ export const serializer = ({
       comment: henken.comment,
       postedBy: deTypename({ ...henken.postedBy }),
       postsTo: deTypename({ ...henken.postsTo }),
+      answer: henken.answer ? serializeAnswer(henken.answer) : null,
       content: serializeContent(henken.content),
     },
   };

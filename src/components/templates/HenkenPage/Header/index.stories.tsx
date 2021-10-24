@@ -31,7 +31,10 @@ Book.args = {
   comment: "はい",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
-  answer: { comment: "はいじゃないが" },
+  answer: {
+    comment: "はいじゃないが",
+    type: "right",
+  },
   content: {
     type: "book",
     content: {
@@ -54,6 +57,10 @@ BookSeries.args = {
   comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  answer: {
+    comment: "はいじゃないが",
+    type: "right",
+  },
   content: {
     type: "bookseries",
     content: {
@@ -71,6 +78,10 @@ Author.args = {
   comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  answer: {
+    comment: "はいじゃないが",
+    type: "right",
+  },
   content: {
     type: "author",
     content: {

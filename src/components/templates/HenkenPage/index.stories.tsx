@@ -41,12 +41,20 @@ Primary.args = {
       displayName: "User 2",
       avatar: "/.mock/avatar_2.png",
     },
+    answer: {
+      comment: "はいじゃないが",
+      type: "right",
+    },
     content: {
       type: "book",
       content: {
         id: "book_1",
         title: "アー",
         cover: "/.mock/bookcover_1.jpg",
+        authors: [
+          { id: "author_1", name: "著者1", role: null },
+          { id: "author_2", name: "著者2", role: null },
+        ],
       },
     },
   },
