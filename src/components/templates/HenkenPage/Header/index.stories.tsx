@@ -90,3 +90,52 @@ Author.args = {
     },
   },
 };
+
+export const NoAnswer: Story<StoryProps> = ({ ...props }) => {
+  return <View className={clsx(["w-full"])} {...props} />;
+};
+NoAnswer.storyName = "回答なし";
+NoAnswer.args = {
+  comment: "はい",
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  answer: null,
+  content: {
+    type: "book",
+    content: {
+      id: "book_1",
+      title: "本 タイトル",
+      cover: "/.mock/bookcover_1.jpg",
+      authors: [
+        { id: "author_1", name: "著者1", role: null },
+        { id: "author_2", name: "著者2", role: null },
+      ],
+    },
+  },
+};
+
+export const WrongAnswer: Story<StoryProps> = ({ ...props }) => {
+  return <View className={clsx(["w-full"])} {...props} />;
+};
+WrongAnswer.storyName = "回答が違う";
+WrongAnswer.args = {
+  comment: "はい",
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  answer: {
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    type: "wrong",
+  },
+  content: {
+    type: "book",
+    content: {
+      id: "book_1",
+      title: "本 タイトル",
+      cover: "/.mock/bookcover_1.jpg",
+      authors: [
+        { id: "author_1", name: "著者1", role: null },
+        { id: "author_2", name: "著者2", role: null },
+      ],
+    },
+  },
+};

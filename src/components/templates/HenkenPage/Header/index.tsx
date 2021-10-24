@@ -1,38 +1,11 @@
 import clsx from "clsx";
 import React from "react";
-import styled from "styled-components";
 
+import { CommentFrom, CommentTo } from "./Comment";
 import { Content } from "./Content";
 import { From, To } from "./User";
 
 import { useTranslation } from "~/i18n/useTranslation";
-
-const PopupDivLeft = styled.div`
-  &{position:relative}
-  &::before{
-    content: "";
-    position:absolute;
-    top: 0;
-    right: 100%;
-    width: 1rem;
-    height: 1rem;
-    background-color: inherit;
-    transform: translateX(50%) skewX(45deg);
-  }
-`;
-const PopupDivRight = styled.div`
-  &{position:relative}
-  &::before{
-    content: "";
-    position:absolute;
-    top: 0;
-    left: 100%;
-    width: 1rem;
-    height: 1rem;
-    background-color: inherit;
-    transform: translateX(-50%) skewX(-45deg);
-  }
-`;
 
 export const View: React.VFC<{
   className?: string;
@@ -121,32 +94,14 @@ export const View: React.VFC<{
             )}
             content={content}
           />
-          <PopupDivLeft
-            className={clsx(
-              ["mt-4"],
-              ["bg-green-50"],
-              [["px-4"], ["py-2"]],
-              ["rounded-tr-lg", "rounded-b-lg"],
-            )}
-          >
-            <span className={clsx(["text-xs"], ["text-gray-600"])}>
-              {LL.HenkenPage.Header.HenkenComment()}
-            </span>
-            <p>{comment}</p>
-          </PopupDivLeft>
-          <PopupDivRight
-            className={clsx(
-              ["mt-4"],
-              ["bg-red-50"],
-              [["px-4"], ["py-2"]],
-              ["rounded-tl-lg", "rounded-b-lg"],
-            )}
-          >
-            <span className={clsx(["text-xs"], ["text-gray-600"])}>
-              {LL.HenkenPage.Header.AnswerComment()}
-            </span>
-            {answer && <p className={clsx()}>{answer.comment}</p>}
-          </PopupDivRight>
+          <CommentFrom
+            className={clsx(["mt-8"])}
+            comment={comment}
+          />
+          <CommentTo
+            className={clsx(["mt-4"])}
+            answer={answer}
+          />
         </div>
       </div>
     </header>
