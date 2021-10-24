@@ -17,7 +17,9 @@ export const None: Story<StoryProps> = ({ ...props }) => {
   return <View {...props} />;
 };
 None.storyName = "未回答";
-None.args = {};
+None.args = {
+  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+};
 None.argTypes = {
   comment: { table: { disable: true } },
   type: { table: { disable: true } },
@@ -28,6 +30,7 @@ export const Right: Story<StoryProps> = ({ ...props }) => {
 };
 Right.storyName = "正しかった";
 Right.args = {
+  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
   comment: "はい",
   type: "right",
 };
@@ -37,6 +40,7 @@ export const Wrong: Story<StoryProps> = ({ ...props }) => {
 };
 Wrong.storyName = "間違っていた";
 Wrong.args = {
+  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
   comment: "いいえ",
   type: "wrong",
 };
@@ -46,6 +50,7 @@ export const NoComment: Story<StoryProps> = ({ ...props }) => {
 };
 NoComment.storyName = "コメントが空";
 NoComment.args = {
+  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
   comment: "",
   type: "right",
 };

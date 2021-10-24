@@ -3,7 +3,6 @@ import React from "react";
 
 import { CommentFrom, CommentTo } from "./Comment";
 import { Content } from "./Content";
-import { From, To } from "./User";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -39,71 +38,30 @@ export const View: React.VFC<{
       className={clsx(
         className,
         ["bg-gray-700"],
+        [["px-6", "sm:px-12"], ["py-6", "sm:py-8"]],
+        ["inline-flex", ["flex-col"]],
+        ["max-w-screen-md", "lg:max-w-screen-sm"],
       )}
     >
-      <div
+      <Content
         className={clsx(
-          ["max-w-screen-lg"],
-          ["mx-auto"],
           [
-            ["px-4", "sm:px-6"],
-            ["py-4", "sm:py-8"],
-          ],
-          [
-            "flex",
-            ["flex-row"],
-            ["justify-between"],
-            ["flex-wrap", "md:flex-nowrap"],
+            ["w-full", "lg:w-auto"],
+            ["max-w-none", "md:max-w-lg"],
           ],
         )}
-      >
-        <From
-          className={clsx(
-            ["w-full", "sm:w-1/2", "md:w-36"],
-            ["order-1"],
-            ["flex-shrink-0", "md:flex-shrink"],
-          )}
-          user={postedBy}
-        />
-        <To
-          className={clsx(
-            ["w-full", "sm:w-1/2", "md:w-36"],
-            ["order-2", "md:order-3"],
-            ["flex-shrink-0", "md:flex-shrink"],
-            ["mt-4", "sm:mt-0"],
-          )}
-          user={postsTo}
-        />
-        <div
-          className={clsx(
-            ["order-3", "md:order-2"],
-            ["flex-grow"],
-            ["mt-8", "md:mt-0"],
-            ["w-full", "md:w-auto"],
-            ["max-w-none", "md:max-w-lg"],
-            ["px-2", "sm:px-4", "md:px-0"],
-            ["flex", ["flex-col"]],
-          )}
-        >
-          <Content
-            className={clsx(
-              [
-                ["w-full", "lg:w-auto"],
-                ["max-w-none", "md:max-w-lg"],
-              ],
-            )}
-            content={content}
-          />
-          <CommentFrom
-            className={clsx(["mt-8"])}
-            comment={comment}
-          />
-          <CommentTo
-            className={clsx(["mt-4"])}
-            answer={answer}
-          />
-        </div>
-      </div>
+        content={content}
+      />
+      <CommentFrom
+        className={clsx(["mt-8"])}
+        comment={comment}
+        user={postedBy}
+      />
+      <CommentTo
+        className={clsx(["mt-8", "sm:mt-4"])}
+        answer={answer}
+        user={postsTo}
+      />
     </header>
   );
 };

@@ -3,12 +3,15 @@ import React from "react";
 
 import { PopupDivLeft } from "./Popup";
 
+import { AvatarSmall } from "~/components/atoms/Avatar";
+import { LinkUser } from "~/components/atoms/Link";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const View: React.VFC<{
   className?: string;
   comment: string;
-}> = ({ className, comment }) => {
+  user: { id: string; alias: string; displayName: string; avatar: string; };
+}> = ({ className, comment, user }) => {
   const { LL } = useTranslation();
   return (
     <PopupDivLeft
@@ -17,30 +20,46 @@ export const View: React.VFC<{
         ["bg-green-100"],
         [["px-4"], ["py-2"]],
         ["rounded-tr-lg", "rounded-b-lg"],
-        ["inline-flex", ["flex-col"]],
+        ["inline-flex", ["flex-row"]],
       )}
     >
-      <span
+      <div className={clsx(["order-1"], ["flex"])}>
+        <LinkUser alias={user.alias}>
+          <a className={clsx([["w-8", "md:w-12"], ["h-8", "md:h-12"]])}>
+            <AvatarSmall user={{ alias: user.alias, avatar: user.avatar }} />
+          </a>
+        </LinkUser>
+      </div>
+      <div
         className={clsx(
-          ["select-none"],
-          ["text-xs"],
-          ["text-gray-600"],
-          ["font-bold"],
+          ["order-2"],
+          ["ml-2", "sm:ml-4"],
+          ["flex-grow"],
+          ["flex", ["flex-col"]],
         )}
       >
-        {LL.HenkenPage.Header.HenkenComment()}
-      </span>
-      <p
-        className={clsx(
-          ["mt-1"],
-          comment === ""
-            ? [["text-gray-500"], ["font-bold"], ["select-none"]]
-            : [],
-        )}
-      >
-        {comment !== "" && comment}
-        {comment === "" && LL.HenkenPage.Header.NoComment()}
-      </p>
+        <span
+          className={clsx(
+            ["select-none"],
+            ["text-xs"],
+            ["text-gray-600"],
+            ["font-bold"],
+          )}
+        >
+          {LL.HenkenPage.Header.HenkenComment({ displayName: user.displayName })}
+        </span>
+        <p
+          className={clsx(
+            ["mt-1"],
+            comment === ""
+              ? [["text-gray-500"], ["font-bold"], ["select-none"]]
+              : [],
+          )}
+        >
+          {comment !== "" && comment}
+          {comment === "" && LL.HenkenPage.Header.NoComment()}
+        </p>
+      </div>
     </PopupDivLeft>
   );
 };
@@ -48,6 +67,7 @@ export const View: React.VFC<{
 export const CommentFrom: React.VFC<{
   className?: string;
   comment: string;
+  user: { id: string; alias: string; displayName: string; avatar: string; };
 }> = ({ ...props }) => {
   return <View {...props} />;
 };

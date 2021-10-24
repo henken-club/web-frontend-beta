@@ -16,6 +16,7 @@ export const Primary: Story<StoryProps> = ({ ...props }) => {
 };
 Primary.args = {
   comment: "はい",
+  user: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
 };
 
 export const Empty: Story<StoryProps> = ({ ...props }) => {
@@ -24,6 +25,7 @@ export const Empty: Story<StoryProps> = ({ ...props }) => {
 Empty.storyName = "コメントが空";
 Empty.args = {
   comment: "",
+  user: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
 };
 Empty.argTypes = {
   comment: { table: { disable: true } },
