@@ -123,7 +123,7 @@ export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) 
       return searchData?.searchContent.nodes.map(({ content }) => {
         switch (content.__typename) {
           case "Book":
-            return { type: "book", value: { id: content.id, title: content.title, cover: content.cover } };
+            return { type: "book", value: { id: content.id, title: content.title, cover: content.cover || null } };
           case "BookSeries":
             return { type: "bookseries", value: { id: content.id, title: content.title } };
           case "Author":
