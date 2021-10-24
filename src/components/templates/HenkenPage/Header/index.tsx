@@ -1,18 +1,45 @@
 import clsx from "clsx";
 import React from "react";
+import styled from "styled-components";
 
 import { Content } from "./Content";
+import { From, To } from "./User";
 
-import { AvatarSmall } from "~/components/atoms/Avatar";
-import { IconHenkenUserFrom, IconHenkenUserTo } from "~/components/atoms/Icon";
-import { LinkUser } from "~/components/atoms/Link";
 import { useTranslation } from "~/i18n/useTranslation";
+
+const PopupDivLeft = styled.div`
+  &{position:relative}
+  &::before{
+    content: "";
+    position:absolute;
+    top: 0;
+    right: 100%;
+    width: 1rem;
+    height: 1rem;
+    background-color: inherit;
+    transform: translateX(50%) skewX(45deg);
+  }
+`;
+const PopupDivRight = styled.div`
+  &{position:relative}
+  &::before{
+    content: "";
+    position:absolute;
+    top: 0;
+    left: 100%;
+    width: 1rem;
+    height: 1rem;
+    background-color: inherit;
+    transform: translateX(-50%) skewX(-45deg);
+  }
+`;
 
 export const View: React.VFC<{
   className?: string;
   comment: string;
   postedBy: { id: string; alias: string; displayName: string; avatar: string; };
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
+  answer: { comment: string; } | null;
   content:
     | {
       type: "book";
@@ -29,7 +56,7 @@ export const View: React.VFC<{
     }
     | { type: "bookseries"; content: { id: string; title: string; }; }
     | { type: "author"; content: { id: string; name: string; }; };
-}> = ({ className, comment, postedBy, postsTo, content }) => {
+}> = ({ className, comment, postedBy, postsTo, content, answer }) => {
   const { LL } = useTranslation();
   return (
     <header
@@ -42,112 +69,82 @@ export const View: React.VFC<{
         className={clsx(
           ["max-w-screen-lg"],
           ["mx-auto"],
-          [["px-4", "sm:px-8"], ["py-4", "sm:py-8"]],
-          ["flex", ["flex-col", "lg:flex-row"], ["justify-between"]],
+          [
+            ["px-4", "sm:px-6"],
+            ["py-4", "sm:py-8"],
+          ],
+          [
+            "flex",
+            ["flex-row"],
+            ["justify-between"],
+            ["flex-wrap", "md:flex-nowrap"],
+          ],
         )}
       >
-        <div className={clsx(["flex", ["flex-col"]])}>
-          <h1
+        <From
+          className={clsx(
+            ["w-full", "sm:w-1/2", "md:w-36"],
+            ["order-1"],
+            ["flex-shrink-0", "md:flex-shrink"],
+          )}
+          user={postedBy}
+        />
+        <To
+          className={clsx(
+            ["w-full", "sm:w-1/2", "md:w-36"],
+            ["order-2", "md:order-3"],
+            ["flex-shrink-0", "md:flex-shrink"],
+            ["mt-4", "sm:mt-0"],
+          )}
+          user={postsTo}
+        />
+        <div
+          className={clsx(
+            ["order-3", "md:order-2"],
+            ["flex-grow"],
+            ["mt-8", "md:mt-0"],
+            ["w-full", "md:w-auto"],
+            ["max-w-none", "md:max-w-lg"],
+            ["px-2", "sm:px-4", "md:px-0"],
+            ["flex", ["flex-col"]],
+          )}
+        >
+          <Content
             className={clsx(
-              ["max-w-full", "lg:max-w-xs"],
-              ["truncate"],
               [
-                ["text-lg", "sm:text-xl"],
-                ["text-gray-50"],
-                ["font-bold"],
+                ["w-full", "lg:w-auto"],
+                ["max-w-none", "md:max-w-lg"],
               ],
             )}
+            content={content}
+          />
+          <PopupDivLeft
+            className={clsx(
+              ["mt-4"],
+              ["bg-green-50"],
+              [["px-4"], ["py-2"]],
+              ["rounded-tr-lg", "rounded-b-lg"],
+            )}
           >
-            {comment}
-          </h1>
-          <div className={clsx(["mt-4", "sm:mt-6"], ["flex", ["flex-col"]])}>
-            <div
-              className={clsx(
-                ["flex", ["flex-row"], ["items-center"]],
-              )}
-            >
-              <IconHenkenUserFrom
-                className={clsx(
-                  ["text-blue-100"],
-                  ["text-xl", "sm:text-2xl"],
-                )}
-              />
-              <LinkUser alias={postedBy.alias}>
-                <a
-                  className={clsx(
-                    ["ml-2", "sm:ml-4"],
-                    [
-                      ["w-8", "sm:w-10"],
-                      ["h-8", "sm:h-10"],
-                    ],
-                  )}
-                >
-                  <AvatarSmall user={{ alias: postedBy.alias, avatar: postedBy.avatar }} />
-                </a>
-              </LinkUser>
-              <div className={clsx(["ml-2"], ["flex"])}>
-                <span
-                  className={clsx([
-                    ["text-gray-50"],
-                    ["text-xs", "sm:text-sm"],
-                  ])}
-                >
-                  {LL.HenkenPage.Header.UserFrom({ displayName: postedBy.displayName })}
-                </span>
-              </div>
-            </div>
-            <div
-              className={clsx(
-                ["mt-4"],
-                ["flex", ["flex-row"], ["items-center"]],
-              )}
-            >
-              <IconHenkenUserTo
-                className={clsx(
-                  ["text-blue-200"],
-                  ["text-xl", "sm:text-2xl"],
-                )}
-              />
-              <LinkUser alias={postsTo.alias}>
-                <a
-                  className={clsx(
-                    ["ml-2", "sm:ml-4"],
-                    [
-                      ["w-8", "sm:w-10"],
-                      ["h-8", "sm:h-10"],
-                    ],
-                  )}
-                >
-                  <AvatarSmall user={{ alias: postedBy.alias, avatar: postsTo.avatar }} />
-                </a>
-              </LinkUser>
-              <div className={clsx(["ml-2"], ["flex"])}>
-                <span
-                  className={clsx([
-                    ["text-gray-50"],
-                    ["text-xs", "sm:text-sm"],
-                  ])}
-                >
-                  {LL.HenkenPage.Header.UserTo({ displayName: postsTo.displayName })}
-                </span>
-              </div>
-            </div>
-          </div>
+            <span className={clsx(["text-xs"], ["text-gray-600"])}>
+              {LL.HenkenPage.Header.HenkenComment()}
+            </span>
+            <p>{comment}</p>
+          </PopupDivLeft>
+          <PopupDivRight
+            className={clsx(
+              ["mt-4"],
+              ["bg-red-50"],
+              [["px-4"], ["py-2"]],
+              ["rounded-tl-lg", "rounded-b-lg"],
+            )}
+          >
+            <span className={clsx(["text-xs"], ["text-gray-600"])}>
+              {LL.HenkenPage.Header.AnswerComment()}
+            </span>
+            {answer && <p className={clsx()}>{answer.comment}</p>}
+          </PopupDivRight>
         </div>
-        <Content
-          className={clsx(
-            [
-              ["flex-grow"],
-              ["w-full", "lg:w-auto"],
-              ["max-w-none", "lg:max-w-lg"],
-            ],
-            [
-              ["mt-4", "sm:mt-8", "lg:mt-0"],
-              ["ml-0", "lg:ml-8"],
-            ],
-          )}
-          content={content}
-        />
       </div>
     </header>
   );
@@ -169,6 +166,7 @@ export const Header: React.VFC<{
       displayName: string;
       avatar: string;
     };
+    answer: { comment: string; } | null;
     content:
       | {
         type: "book";

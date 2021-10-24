@@ -19,6 +19,7 @@ export const View: React.VFC<{
       displayName: string;
       avatar: string;
     };
+    answer: { comment: string; } | null;
     content:
       | {
         type: "book";
@@ -52,6 +53,7 @@ export const View: React.VFC<{
           postedBy: henken.postedBy,
           postsTo: henken.postsTo,
           content: henken.content,
+          answer: henken.answer,
         }}
       />
     </section>
@@ -64,6 +66,7 @@ export const TemplateHenkenPage: React.VFC<{
     comment: string;
     postedBy: { id: string; alias: string; displayName: string; avatar: string; };
     postsTo: { id: string; alias: string; displayName: string; avatar: string; };
+    answer: { comment: string; } | null;
     content:
       | {
         type: "book";

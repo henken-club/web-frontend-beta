@@ -28,9 +28,10 @@ export const Book: Story<StoryProps> = ({ ...props }) => {
 };
 Book.storyName = "Book";
 Book.args = {
-  comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+  comment: "はい",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  answer: { comment: "はいじゃないが" },
   content: {
     type: "book",
     content: {

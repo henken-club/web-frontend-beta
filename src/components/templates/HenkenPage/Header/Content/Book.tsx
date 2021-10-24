@@ -23,9 +23,28 @@ export const View: React.VFC<{
         ["inline-flex", ["flex-row"]],
       )}
     >
+      <div className={clsx(["flex-shrink"])}>
+        <div
+          className={clsx(
+            [["w-16", "sm:w-20"]],
+            ["relative"],
+            ["flex"],
+          )}
+        >
+          {cover && (
+            <Image
+              src={cover}
+              className={clsx(["w-full"])}
+              width={128}
+              height={160}
+            />
+          )}
+        </div>
+      </div>
       <div
         className={clsx(
           ["flex-grow"],
+          ["ml-4", "sm:ml-6"],
           ["flex", ["flex-col"]],
         )}
       >
@@ -47,23 +66,6 @@ export const View: React.VFC<{
               {name}
             </span>
           ))}
-        </div>
-      </div>
-      <div className={clsx(["flex-shrink"], ["ml-4"])}>
-        <div
-          className={clsx(
-            [["w-24"]],
-            ["relative"],
-          )}
-        >
-          {cover && (
-            <Image
-              src={cover}
-              className={clsx(["w-full"])}
-              width={128}
-              height={160}
-            />
-          )}
         </div>
       </div>
     </div>

@@ -80,8 +80,10 @@ const ja: BaseTranslation = {
 
   HenkenPage: {
     Header: {
-      UserFrom: "{displayName:string}さんから",
-      UserTo: "{displayName:string}さんへ",
+      UserFrom: "送り元",
+      UserTo: "送り先",
+      HenkenComment: "コメント",
+      AnswerComment: "回答",
     },
   },
 };
