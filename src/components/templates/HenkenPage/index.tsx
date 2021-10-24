@@ -47,10 +47,14 @@ export const View: React.VFC<{
         ["w-full"],
         ["bg-white"],
         ["shadow-xl"],
+        ["flex", ["flex-row"], ["flex-wrap", "xl:flex-nowrap"]],
       )}
     >
       <Header
-        className={clsx(["w-full"])}
+        className={clsx(
+          ["w-full"],
+          ["max-w-screen-none", "lg:max-w-screen-sm"],
+        )}
         henken={{
           comment: henken.comment,
           postedBy: henken.postedBy,
@@ -59,6 +63,12 @@ export const View: React.VFC<{
           answer: henken.answer,
         }}
       />
+      <div className={clsx(["flex-grow"], ["bg-red-400"], ["block", "xl:hidden"])} />
+      <div className={clsx(["flex-grow"], ["w-full"], ["bg-red-500"], ["block", "xl:hidden"])} />
+      <div className={clsx(["flex-grow"], ["hidden", ["xl:flex", ["flex-col"]]])}>
+        <div className={clsx(["flex-shrink"], ["bg-blue-400"])} />
+        <div className={clsx(["flex-grow"], ["bg-blue-500"])} />
+      </div>
     </section>
   );
 };

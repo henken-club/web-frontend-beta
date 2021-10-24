@@ -87,8 +87,8 @@ const ja: BaseTranslation = {
     Header: {
       UserFrom: "送り元",
       UserTo: "送り先",
-      HenkenComment: "コメント",
-      AnswerComment: "回答",
+      HenkenComment: "{displayName:string}さんからの偏見",
+      AnswerComment: "{displayName:string}さんからの回答",
       NoAnswer: "（回答していません）",
       NoComment: "（コメントはありません）",
       AnswerType: {

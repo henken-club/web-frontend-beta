@@ -40,7 +40,6 @@ export const View: React.VFC<{
         ["bg-gray-700"],
         [["px-6", "sm:px-12"], ["py-6", "sm:py-8"]],
         ["inline-flex", ["flex-col"]],
-        ["max-w-screen-md", "lg:max-w-screen-sm"],
       )}
     >
       <Content
