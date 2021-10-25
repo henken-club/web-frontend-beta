@@ -2,6 +2,8 @@
 
 import { AnswerType } from "../../codegen";
 
+import { mockAvatars, mockBookcovers } from "~/mocks/resources";
+
 export const users: {
   [key in `user${number}`]: {
     alias: string;
@@ -12,17 +14,17 @@ export const users: {
   user1: {
     alias: "user_1",
     displayName: "User 1",
-    avatar: "/.mock/avatar_1.png",
+    avatar: mockAvatars[1],
   },
   user2: {
     alias: "user_2",
     displayName: "User 2",
-    avatar: "/.mock/avatar_2.png",
+    avatar: mockAvatars[2],
   },
   user3: {
     alias: "user_3",
     displayName: "User 3",
-    avatar: "/.mock/avatar_3.png",
+    avatar: mockAvatars[3],
   },
 };
 
@@ -52,22 +54,22 @@ export const books: {
 } = {
   book1: {
     title: "虐殺器官",
-    cover: "/.mock/bookcover_1.jpg",
+    cover: mockBookcovers[1],
     writings: [{ authorId: "author1" }],
   },
   book2: {
     title: "銃・病原菌・鉄",
-    cover: "/.mock/bookcover_2.jpg",
+    cover: mockBookcovers[2],
     writings: [{ authorId: "author6" }],
   },
   book3: {
     title: "インターネットは言葉をどう変えたか デジタル時代の〈言語〉地図",
-    cover: "/.mock/bookcover_4.jpg",
+    cover: mockBookcovers[3],
     writings: [{ authorId: "author7" }, { authorId: "author8" }],
   },
   book4: {
     title: "僕たちのインターネット史",
-    cover: "/.mock/bookcover_5.jpg",
+    cover: mockBookcovers[4],
     writings: [{ authorId: "author9" }, { authorId: "author10" }],
   },
 };

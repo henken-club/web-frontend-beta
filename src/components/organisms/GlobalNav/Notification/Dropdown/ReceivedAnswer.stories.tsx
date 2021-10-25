@@ -4,6 +4,8 @@ import React, { ComponentProps } from "react";
 
 import { View } from "./ReceivedAnswer";
 
+import { mockAvatars } from "~/mocks/resources";
+
 export default {
   title: "GlobalNav/Notification/Dropdown/ReceivedAnswer",
   component: View,
@@ -27,7 +29,7 @@ Primary.args = {
   unread: false,
   comment: "Comment",
   createdAt: "2021-01-01T12:00:00",
-  from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+  from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
 };
 
 export const LongComment: Story<StoryProps> = ({ ...props }) => {
@@ -39,5 +41,5 @@ LongComment.args = {
   comment: /* cspell:disable-next-line */
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiisitaquequodpraesentiumexplicaboincidunt?",
   createdAt: "2021-01-01T12:00:00",
-  from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+  from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
 };

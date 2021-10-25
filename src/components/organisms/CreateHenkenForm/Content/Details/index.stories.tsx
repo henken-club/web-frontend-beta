@@ -16,7 +16,7 @@ export const HasImage: Story<StoryProps> = ({ ...props }) => {
 };
 HasImage.args = {
   title: "タイトル",
-  image: "/.mock/bookcover_1.jpg",
+  image: mockBookcovers[1],
 };
 
 export const NoImage: Story<StoryProps> = ({ ...props }) => {

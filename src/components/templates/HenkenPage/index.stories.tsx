@@ -2,6 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
 import { PageContainer } from "~/components/layouts/Default";
+import { mockAvatars, mockBookcovers } from "~/mocks/resources";
 import { View } from ".";
 
 export default {
@@ -33,13 +34,13 @@ Primary.args = {
       id: "1",
       alias: "user_1",
       displayName: "User 1",
-      avatar: "/.mock/avatar_1.png",
+      avatar: mockAvatars[1],
     },
     postsTo: {
       id: "2",
       alias: "user_2",
       displayName: "User 2",
-      avatar: "/.mock/avatar_2.png",
+      avatar: mockAvatars[2],
     },
     answer: {
       comment: "はいじゃないが",
@@ -50,7 +51,7 @@ Primary.args = {
       content: {
         id: "book_1",
         title: "アー",
-        cover: "/.mock/bookcover_1.jpg",
+        cover: mockBookcovers[1],
         authors: [
           { id: "author_1", name: "著者1", role: null },
           { id: "author_2", name: "著者2", role: null },

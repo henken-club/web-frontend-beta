@@ -1,6 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
+import { mockAuth0Picture } from "~/mocks/resources";
+
 export const authenticatedState = atom<boolean>({
   key: "mocked_authenticated",
   default: false,
@@ -22,7 +24,7 @@ export const useMockedAuth0 = (): Pick<
 
       user: {
         name: "TestViewer",
-        picture: "/.mock/auth0_picture.png",
+        picture: mockAuth0Picture,
       },
 
       async getAccessTokenSilently() {

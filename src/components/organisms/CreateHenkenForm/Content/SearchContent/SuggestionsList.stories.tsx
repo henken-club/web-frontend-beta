@@ -4,6 +4,8 @@ import React, { ComponentProps } from "react";
 
 import { Component } from "./SuggestionsList";
 
+import { mockBookcovers } from "~/mocks/resources";
+
 export default {
   title: "CreateHenkenForm/Content/SearchContent/SuggestionsList",
   component: Component,
@@ -27,7 +29,7 @@ export const HaveSuggestions: Story<StoryProps> = ({ ...props }) => {
 HaveSuggestions.storyName = "検索結果がある";
 HaveSuggestions.args = {
   suggestions: [
-    { type: "book", value: { id: "book1", title: "Book 1", cover: "/.mock/bookcover_1.jpg" } },
+    { type: "book", value: { id: "book1", title: "Book 1", cover: mockBookcovers[1] } },
     { type: "bookseries", value: { id: "bookseries1", title: "Book Series 1" } },
     { type: "author", value: { id: "author1", name: "Author 1" } },
   ],

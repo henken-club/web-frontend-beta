@@ -10,6 +10,7 @@ import {
   GlobalNavFetchNotificationsQuery,
   GlobalNavFetchNotificationsQueryVariables,
 } from "~/mocks/codegen";
+import { mockAvatars } from "~/mocks/resources";
 import { createUrqlClient } from "~/urql/UrqlProvider";
 import { View } from ".";
 
@@ -41,7 +42,7 @@ export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
           id: "from",
           alias: "from",
           displayName: "From User",
-          avatar: "/.mock/avatar_1.png",
+          avatar: mockAvatars[1],
         });
       }}
     >
@@ -88,7 +89,7 @@ LoggedIn.parameters = {
                         id: "user_2",
                         alias: "user_2",
                         displayName: "User2",
-                        avatar: "/.mock/avatar_2.png",
+                        avatar: mockAvatars[2],
                       },
                     },
                   },

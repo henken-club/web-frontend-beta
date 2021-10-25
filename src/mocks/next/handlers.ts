@@ -27,6 +27,8 @@ import {
 
 import { mockAllHenkenPagesQuery, mockHenkenPageQuery } from "./factories/pageHenken";
 
+import { mockAvatars, mockBookcovers } from "~/mocks/resources";
+
 export const handlers = [
   graphql.query<FetchViewerQuery, FetchViewerQueryVariables>(
     FetchViewerDocument,
@@ -45,7 +47,7 @@ export const handlers = [
               id: "viewer_id",
               alias: "viewer",
               displayName: "Viewer",
-              avatar: "/.mock/viewer.png",
+              avatar: mockAvatars.viewer,
             },
           }));
         }
@@ -95,7 +97,7 @@ export const handlers = [
                 id: "search_1",
                 alias: "search_1",
                 displayName: "SearchUser1",
-                avatar: "/.mock/avatar_1.png",
+                avatar: mockAvatars[1],
               },
             }, {
               __typename: "SearchUsersResult",
@@ -104,7 +106,7 @@ export const handlers = [
                 id: "search_2",
                 alias: "search_2",
                 displayName: "SearchUser2",
-                avatar: "/.mock/avatar_2.png",
+                avatar: mockAvatars[2],
               },
             }, {
               __typename: "SearchUsersResult",
@@ -113,7 +115,7 @@ export const handlers = [
                 id: "search_3",
                 alias: "search_3",
                 displayName: "SearchUser3",
-                avatar: "/.mock/avatar_3.png",
+                avatar: mockAvatars[3],
               },
             }, {
               __typename: "SearchUsersResult",
@@ -122,7 +124,7 @@ export const handlers = [
                 id: "search_4",
                 alias: "search_4",
                 displayName: "SearchUser4",
-                avatar: "/.mock/avatar_4.png",
+                avatar: mockAvatars[4],
               },
             }],
           },
@@ -145,7 +147,7 @@ export const handlers = [
                   __typename: "Book",
                   id: "search_book_1",
                   title: "Search Book 1",
-                  cover: "/.mock/bookcover_1.jpg",
+                  cover: mockBookcovers[1],
                 },
               },
               {
@@ -215,7 +217,7 @@ export const handlers = [
                     id: "user_2",
                     alias: "user_2",
                     displayName: "User2",
-                    avatar: "/.mock/avatar_2.png",
+                    avatar: mockAvatars[2],
                   },
                 },
               },

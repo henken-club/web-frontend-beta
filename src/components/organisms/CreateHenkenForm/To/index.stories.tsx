@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
+import { mockAvatars } from "~/mocks/resources";
 import { Component } from ".";
 
 export default {
@@ -26,6 +27,6 @@ Selected.args = {
     id: "to",
     alias: "to",
     displayName: "To User",
-    avatar: "/.mock/avatar_2.png",
+    avatar: mockAvatars[2],
   },
 };
