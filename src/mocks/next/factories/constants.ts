@@ -1,5 +1,7 @@
 /* cSpell:disable */
 
+import { AnswerType } from "../../codegen";
+
 export const users: {
   [key in `user${number}`]: {
     alias: string;
@@ -76,6 +78,11 @@ export const henkens: {
     content: { type: "book"; id: keyof typeof books; };
     postedBy: keyof typeof users;
     postsTo: keyof typeof users;
+    answer: {
+      id: `answer${number}`;
+      comment: string;
+      type: AnswerType;
+    } | null;
   };
 } = {
   henken1: {
@@ -83,11 +90,13 @@ export const henkens: {
     postedBy: "user2",
     postsTo: "user3",
     content: { type: "book", id: "book1" },
+    answer: { id: "answer1", comment: "はい", type: AnswerType.Right },
   },
   henken2: {
     comment: "読んでるんだろ？",
     postedBy: "user2",
     postsTo: "user3",
     content: { type: "book", id: "book2" },
+    answer: null,
   },
 } as const;

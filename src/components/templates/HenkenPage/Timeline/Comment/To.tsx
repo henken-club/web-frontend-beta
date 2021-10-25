@@ -29,7 +29,7 @@ export const View: React.VFC<
           "bg-gray-100": "type" in props && props.type === "wrong",
           "bg-gray-400": !("type" in props),
         }],
-        [["px-4"], ["py-2"]],
+        [["px-4"], ["py-2", "md:py-4"]],
         ["rounded-tr-lg", "rounded-b-lg"],
         ["inline-flex", ["flex-row"]],
       )}

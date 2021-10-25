@@ -34,7 +34,10 @@ export const mockHenkenPageQuery = graphql.query(HenkenPageDocument, (req, res, 
         henken: {
           __typename: "Henken",
           id: henkenId,
-          comment: henkens[henkenId].comment,
+          comment: henken.comment,
+          answer: henken.answer
+            ? { __typename: "Answer", ...henken.answer }
+            : null,
           postedBy: {
             __typename: "User",
             id: henken.postedBy,
