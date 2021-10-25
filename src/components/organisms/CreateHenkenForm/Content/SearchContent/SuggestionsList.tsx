@@ -10,13 +10,13 @@ export const Component: React.VFC<
   {
     className?: string;
     suggestions: (
-      | { type: "book"; value: { id: string; title: string; cover: string; }; }
+      | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
       | { type: "bookseries"; value: { id: string; title: string; }; }
       | { type: "author"; value: { id: string; name: string; }; }
     )[];
     onSelect(
       value:
-        | { type: "book"; value: { id: string; title: string; cover: string; }; }
+        | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
         | { type: "bookseries"; value: { id: string; title: string; }; }
         | { type: "author"; value: { id: string; name: string; }; },
     ): void;
@@ -70,13 +70,13 @@ export const SuggestionsList: React.VFC<
   {
     className?: string;
     suggestions: (
-      | { type: "book"; value: { id: string; title: string; cover: string; }; }
+      | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
       | { type: "bookseries"; value: { id: string; title: string; }; }
       | { type: "author"; value: { id: string; name: string; }; }
     )[];
     onSelect(
       value:
-        | { type: "book"; value: { id: string; title: string; cover: string; }; }
+        | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
         | { type: "bookseries"; value: { id: string; title: string; }; }
         | { type: "author"; value: { id: string; name: string; }; },
     ): void;

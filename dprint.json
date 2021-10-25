@@ -6,6 +6,7 @@
     "indentWidth": 2,
     "quoteStyle": "alwaysDouble",
     "operatorPosition": "sameLine",
+    "bracePosition": "sameLine",
     "conditionalExpression.operatorPosition": "nextLine",
     "taggedTemplate.spaceBeforeLiteral": false
   },

@@ -23,8 +23,8 @@ export const Component: React.VFC<
 export const BookSuggestionItem: React.VFC<
   {
     className?: string;
-    content: { type: "book"; value: { id: string; title: string; cover: string; }; };
-    onSelect(content: { type: "book"; value: { id: string; title: string; cover: string; }; }): void;
+    content: { type: "book"; value: { id: string; title: string; cover: string | null; }; };
+    onSelect(content: { type: "book"; value: { id: string; title: string; cover: string | null; }; }): void;
   }
 > = ({ content, onSelect, ...props }) => (
   <Component

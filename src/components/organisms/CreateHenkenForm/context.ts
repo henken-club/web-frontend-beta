@@ -1,7 +1,7 @@
 import React from "react";
 
 export type ContentType =
-  | { type: "book"; value: { id: string; title: string; cover: string; }; }
+  | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
   | { type: "bookseries"; value: { id: string; title: string; }; }
   | { type: "author"; value: { id: string; name: string; }; };
 
