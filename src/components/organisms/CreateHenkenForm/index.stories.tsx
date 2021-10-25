@@ -4,7 +4,7 @@ import React, { ComponentProps, ContextType } from "react";
 
 import { CreateHenkenFormContext } from "./context";
 
-import { mockAvatars, mockBookcovers } from "~/mocks/resources";
+import { mockAvatars, mockBookcovers } from "~/mocks/constants";
 import { Component } from ".";
 
 export default {
