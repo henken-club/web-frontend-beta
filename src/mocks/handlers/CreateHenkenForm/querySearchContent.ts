@@ -45,7 +45,7 @@ export const querySearchContent = graphql.query(
         __typename: "Query",
         searchContent: {
           __typename: "SearchContentPayload",
-          nodes: generator.shuffle(searchNodes).slice(0, generator.integer(0, 4)),
+          nodes: generator.pick(searchNodes, generator.integer(0, 4)),
         },
       }),
     );

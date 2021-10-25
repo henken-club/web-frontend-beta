@@ -9,7 +9,7 @@ const resultUser = (id: keyof typeof c.users) => ({
   user: { __typename: "User" as const, id, ...c.users[id] },
 });
 
-const select = [
+const searchNodes = [
   resultUser("user1"),
   resultUser("user2"),
   resultUser("user3"),
@@ -25,7 +25,7 @@ export const querySearchUser = graphql.query(
         __typename: "Query",
         searchUsers: {
           __typename: "SearchUsersPayload",
-          nodes: generator.shuffle(select).slice(0, generator.integer(0, 4)),
+          nodes: generator.pick(searchNodes, generator.integer(0, 4)),
         },
       }),
     );
