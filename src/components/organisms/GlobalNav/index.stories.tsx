@@ -10,7 +10,7 @@ import {
   GlobalNavFetchNotificationsQuery,
   GlobalNavFetchNotificationsQueryVariables,
 } from "~/mocks/codegen";
-import { mockAvatars } from "~/mocks/constants";
+import { mockAvatars } from "~/mocks/constraints";
 import { createUrqlClient } from "~/urql/UrqlProvider";
 import { View } from ".";
 

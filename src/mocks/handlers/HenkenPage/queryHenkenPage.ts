@@ -1,11 +1,11 @@
 import { graphql } from "msw";
 
 import { HenkenPageDocument } from "~/mocks/codegen";
-import { authors, books, henkens, users } from "~/mocks/constants";
+import { c } from "~/mocks/constraints";
 
 export const queryHenkenPage = graphql.query(HenkenPageDocument, (req, res, ctx) => {
   const henkenId = req.variables.id;
-  if (!(Object.keys(henkens).includes as (k: string) => k is keyof typeof henkens)(henkenId)) {
+  if (!(Object.keys(c.henkens).includes as (k: string) => k is keyof typeof c.henkens)(henkenId)) {
     return res(
       ctx.data({
         __typename: "Query",
@@ -17,7 +17,7 @@ export const queryHenkenPage = graphql.query(HenkenPageDocument, (req, res, ctx)
     );
   }
 
-  const { postsToId, answer, comment, content, postedById } = henkens[henkenId];
+  const { postsToId, answer, comment, content, postedById } = c.henkens[henkenId];
   return res(
     ctx.data({
       __typename: "Query",
@@ -30,24 +30,24 @@ export const queryHenkenPage = graphql.query(HenkenPageDocument, (req, res, ctx)
           answer: answer
             ? {
               __typename: "Answer",
-              id: answer.id,
-              type: answer.type,
-              comment: answer.comment,
+              id: answer,
+              type: c.answers[answer].type,
+              comment: c.answers[answer].comment,
             }
             : null,
           postedBy: {
             __typename: "User",
             id: postedById,
-            alias: users[postedById].alias,
-            displayName: users[postedById].displayName,
-            avatar: users[postedById].avatar,
+            alias: c.users[postedById].alias,
+            displayName: c.users[postedById].displayName,
+            avatar: c.users[postedById].avatar,
           },
           postsTo: {
             __typename: "User",
             id: postsToId,
-            alias: users[postsToId].alias,
-            displayName: users[postsToId].displayName,
-            avatar: users[postsToId].avatar,
+            alias: c.users[postsToId].alias,
+            displayName: c.users[postsToId].displayName,
+            avatar: c.users[postsToId].avatar,
           },
           content: (() => {
             switch (content.type) {
@@ -55,18 +55,18 @@ export const queryHenkenPage = graphql.query(HenkenPageDocument, (req, res, ctx)
                 return {
                   __typename: "Book",
                   id: content.id,
-                  title: books[content.id].title,
-                  cover: books[content.id].cover,
+                  title: c.books[content.id].title,
+                  cover: c.books[content.id].cover,
                   writings: {
                     __typename: "WritingConnection",
-                    edges: books[content.id].writings.map(({ authorId }) => ({
+                    edges: c.books[content.id].writings.map(({ authorId }) => ({
                       __typename: "WritingEdge",
                       node: {
                         __typename: "Writing",
                         author: {
                           __typename: "Author",
                           id: authorId,
-                          name: authors[authorId].name,
+                          name: c.authors[authorId].name,
                         },
                       },
                     } as const)),

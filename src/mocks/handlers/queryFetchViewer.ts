@@ -3,7 +3,7 @@
 import { graphql } from "msw";
 
 import { FetchViewerDocument } from "~/mocks/codegen";
-import { users, viewerId } from "~/mocks/constants";
+import { c } from "~/mocks/constraints";
 
 export const queryFetchViewer = graphql.query(
   FetchViewerDocument,
@@ -20,10 +20,10 @@ export const queryFetchViewer = graphql.query(
       __typename: "Query",
       viewer: {
         __typename: "User",
-        id: viewerId,
-        alias: users.viewer.alias,
-        displayName: users.viewer.displayName,
-        avatar: users.viewer.avatar,
+        id: "viewer",
+        alias: c.users.viewer.alias,
+        displayName: c.users.viewer.displayName,
+        avatar: c.users.viewer.avatar,
       },
     }));
   },

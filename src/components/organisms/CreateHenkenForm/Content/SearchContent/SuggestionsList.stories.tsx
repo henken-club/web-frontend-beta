@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Component } from "./SuggestionsList";
 
-import { mockBookcovers } from "~/mocks/constants";
+import { mockBookcovers } from "~/mocks/constraints";
 
 export default {
   title: "CreateHenkenForm/Content/SearchContent/SuggestionsList",

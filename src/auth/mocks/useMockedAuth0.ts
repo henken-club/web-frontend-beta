@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
-import { mockAuth0Picture } from "~/mocks/constants";
+import { mockAuth0Picture } from "~/mocks/constraints";
 
 export const authenticatedState = atom<boolean>({
   key: "mocked_authenticated",

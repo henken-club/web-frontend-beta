@@ -1,9 +1,9 @@
 import { graphql } from "msw";
 
 import { RegisterUserIsAliasUniqueDocument } from "~/mocks/codegen";
-import { users } from "~/mocks/constants";
+import { c } from "~/mocks/constraints";
 
-const aliases = Object.keys(users);
+const aliases = Object.keys(c.users);
 
 export const queryIsAliasUnique = graphql.query(
   RegisterUserIsAliasUniqueDocument,

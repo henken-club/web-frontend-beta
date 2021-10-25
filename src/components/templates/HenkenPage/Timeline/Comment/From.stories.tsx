@@ -3,7 +3,7 @@ import React, { ComponentProps } from "react";
 
 import { View } from "./From";
 
-import { mockAvatars } from "~/mocks/constants";
+import { mockAvatars } from "~/mocks/constraints";
 
 export default {
   title: "HenkenPage/Timeline/Comment/From",

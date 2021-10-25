@@ -3,7 +3,7 @@ import React, { ComponentProps } from "react";
 
 import { View } from "./Book";
 
-import { mockBookcovers } from "~/mocks/constants";
+import { mockBookcovers } from "~/mocks/constraints";
 
 export default {
   title: "HenkenPage/Timeline/Content/Book",

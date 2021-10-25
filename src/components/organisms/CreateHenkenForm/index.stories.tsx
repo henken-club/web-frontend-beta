@@ -4,13 +4,20 @@ import React, { ComponentProps, ContextType } from "react";
 
 import { CreateHenkenFormContext } from "./context";
 
-import { mockAvatars, mockBookcovers } from "~/mocks/constants";
+import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~/mocks/handlers";
 import { Component } from ".";
 
 export default {
   title: "CreateHenkenForm",
   component: Component,
   argTypes: {},
+  parameters: {
+    msw: [
+      queryCreateHenkenFormSearchUser,
+      queryCreateHenkenFormSearchContent,
+    ],
+  },
 } as Meta;
 
 type StoryProps = ComponentProps<typeof Component> & {

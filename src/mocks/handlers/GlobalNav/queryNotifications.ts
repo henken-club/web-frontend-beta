@@ -1,7 +1,7 @@
 import { graphql } from "msw";
 
 import { GlobalNavFetchNotificationsDocument } from "~/mocks/codegen";
-import { activities, henkens, mockAvatars } from "~/mocks/constants";
+import { c } from "~/mocks/constraints";
 
 export const queryNotifications = graphql.query(
   GlobalNavFetchNotificationsDocument,
@@ -23,18 +23,18 @@ export const queryNotifications = graphql.query(
               node: {
                 __typename: "ReceivedHenkenActivity",
                 id: "activity1",
-                unread: activities.activity1.unread,
-                createdAt: activities.activity1.createdAt,
+                unread: c.activities.activity1.unread,
+                createdAt: c.activities.activity1.createdAt,
                 henken: {
                   __typename: "Henken",
-                  id: activities.activity1.henkenId,
-                  ...henkens[activities.activity1.henkenId],
+                  id: c.activities.activity1.henkenId,
+                  ...c.henkens[c.activities.activity1.henkenId],
                   postedBy: {
                     __typename: "User",
-                    id: henkens[activities.activity1.henkenId].postedById,
-                    alias: "user_2",
-                    displayName: "User2",
-                    avatar: mockAvatars[2],
+                    id: c.henkens[c.activities.activity1.henkenId].postedById,
+                    alias: c.users[c.henkens[c.activities.activity1.henkenId].postedById].alias,
+                    displayName: c.users[c.henkens[c.activities.activity1.henkenId].postedById].displayName,
+                    avatar: c.users[c.henkens[c.activities.activity1.henkenId].postedById].avatar,
                   },
                 },
               },

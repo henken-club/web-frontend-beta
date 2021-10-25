@@ -1,53 +1,31 @@
 import { graphql } from "msw";
 
 import { CreateHenkenFormSearchUserDocument } from "~/mocks/codegen";
-import { mockAvatars } from "~/mocks/constants";
+import { c } from "~/mocks/constraints";
+import { Random } from "~/mocks/random";
+
+const resultUser = (id: keyof typeof c.users) => ({
+  __typename: "SearchUsersResult" as const,
+  user: { __typename: "User" as const, id, ...c.users[id] },
+});
+
+const select = [
+  resultUser("user1"),
+  resultUser("user2"),
+  resultUser("user3"),
+];
 
 export const querySearchUser = graphql.query(
   CreateHenkenFormSearchUserDocument,
   (req, res, ctx) => {
+    const generator = new Random(req.variables);
+
     return res(
       ctx.data({
         __typename: "Query",
         searchUsers: {
           __typename: "SearchUsersPayload",
-          nodes: [{
-            __typename: "SearchUsersResult",
-            user: {
-              __typename: "User",
-              id: "search_1",
-              alias: "search_1",
-              displayName: "SearchUser1",
-              avatar: mockAvatars[1],
-            },
-          }, {
-            __typename: "SearchUsersResult",
-            user: {
-              __typename: "User",
-              id: "search_2",
-              alias: "search_2",
-              displayName: "SearchUser2",
-              avatar: mockAvatars[2],
-            },
-          }, {
-            __typename: "SearchUsersResult",
-            user: {
-              __typename: "User",
-              id: "search_3",
-              alias: "search_3",
-              displayName: "SearchUser3",
-              avatar: mockAvatars[3],
-            },
-          }, {
-            __typename: "SearchUsersResult",
-            user: {
-              __typename: "User",
-              id: "search_4",
-              alias: "search_4",
-              displayName: "SearchUser4",
-              avatar: mockAvatars[4],
-            },
-          }],
+          nodes: generator.shuffle(select).slice(0, generator.integer(0, 4)),
         },
       }),
     );

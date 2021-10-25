@@ -1,7 +1,6 @@
 import { graphql } from "msw";
 
 import { RegisterUserDocument } from "~/mocks/codegen";
-import { viewerId } from "~/mocks/constants";
 
 export const mutationRegisterUser = graphql.mutation(RegisterUserDocument, (req, res, ctx) => {
   return res(
@@ -11,7 +10,7 @@ export const mutationRegisterUser = graphql.mutation(RegisterUserDocument, (req,
         __typename: "RegisterUserPayload",
         user: {
           __typename: "User",
-          id: viewerId,
+          id: "viewer",
           alias: req.variables.alias,
           displayName: req.variables.displayName,
           avatar: req.variables.avatar,

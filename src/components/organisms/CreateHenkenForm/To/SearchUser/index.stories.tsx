@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { mockAvatars } from "~/mocks/constants";
+import { mockAvatars } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
