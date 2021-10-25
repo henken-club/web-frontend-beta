@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 import { View } from "./To";
 
 export default {
-  title: "HenkenPage/Header/Comment/To",
+  title: "HenkenPage/Timeline/Comment/To",
   component: View,
   argTypes: {
     type: { table: { disable: true } },

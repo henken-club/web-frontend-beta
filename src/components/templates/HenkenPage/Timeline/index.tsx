@@ -34,7 +34,7 @@ export const View: React.VFC<{
 }> = ({ className, comment, postedBy, postsTo, content, answer }) => {
   const { LL } = useTranslation();
   return (
-    <header
+    <section
       className={clsx(
         className,
         ["bg-gray-700"],
@@ -61,11 +61,11 @@ export const View: React.VFC<{
         answer={answer}
         user={postsTo}
       />
-    </header>
+    </section>
   );
 };
 
-export const Header: React.VFC<{
+export const Timeline: React.VFC<{
   className?: string;
   henken: {
     comment: string;

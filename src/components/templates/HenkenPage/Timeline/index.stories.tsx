@@ -6,7 +6,7 @@ import { PageContainer } from "~/components/layouts/Default";
 import { View } from ".";
 
 export default {
-  title: "HenkenPage/Header",
+  title: "HenkenPage/Timeline",
   component: View,
   parameters: {
     layout: "fullscreen",

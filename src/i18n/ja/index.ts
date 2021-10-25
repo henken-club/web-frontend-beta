@@ -84,7 +84,7 @@ const ja: BaseTranslation = {
   },
 
   HenkenPage: {
-    Header: {
+    Timeline: {
       UserFrom: "送り元",
       UserTo: "送り先",
       HenkenComment: "{displayName:string}さんからの偏見",

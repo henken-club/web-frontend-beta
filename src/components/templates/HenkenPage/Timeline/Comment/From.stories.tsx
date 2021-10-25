@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 import { View } from "./From";
 
 export default {
-  title: "HenkenPage/Header/Comment/From",
+  title: "HenkenPage/Timeline/Comment/From",
   component: View,
   argTypes: {},
 } as Meta;

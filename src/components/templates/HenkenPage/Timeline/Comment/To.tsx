@@ -57,7 +57,7 @@ export const View: React.VFC<
             ["font-bold"],
           )}
         >
-          {LL.HenkenPage.Header.AnswerComment({ displayName: user.displayName })}
+          {LL.HenkenPage.Timeline.AnswerComment({ displayName: user.displayName })}
         </span>
 
         {"type" in props &&
@@ -81,8 +81,8 @@ export const View: React.VFC<
                   : [],
               )}
             >
-              {props.type === "right" && LL.HenkenPage.Header.AnswerType.Right()}
-              {props.type === "wrong" && LL.HenkenPage.Header.AnswerType.Wrong()}
+              {props.type === "right" && LL.HenkenPage.Timeline.AnswerType.Right()}
+              {props.type === "wrong" && LL.HenkenPage.Timeline.AnswerType.Wrong()}
             </span>
           )}
 
@@ -95,7 +95,7 @@ export const View: React.VFC<
                 : [],
             )}
           >
-            {props.comment === "" && LL.HenkenPage.Header.NoComment()}
+            {props.comment === "" && LL.HenkenPage.Timeline.NoComment()}
             {props.comment !== "" && props.comment}
           </p>
         )}
@@ -109,7 +109,7 @@ export const View: React.VFC<
               ["select-none"],
             )}
           >
-            {LL.HenkenPage.Header.NoAnswer()}
+            {LL.HenkenPage.Timeline.NoAnswer()}
           </p>
         )}
       </div>

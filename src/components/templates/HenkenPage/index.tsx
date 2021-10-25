@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import { Header } from "./Header";
+import { Timeline } from "./Timeline";
 
 export const View: React.VFC<{
   henken: {
@@ -42,7 +42,7 @@ export const View: React.VFC<{
   };
 }> = ({ henken }) => {
   return (
-    <section
+    <main
       className={clsx(
         ["w-full"],
         ["bg-white"],
@@ -50,7 +50,7 @@ export const View: React.VFC<{
         ["flex", ["flex-row"], ["flex-wrap", "xl:flex-nowrap"]],
       )}
     >
-      <Header
+      <Timeline
         className={clsx(
           ["w-full"],
           ["max-w-screen-none", "lg:max-w-screen-sm"],
@@ -69,7 +69,7 @@ export const View: React.VFC<{
         <div className={clsx(["flex-shrink"], ["bg-blue-400"])} />
         <div className={clsx(["flex-grow"], ["bg-blue-500"])} />
       </div>
-    </section>
+    </main>
   );
 };
 

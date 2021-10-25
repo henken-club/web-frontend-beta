@@ -46,7 +46,7 @@ export const View: React.VFC<{
             ["font-bold"],
           )}
         >
-          {LL.HenkenPage.Header.HenkenComment({ displayName: user.displayName })}
+          {LL.HenkenPage.Timeline.HenkenComment({ displayName: user.displayName })}
         </span>
         <p
           className={clsx(
@@ -57,7 +57,7 @@ export const View: React.VFC<{
           )}
         >
           {comment !== "" && comment}
-          {comment === "" && LL.HenkenPage.Header.NoComment()}
+          {comment === "" && LL.HenkenPage.Timeline.NoComment()}
         </p>
       </div>
     </PopupDivLeft>

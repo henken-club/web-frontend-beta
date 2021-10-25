@@ -87,7 +87,7 @@ export const From: React.VFC<{
           className={clsx(className, ["text-green-100"])}
         />
       )}
-      title={LL.HenkenPage.Header.UserFrom()}
+      title={LL.HenkenPage.Timeline.UserFrom()}
     />
   );
 };
@@ -105,7 +105,7 @@ export const To: React.VFC<{
           className={clsx(className, ["text-red-100"])}
         />
       )}
-      title={LL.HenkenPage.Header.UserTo()}
+      title={LL.HenkenPage.Timeline.UserTo()}
     />
   );
 };
