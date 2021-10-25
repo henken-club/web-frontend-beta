@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { Timeline } from "./Timeline";
+import { Users } from "./Users";
 
 export const View: React.VFC<{
   henken: {
@@ -63,11 +64,42 @@ export const View: React.VFC<{
           answer: henken.answer,
         }}
       />
-      <div className={clsx(["flex-grow"], ["bg-red-400"], ["block", "xl:hidden"])} />
-      <div className={clsx(["flex-grow"], ["w-full"], ["bg-red-500"], ["block", "xl:hidden"])} />
+      <div
+        className={clsx(
+          ["w-full", "lg:w-auto", "xl:w-full"],
+          ["flex-grow-0", "lg:flex-grow"],
+          ["lg:h-full"],
+          ["block", "xl:hidden"],
+        )}
+      >
+        <Users
+          className={clsx(
+            ["w-full"],
+            ["h-full"],
+          )}
+          henken={{
+            postedBy: henken.postedBy,
+            postsTo: henken.postsTo,
+          }}
+        />
+      </div>
+      <div
+        className={clsx(
+          ["flex-grow"],
+          ["w-full"],
+          ["bg-gray-900"],
+          ["block", "xl:hidden"],
+        )}
+      />
       <div className={clsx(["flex-grow"], ["hidden", ["xl:flex", ["flex-col"]]])}>
-        <div className={clsx(["flex-shrink"], ["bg-blue-400"])} />
-        <div className={clsx(["flex-grow"], ["bg-blue-500"])} />
+        <Users
+          className={clsx(["flex-shrink"])}
+          henken={{
+            postedBy: henken.postedBy,
+            postsTo: henken.postsTo,
+          }}
+        />
+        <div className={clsx(["flex-grow"], ["bg-gray-800"])} />
       </div>
     </main>
   );

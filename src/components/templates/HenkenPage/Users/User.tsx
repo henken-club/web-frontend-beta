@@ -17,8 +17,11 @@ export const Template: React.VFC<{
     <div
       className={clsx(
         className,
-        ["flex", ["flex-col"], ["items-start", "md:items-center"]],
-        ["px-2", "sm:px-4", "md:py-0"],
+        ["inline-flex", ["flex-col"]],
+        [
+          ["px-4", "sm:px-8", "lg:px-4", "xl:px-6"],
+          ["py-4", "sm:py-4"],
+        ],
       )}
     >
       <div className={clsx(["flex", ["items-center"]])}>
@@ -27,31 +30,30 @@ export const Template: React.VFC<{
             ["text-md", "sm:text-xl"],
           )}
         />
-        <h2
+        <span
           className={clsx(
             ["ml-2"],
             [
-              ["text-white"],
-              ["text-md", "sm:text-xl"],
+              ["text-gray-900"],
+              ["text-md"],
             ],
           )}
         >
           {title}
-        </h2>
+        </span>
       </div>
       <div
         className={clsx(
-          ["mt-2", "md:mt-4"],
-          ["flex-grow"],
-          ["flex", ["flex-row", "md:flex-col"], ["items-center"]],
+          ["mt-2", "lg:mt-4", "xl:mt-4"],
+          ["flex", ["flex-row"], ["items-center"]],
         )}
       >
         <LinkUser alias={user.alias}>
           <a
             className={clsx(
               [
-                ["w-12", "md:w-16"],
-                ["h-12", "md:h-16"],
+                ["w-8", "md:w-12"],
+                ["h-8", "md:h-12"],
               ],
             )}
           >
@@ -61,9 +63,10 @@ export const Template: React.VFC<{
         <LinkUser alias={user.alias}>
           <a
             className={clsx(
-              ["mt-0", "md:mt-2"],
-              ["ml-2", "md:ml-0"],
-              [["text-white"]],
+              ["ml-4"],
+              [
+                ["text-gray-900"],
+              ],
             )}
           >
             {user.displayName}
@@ -77,14 +80,15 @@ export const Template: React.VFC<{
 export const From: React.VFC<{
   className?: string;
   user: { id: string; alias: string; displayName: string; avatar: string; };
-}> = ({ ...props }) => {
+}> = ({ className, ...props }) => {
   const { LL } = useTranslation();
   return (
     <Template
       {...props}
+      className={clsx(className, ["bg-green-50"])}
       icon={({ className }) => (
         <IconHenkenUserFrom
-          className={clsx(className, ["text-green-100"])}
+          className={clsx(className, ["text-green-400"])}
         />
       )}
       title={LL.HenkenPage.Timeline.UserFrom()}
@@ -95,14 +99,15 @@ export const From: React.VFC<{
 export const To: React.VFC<{
   className?: string;
   user: { id: string; alias: string; displayName: string; avatar: string; };
-}> = ({ ...props }) => {
+}> = ({ className, ...props }) => {
   const { LL } = useTranslation();
   return (
     <Template
       {...props}
+      className={clsx(className, ["bg-red-50"])}
       icon={({ className }) => (
         <IconHenkenUserTo
-          className={clsx(className, ["text-red-100"])}
+          className={clsx(className, ["text-red-400"])}
         />
       )}
       title={LL.HenkenPage.Timeline.UserTo()}
