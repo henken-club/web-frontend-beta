@@ -47,3 +47,27 @@ generates:
       nonOptionalTypename: true
       scalars:
         DateTime: string
+
+  ./src/pages/codegen.ts:
+    plugins:
+      - typescript
+    config:
+      scalars:
+        DateTime: string
+
+  ./src/pages/:
+    preset: near-operation-file
+    documents:
+      - src/pages/**/*.page.tsx
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+    config:
+      scalars:
+        DateTime: string
+      nonOptionalTypename: true
+      onlyOperationTypes: true
+    presetConfig:
+      baseTypesPath: ./codegen.ts
+      extension: .codegen.ts

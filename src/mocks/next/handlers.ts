@@ -25,6 +25,8 @@ import {
   RegisterUserMutationVariables,
 } from "../codegen";
 
+import { mockAllHenkenPagesQuery, mockHenkenPageQuery } from "./factories/pageHenken";
+
 export const handlers = [
   graphql.query<FetchViewerQuery, FetchViewerQueryVariables>(
     FetchViewerDocument,
@@ -223,4 +225,6 @@ export const handlers = [
       }));
     },
   ),
+  mockAllHenkenPagesQuery,
+  mockHenkenPageQuery,
 ];

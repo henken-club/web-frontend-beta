@@ -9,6 +9,11 @@ const ja: BaseTranslation = {
     CommentQuote: "「{comment:string}」",
   },
 
+  AnswerType: {
+    Right: "正解",
+    Wrong: "不正解",
+  },
+
   Button: {
     CreateHenken: "偏見を送る",
   },
@@ -75,6 +80,21 @@ const ja: BaseTranslation = {
     },
     ReceivedAnswer: {
       Label: "{displayName:string}さんが回答しました",
+    },
+  },
+
+  HenkenPage: {
+    Timeline: {
+      UserFrom: "送り元",
+      UserTo: "送り先",
+      HenkenComment: "{displayName:string}さんからの偏見",
+      AnswerComment: "{displayName:string}さんからの回答",
+      NoAnswer: "（回答していません）",
+      NoComment: "（コメントはありません）",
+      AnswerType: {
+        Right: "正解！",
+        Wrong: "残念…",
+      },
     },
   },
 };

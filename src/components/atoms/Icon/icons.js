@@ -13,3 +13,6 @@ export const IconNoImage = (props) => <FontAwesomeIcon fixedWidth icon={solid("i
 export const IconCreateHenken = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-kiss-beam")} {...props} />;
 
 export const IconNotification = (props) => <FontAwesomeIcon fixedWidth icon={solid("bell")} {...props} />;
+
+export const IconHenkenUserFrom = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-kiss-beam")} {...props} />;
+export const IconHenkenUserTo = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-grin-tears")} {...props} />;

@@ -11,7 +11,8 @@ export const PageContainer: React.FC<{ className?: string; }> = ({
     className={clsx(
       className,
       ["container", ["mx-auto"]],
-      ["flex", ["items-center"], ["justify-center"]],
+      ["flex"],
+      [["px-4"], ["py-8"]],
     )}
   >
     {children}
@@ -27,7 +28,7 @@ export const DefaultLayout: React.FC = ({ children }) => (
     )}
   >
     <GlobalNav />
-    <PageContainer className={clsx(["flex-grow"], ["mx-auto"])}>
+    <PageContainer className={clsx(["mx-auto"])}>
       {children}
     </PageContainer>
   </main>
