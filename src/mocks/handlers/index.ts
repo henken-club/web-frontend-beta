@@ -16,3 +16,7 @@ export { queryIsAliasUnique as queryRegisterUserFormIsAliasUnique } from "./Regi
 // henken page
 export { queryAllHenkenPages } from "./HenkenPage/queryAllHenkenPages";
 export { queryHenkenPage } from "./HenkenPage/queryHenkenPage";
+
+// user page
+export { queryAllUserPages } from "./UserPage/queryAllUserPages";
+export { queryUserPage } from "./UserPage/queryUserPage";

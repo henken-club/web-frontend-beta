@@ -2,12 +2,14 @@ import {
   mutationCreateHenkenFormCreateHenken,
   mutationRegisterUserFormRegisterUser,
   queryAllHenkenPages,
+  queryAllUserPages,
   queryCreateHenkenFormSearchContent,
   queryCreateHenkenFormSearchUser,
   queryFetchViewer,
   queryGlobalNavNotifications,
   queryHenkenPage,
   queryRegisterUserFormIsAliasUnique,
+  queryUserPage,
 } from "../handlers";
 
 export const handlers = [
@@ -20,4 +22,6 @@ export const handlers = [
   queryGlobalNavNotifications,
   queryAllHenkenPages,
   queryHenkenPage,
+  queryAllUserPages,
+  queryUserPage,
 ];
