@@ -2,6 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import clsx from "clsx";
 import React, { ComponentProps } from "react";
 
+import { mockAvatars } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
@@ -35,7 +36,7 @@ Active.args = {
         unread: true,
         comment: "Comment",
         createdAt: "2021-01-01T12:00:00",
-        from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+        from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
       },
     },
     {
@@ -45,7 +46,7 @@ Active.args = {
         unread: true,
         comment: "Comment",
         createdAt: "2021-01-01T12:00:00",
-        from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+        from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
       },
     },
   ],
@@ -65,7 +66,7 @@ Inactive.args = {
         unread: false,
         comment: "Comment",
         createdAt: "2021-01-01T12:00:00",
-        from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+        from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
       },
     },
     {
@@ -75,7 +76,7 @@ Inactive.args = {
         unread: false,
         comment: "Comment",
         createdAt: "2021-01-01T12:00:00",
-        from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
+        from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
       },
     },
   ],

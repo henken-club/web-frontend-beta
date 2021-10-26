@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
+import { mockBookcovers } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
@@ -53,7 +54,7 @@ FocusingWithSuggestions.args = {
   focus: true,
   searching: false,
   suggestions: [
-    { type: "book", value: { id: "book1", title: "Book 1", cover: "/.mock/bookcover_1.jpg" } },
+    { type: "book", value: { id: "book1", title: "Book 1", cover: mockBookcovers[1] } },
     { type: "bookseries", value: { id: "bookseries1", title: "Book Series 1" } },
     { type: "author", value: { id: "author1", name: "Author 1" } },
   ],

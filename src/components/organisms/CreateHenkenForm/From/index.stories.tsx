@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
+import { mockAvatars } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
@@ -34,6 +35,6 @@ LoggedIn.args = {
     id: "from",
     alias: "from",
     displayName: "From User",
-    avatar: "/.mock/avatar_1.png",
+    avatar: mockAvatars[1],
   },
 };

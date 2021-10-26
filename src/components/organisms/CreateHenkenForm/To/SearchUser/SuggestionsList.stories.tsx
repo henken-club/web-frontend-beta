@@ -4,6 +4,8 @@ import React, { ComponentProps } from "react";
 
 import { Component } from "./SuggestionsList";
 
+import { mockAvatars } from "~/mocks/constraints";
+
 export default {
   title: "CreateHenkenForm/To/SearchUser/SuggestionsList",
   component: Component,
@@ -26,22 +28,22 @@ HasSuggestion.args = {
     id: "suggestion1",
     alias: "suggestion1",
     displayName: "Suggestion 1",
-    avatar: "/.mock/avatar_3.png",
+    avatar: mockAvatars[3],
   }, {
     id: "suggestion2",
     alias: "suggestion2",
     displayName: "Suggestion 2",
-    avatar: "/.mock/avatar_4.png",
+    avatar: mockAvatars[4],
   }, {
     id: "suggestion3",
     alias: "suggestion3",
     displayName: "Suggestion 3",
-    avatar: "/.mock/avatar_5.png",
+    avatar: mockAvatars[5],
   }, {
     id: "suggestion4",
     alias: "suggestion4",
     displayName: "Suggestion 4",
-    avatar: "/.mock/avatar_6.png",
+    avatar: mockAvatars[6],
   }],
 };
 

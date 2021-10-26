@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React, { ComponentProps } from "react";
 
 import { PageContainer } from "~/components/layouts/Default";
+import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
@@ -29,8 +30,8 @@ export const Book: Story<StoryProps> = ({ ...props }) => {
 Book.storyName = "Book";
 Book.args = {
   comment: "はい",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
   answer: {
     comment: "はいじゃないが",
     type: "right",
@@ -40,7 +41,7 @@ Book.args = {
     content: {
       id: "book_1",
       title: "本 タイトル",
-      cover: "/.mock/bookcover_1.jpg",
+      cover: mockBookcovers[1],
       authors: [
         { id: "author_1", name: "著者1", role: null },
         { id: "author_2", name: "著者2", role: null },
@@ -55,8 +56,8 @@ export const BookSeries: Story<StoryProps> = ({ ...props }) => {
 BookSeries.storyName = "BookSeries";
 BookSeries.args = {
   comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
   answer: {
     comment: "はいじゃないが",
     type: "right",
@@ -76,8 +77,8 @@ export const Author: Story<StoryProps> = ({ ...props }) => {
 Author.storyName = "Author";
 Author.args = {
   comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
   answer: {
     comment: "はいじゃないが",
     type: "right",
@@ -97,15 +98,15 @@ export const NoAnswer: Story<StoryProps> = ({ ...props }) => {
 NoAnswer.storyName = "回答なし";
 NoAnswer.args = {
   comment: "はい",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
   answer: null,
   content: {
     type: "book",
     content: {
       id: "book_1",
       title: "本 タイトル",
-      cover: "/.mock/bookcover_1.jpg",
+      cover: mockBookcovers[1],
       authors: [
         { id: "author_1", name: "著者1", role: null },
         { id: "author_2", name: "著者2", role: null },
@@ -120,8 +121,8 @@ export const WrongAnswer: Story<StoryProps> = ({ ...props }) => {
 WrongAnswer.storyName = "回答が違う";
 WrongAnswer.args = {
   comment: "はい",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: "/.mock/avatar_1.png" },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: "/.mock/avatar_2.png" },
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
   answer: {
     comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
     type: "wrong",
@@ -131,7 +132,7 @@ WrongAnswer.args = {
     content: {
       id: "book_1",
       title: "本 タイトル",
-      cover: "/.mock/bookcover_1.jpg",
+      cover: mockBookcovers[1],
       authors: [
         { id: "author_1", name: "著者1", role: null },
         { id: "author_2", name: "著者2", role: null },

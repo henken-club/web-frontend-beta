@@ -3,6 +3,8 @@ import React, { ComponentProps } from "react";
 
 import { View } from "./Book";
 
+import { mockBookcovers } from "~/mocks/constraints";
+
 export default {
   title: "HenkenPage/Timeline/Content/Book",
   component: View,
@@ -17,7 +19,7 @@ export const Primary: Story<StoryProps> = ({ ...props }) => {
 Primary.args = {
   id: "book_1",
   title: "Book",
-  cover: "/.mock/bookcover_1.jpg",
+  cover: mockBookcovers[1],
   authors: [
     { id: "author_1", name: "著者1", role: null },
     { id: "author_2", name: "著者2", role: null },

@@ -4,12 +4,20 @@ import React, { ComponentProps, ContextType } from "react";
 
 import { CreateHenkenFormContext } from "./context";
 
+import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~/mocks/handlers";
 import { Component } from ".";
 
 export default {
   title: "CreateHenkenForm",
   component: Component,
   argTypes: {},
+  parameters: {
+    msw: [
+      queryCreateHenkenFormSearchUser,
+      queryCreateHenkenFormSearchContent,
+    ],
+  },
 } as Meta;
 
 type StoryProps = ComponentProps<typeof Component> & {
@@ -30,13 +38,13 @@ Primary.args = {
       id: "from",
       alias: "from",
       displayName: "From User",
-      avatar: "/.mock/avatar_1.png",
+      avatar: mockAvatars[1],
     },
     to: {
       id: "to",
       alias: "to",
       displayName: "To User",
-      avatar: "/.mock/avatar_2.png",
+      avatar: mockAvatars[2],
     },
     setTo: action("set-to-user"),
     content: {
@@ -44,7 +52,7 @@ Primary.args = {
       value: {
         id: "content_book1",
         title: "Book 1",
-        cover: "/.mock/bookcover_1.jpg",
+        cover: mockBookcovers[1],
       },
     },
     setContent: action("set-content"),
@@ -116,7 +124,7 @@ NoTo.args = {
       id: "from",
       alias: "from",
       displayName: "From User",
-      avatar: "/.mock/avatar_1.png",
+      avatar: mockAvatars[1],
     },
     to: null,
     setTo: action("set-to-user"),
@@ -141,10 +149,10 @@ Created.storyName = "作成済み";
 Created.args = {
   created: true,
   contextValue: {
-    from: { id: "from", alias: "from", displayName: "From User", avatar: "/.mock/avatar_1.png" },
-    to: { id: "to", alias: "to", displayName: "To User", avatar: "/.mock/avatar_2.png" },
+    from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
+    to: { id: "to", alias: "to", displayName: "To User", avatar: mockAvatars[2] },
     setTo: action("set-to-user"),
-    content: { type: "book", value: { id: "content_book1", title: "Book 1", cover: "/.mock/bookcover_1.jpg" } },
+    content: { type: "book", value: { id: "content_book1", title: "Book 1", cover: mockBookcovers[1] } },
     setContent: action("set-content"),
     comment: "",
     setComment: action("set-comment"),

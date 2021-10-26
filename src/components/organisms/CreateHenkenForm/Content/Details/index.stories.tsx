@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
+import { mockBookcovers } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
@@ -16,7 +17,7 @@ export const HasImage: Story<StoryProps> = ({ ...props }) => {
 };
 HasImage.args = {
   title: "タイトル",
-  image: "/.mock/bookcover_1.jpg",
+  image: mockBookcovers[1],
 };
 
 export const NoImage: Story<StoryProps> = ({ ...props }) => {
