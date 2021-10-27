@@ -6,7 +6,7 @@ import { useViewer } from "~/auth/useViewer";
 import { Modal } from "~/components/atoms/Modal";
 import { RegisterUserForm } from "~/components/organisms/RegisterUserForm";
 
-const manualRegisterUserModalState = atom<boolean>({
+export const manualRegisterUserModalState = atom<boolean>({
   key: "modalRegisterUserManual",
   default: true,
 });

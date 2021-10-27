@@ -1,16 +1,13 @@
 import { Meta, Story } from "@storybook/react";
-import { graphql } from "msw";
 import React, { ComponentProps } from "react";
 import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";
 
 import { viewerState } from "~/auth/useViewer";
-import {
-  GlobalNavFetchNotificationsDocument,
-  GlobalNavFetchNotificationsQuery,
-  GlobalNavFetchNotificationsQueryVariables,
-} from "~/mocks/codegen";
-import { mockAvatars } from "~/mocks/constraints";
+import { c } from "~/mocks/constraints";
+import { queryGlobalNavNotifications } from "~/mocks/handlers";
+import { manualCreateHenkenModalState } from "~/modals/CreateHenken";
+import { manualRegisterUserModalState } from "~/modals/RegisterUser";
 import { createUrqlClient } from "~/urql/UrqlProvider";
 import { View } from ".";
 
@@ -20,17 +17,48 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  argTypes: {},
+  argTypes: {
+    needLogin: { table: { disable: true } },
+    needRegister: { table: { disable: true } },
+  },
 } as Meta;
 
 type StoryProps = ComponentProps<typeof View>;
 
-export const NotLoggedIn: Story<StoryProps> = ({ ...props }) => {
-  return <View {...props} />;
+export const NeedLogin: Story<StoryProps> = ({ ...props }) => {
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(manualRegisterUserModalState, false);
+        set(manualCreateHenkenModalState, false);
+      }}
+    >
+      <View {...props} />
+    </RecoilRoot>
+  );
 };
-NotLoggedIn.storyName = "未ログイン";
-NotLoggedIn.args = {
-  isLoggedIn: false,
+NeedLogin.storyName = "ログインが必要";
+NeedLogin.args = {
+  needLogin: true,
+  needRegister: false,
+};
+
+export const NeedRegister: Story<StoryProps> = ({ ...props }) => {
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(manualRegisterUserModalState, false);
+        set(manualCreateHenkenModalState, false);
+      }}
+    >
+      <View {...props} />
+    </RecoilRoot>
+  );
+};
+NeedRegister.storyName = "登録が必要";
+NeedRegister.args = {
+  needLogin: false,
+  needRegister: true,
 };
 
 const defaultUrqlClient = createUrqlClient();
@@ -39,11 +67,13 @@ export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
     <RecoilRoot
       initializeState={({ set }) => {
         set(viewerState, {
-          id: "from",
-          alias: "from",
-          displayName: "From User",
-          avatar: mockAvatars[1],
+          id: "viewer",
+          alias: c.users.viewer.alias,
+          displayName: c.users.viewer.displayName,
+          avatar: c.users.viewer.avatar,
         });
+        set(manualRegisterUserModalState, false);
+        set(manualCreateHenkenModalState, false);
       }}
     >
       <UrqlProvider value={defaultUrqlClient}>
@@ -54,51 +84,9 @@ export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
 };
 LoggedIn.storyName = "ログイン済み";
 LoggedIn.args = {
-  isLoggedIn: true,
+  needLogin: false,
+  needRegister: false,
 };
 LoggedIn.parameters = {
-  msw: [
-    graphql.query<GlobalNavFetchNotificationsQuery, GlobalNavFetchNotificationsQueryVariables>(
-      GlobalNavFetchNotificationsDocument,
-      (req, res, ctx) => {
-        return res(
-          ctx.data({
-            __typename: "Query",
-            viewer: {
-              __typename: "User",
-              activities: {
-                __typename: "ActivityConnection",
-                pageInfo: {
-                  __typename: "PageInfo",
-                  hasNextPage: true,
-                  endCursor: "cursor",
-                },
-                edges: [{
-                  __typename: "ActivityEdge",
-                  node: {
-                    __typename: "ReceivedHenkenActivity",
-                    id: "activity-1",
-                    unread: false,
-                    createdAt: "2021-01-01T12:00:00",
-                    henken: {
-                      __typename: "Henken",
-                      id: "activity-1-henken",
-                      comment: "Comment",
-                      postedBy: {
-                        __typename: "User",
-                        id: "user_2",
-                        alias: "user_2",
-                        displayName: "User2",
-                        avatar: mockAvatars[2],
-                      },
-                    },
-                  },
-                }],
-              },
-            },
-          }),
-        );
-      },
-    ),
-  ],
+  msw: [queryGlobalNavNotifications],
 };

@@ -5,7 +5,7 @@ import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 import { Modal } from "~/components/atoms/Modal";
 import { CreateHenkenForm } from "~/components/organisms/CreateHenkenForm";
 
-const manualCreateHenkenModalState = atom<boolean>({
+export const manualCreateHenkenModalState = atom<boolean>({
   key: "modalManualCreateHenken",
   default: false,
 });

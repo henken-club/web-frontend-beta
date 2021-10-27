@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslation } from "~/i18n/useTranslation";
 import { useOpenRegisterUserModal } from "~/modals/RegisterUser";
 
-export const Component: React.VFC<{ className?: string; onClick(): void; }> = ({ className, onClick }) => {
+export const View: React.VFC<{ className?: string; onClick(): void; }> = ({ className, onClick }) => {
   const { LL } = useTranslation();
   return (
     <button
@@ -18,8 +18,8 @@ export const Component: React.VFC<{ className?: string; onClick(): void; }> = ({
   );
 };
 
-export const RegisterButton: React.VFC<{ className?: string; }> = ({ ...props }) => {
+export const Button: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const opener = useOpenRegisterUserModal();
 
-  return <Component {...props} onClick={opener} />;
+  return <View {...props} onClick={opener} />;
 };
