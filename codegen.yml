@@ -45,6 +45,7 @@ generates:
       - typed-document-node
     config:
       nonOptionalTypename: true
+      onlyOperationTypes: true
       scalars:
         DateTime: string
 
