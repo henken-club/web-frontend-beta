@@ -1,55 +1,54 @@
 import React from "react";
 
-export type ContentType =
+type ContentType =
   | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
   | { type: "bookseries"; value: { id: string; title: string; }; }
   | { type: "author"; value: { id: string; name: string; }; };
 
-type ContextType = {
-  from: undefined | null | {
-    id: string;
-    alias: string;
-    displayName: string;
-    avatar: string;
-  };
-
-  to: null | {
-    id: string;
-    alias: string;
-    displayName: string;
-    avatar: string;
-  };
-  setTo(payload: {
-    id: string;
-    alias: string;
-    displayName: string;
-    avatar: string;
-  }): void;
-
+type From = { id: string; alias: string; displayName: string; avatar: string; };
+type To = { id: string; alias: string; displayName: string; avatar: string; };
+type CT = {
+  from: undefined | null | From;
+  to: null | To;
   content: null | ContentType;
-  setContent(payload: ContentType): void;
-
   comment: string;
+  setTo(payload: To): void;
+  setContent(payload: ContentType): void;
   setComment(value: string): void;
-
+  createHenken: null;
+  created: false;
+} | {
+  from: From;
+  to: null | To;
+  content: ContentType;
+  comment: string;
+  setTo(payload: To): void;
+  setContent(payload: ContentType): void;
+  setComment(value: string): void;
   createHenken(): void;
-  formDisabled: boolean;
-  created: boolean;
+  created: false;
+} | {
+  from: From;
+  to: null | To;
+  content: ContentType;
+  comment: string;
+  setTo(payload: To): void;
+  setContent(payload: ContentType): void;
+  setComment(value: string): void;
+  createHenken: null;
+  created: true;
 };
 
-export const CreateHenkenFormContext = React.createContext<ContextType>({
+export const CreateHenkenFormContext = React.createContext<CT>({
   from: undefined,
-
   to: null,
-  setTo: () => {},
-
   content: null,
-  setContent: () => {},
-
   comment: "",
+
+  setTo: () => {},
+  setContent: () => {},
   setComment: () => {},
+  createHenken: null,
 
   created: false,
-  createHenken: () => {},
-  formDisabled: false,
 });

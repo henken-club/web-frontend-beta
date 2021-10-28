@@ -63,8 +63,8 @@ export const Component: React.VFC<
 export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
   { ...props },
 ) => {
-  const viewer = useViewer();
-  const [to, setTo] = useState<{ id: string; alias: string; displayName: string; avatar: string; } | null>(null);
+  const from = useViewer();
+  const [to, setTo] = useState<ContextType<typeof CreateHenkenFormContext>["to"]>(null);
   const [content, setContent] = useState<ContextType<typeof CreateHenkenFormContext>["content"]>(null);
   const [comment, setComment] = useState<string>("");
 
@@ -73,27 +73,52 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
 
   const contextValue = useMemo<ContextType<typeof CreateHenkenFormContext>>(
     () => {
-      return ({
-        from: viewer,
-        to,
-        setTo: (user) => setTo(user),
-        content,
-        setContent: (value) => setContent(value),
-        comment,
-        setComment: (value) => setComment(value),
-        created,
-        createHenken: async () => {
-          if (to && content) {
-            const { data, error } = await createHenken({ to: to.id, content: content.value.id, comment });
-            if (!error && data) {
-              setCreated(true);
-            }
-          }
-        },
-        formDisabled: created,
-      });
+      if (from && to && content) {
+        if (created) {
+          return ({
+            from,
+            to,
+            content,
+            comment,
+            setTo: (user) => setTo(user),
+            setContent: (value) => setContent(value),
+            setComment: (value) => setComment(value),
+            createHenken: null,
+            created: true,
+          });
+        } else {
+          return ({
+            from,
+            to,
+            content,
+            comment,
+            setTo: (user) => setTo(user),
+            setContent: (value) => setContent(value),
+            setComment: (value) => setComment(value),
+            createHenken: async () => {
+              const { data, error } = await createHenken({ to: to.id, content: content.value.id, comment });
+              if (!error && data) {
+                setCreated(true);
+              }
+            },
+            created: false,
+          });
+        }
+      } else {
+        return ({
+          from,
+          to,
+          content,
+          comment,
+          setTo: (user) => setTo(user),
+          setContent: (value) => setContent(value),
+          setComment: (value) => setComment(value),
+          createHenken: null,
+          created: false,
+        });
+      }
     },
-    [viewer, to, content, comment, created, createHenken],
+    [comment, content, createHenken, created, from, to],
   );
 
   return (

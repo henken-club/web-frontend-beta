@@ -11,8 +11,9 @@ export const View: React.VFC<{
   className?: string;
   onClick(): void;
   disabled: boolean;
+  created: boolean;
 }> = (
-  { className, ...props },
+  { className, created, ...props },
 ) => {
   const { LL } = useTranslation();
   return (
@@ -30,5 +31,9 @@ export const CreateButton: React.VFC<{ className?: string; }> = (
 ) => {
   const { createHenken, created } = useContext(CreateHenkenFormContext);
 
-  return <View {...props} onClick={() => createHenken()} disabled={created} />;
+  if (createHenken) {
+    return <View {...props} onClick={() => createHenken()} disabled={false} created={false} />;
+  } else {
+    return <View {...props} onClick={() => {}} disabled created={created} />;
+  }
 };

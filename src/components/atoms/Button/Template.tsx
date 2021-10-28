@@ -19,12 +19,13 @@ export const NormalTemplate: React.VFC<{
       ["inline-flex", ["items-center"]],
       [
         "bg-blue-500",
-        ["disabled:bg-gray-600"],
+        ["disabled:bg-gray-400"],
       ],
+      ["text-white", ["disabled:text-gray-300"]],
       ["rounded-md"],
     )}
   >
-    {Icon && <Icon className={clsx(["mr-2"], [["text-white"], ["text-base"]])} />}
-    <Text className={clsx([["text-white"], ["text-base"]])} />
+    {Icon && <Icon className={clsx(["mr-2"], [["text-base"]])} />}
+    <Text className={clsx([["text-base"]])} />
   </button>
 );
