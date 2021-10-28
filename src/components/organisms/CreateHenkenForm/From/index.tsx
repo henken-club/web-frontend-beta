@@ -20,8 +20,8 @@ export const Component: React.VFC<
         className,
         [["px-4"], ["py-4"]],
         [["inline-flex"], ["flex-col"], ["items-center"]],
-        ["bg-green-50"],
-        ["border", "border-green-400"],
+        ["bg-henken-from-pale"],
+        ["border", "border-henken-from-normal"],
       )}
     >
       <div

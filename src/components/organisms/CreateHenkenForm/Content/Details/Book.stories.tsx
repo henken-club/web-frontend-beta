@@ -3,8 +3,6 @@ import React, { ComponentProps } from "react";
 
 import { View } from "./Book";
 
-import { mockBookcovers } from "~/mocks/constraints";
-
 export default {
   title: "organisms/CreateHenkenForm/Content/Details/Book",
   component: View,
@@ -13,20 +11,10 @@ export default {
 
 type StoryProps = ComponentProps<typeof View>;
 
-export const HasImage: Story<StoryProps> = ({ ...props }) => {
+export const Primary: Story<StoryProps> = ({ ...props }) => {
   return <View {...props} />;
 };
-HasImage.args = {
+Primary.args = {
   id: "book1",
   title: "タイトル",
-  cover: mockBookcovers[1],
-};
-
-export const NoImage: Story<StoryProps> = ({ ...props }) => {
-  return <View {...props} />;
-};
-NoImage.args = {
-  id: "book1",
-  title: "タイトル",
-  cover: null,
 };

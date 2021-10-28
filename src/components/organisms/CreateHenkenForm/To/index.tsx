@@ -22,8 +22,8 @@ export const Component: React.VFC<
         className,
         [["px-4"], ["py-4"]],
         [["inline-flex"], ["flex-col"]],
-        ["bg-red-50"],
-        ["border", "border-red-400"],
+        ["bg-henken-to-pale"],
+        ["border", "border-henken-to-normal"],
       )}
     >
       <div

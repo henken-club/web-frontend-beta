@@ -60,9 +60,9 @@ export const Component: React.VFC<
   const { LL } = useTranslation();
   return (
     <div
-      className={clsx(className, ["relative", { "z-infinity": focus }])}
+      className={clsx(className, ["inline-flex"], ["relative", { "z-infinity": focus }])}
     >
-      <label className={clsx(["flex", ["flex-col"]], ["relative"], ["z-1"])}>
+      <label className={clsx(["w-full"], ["flex", ["flex-col"]], ["relative"], ["z-1"])}>
         <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
         <input
           type="search"
@@ -103,7 +103,7 @@ export const Component: React.VFC<
   );
 };
 
-export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) => {
+export const SearchBox: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const { setContent, formDisabled } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);

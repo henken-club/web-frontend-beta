@@ -3,8 +3,9 @@ import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { Content } from "./Details";
-import { SearchContent } from "./SearchContent";
+import { Details } from "./Details";
+import { Image } from "./Image";
+import { SearchBox } from "./SearchContent";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -31,29 +32,30 @@ export const Component: React.VFC<
       className={clsx(
         className,
         [["px-6"], ["py-4"]],
+        ["h-48"],
         [["inline-flex"], ["flex-row"], ["items-starts"]],
         ["bg-blue-50"],
         ["border", "border-blue-400"],
       )}
     >
-      {content && (
-        <Content
-          className={clsx(["w-32"])}
-          content={content}
-        />
-      )}
-      {!content && (
-        <div
-          className={clsx(["w-32"])}
-        />
-      )}
+      <Image
+        className={clsx(["w-28"], ["h-36"])}
+        content={content}
+      />
       <div
         className={clsx(
           ["flex-grow"],
           ["flex", ["flex-col"]],
+          ["ml-4"],
         )}
       >
-        <SearchContent className={clsx(["w-full"])} />
+        <SearchBox className={clsx(["w-full"])} />
+        {content && (
+          <Details
+            className={clsx(["mt-2"], ["flex-grow"])}
+            content={content}
+          />
+        )}
       </div>
     </div>
   );

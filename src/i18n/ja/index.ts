@@ -1,6 +1,10 @@
 import type { BaseTranslation } from "typesafe-i18n";
 
 const ja: BaseTranslation = {
+  Book: "本",
+  BookSeries: "本のシリーズ",
+  Author: "著者",
+
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
 
@@ -23,7 +27,7 @@ const ja: BaseTranslation = {
   },
 
   BookCover: {
-    NoImage: "画像はありません",
+    NoImage: "書影はありません",
   },
 
   RegisterUserForm: {
@@ -59,13 +63,11 @@ const ja: BaseTranslation = {
         aria: { QueryInput: "" },
       },
     },
+
     Content: {
-      Info: {
+      Image: {
         NoImage: "画像はありません",
-      },
-      CommentBox: {
-        Label: "コメント入力欄",
-        aria: { CommentInput: "コメント入力欄" },
+        NotSelected: "コンテンツを選択して下さい",
       },
       SearchBox: {
         aria: {
@@ -73,6 +75,13 @@ const ja: BaseTranslation = {
         },
         Label: "コンテンツ入力欄",
         NoResult: "コンテンツが見つかりませんでした",
+      },
+    },
+
+    Control: {
+      Comment: {
+        Label: "コメント入力欄",
+        aria: { CommentInput: "コメント入力欄" },
       },
     },
   },
