@@ -5,7 +5,7 @@ import { CreateHenkenFormContext } from "../context";
 
 import { Details } from "./Details";
 import { Image } from "./Image";
-import { SearchBox } from "./SearchContent";
+import { SearchBox } from "./SearchBox";
 
 import { useTranslation } from "~/i18n/useTranslation";
 

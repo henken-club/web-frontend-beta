@@ -83,6 +83,7 @@ const ja: BaseTranslation = {
         Label: "コメント入力欄",
         aria: { CommentInput: "コメント入力欄" },
       },
+      CreateHenken: "送信！",
     },
   },
 

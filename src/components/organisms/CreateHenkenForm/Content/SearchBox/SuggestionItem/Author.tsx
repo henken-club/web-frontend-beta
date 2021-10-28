@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
+import { AuthorSmallBadge } from "~/components/atoms/ContentBadge";
+
 export const Component: React.VFC<
   { className?: string; name: string; onSelect(): void; }
 > = ({ className, name, onSelect }) => {
@@ -15,7 +17,10 @@ export const Component: React.VFC<
         ["bg-white", "hover:bg-blue-50"],
       )}
     >
-      {name}
+      <AuthorSmallBadge />
+      <span className={clsx(["ml-2"], ["text-sm"])}>
+        {name}
+      </span>
     </div>
   );
 };

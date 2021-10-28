@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
+import { BookSeriesSmallBadge } from "~/components/atoms/ContentBadge";
+
 export const Component: React.VFC<
   { className?: string; title: string; onSelect(): void; }
 > = ({ className, title, onSelect }) => {
@@ -15,16 +17,19 @@ export const Component: React.VFC<
         ["bg-white", "hover:bg-blue-50"],
       )}
     >
-      {title}
+      <BookSeriesSmallBadge />
+      <span className={clsx(["ml-2"], ["text-sm"])}>
+        {title}
+      </span>
     </div>
   );
 };
 
-export const BookSuggestionItem: React.VFC<
+export const BookSeriesSuggestionItem: React.VFC<
   {
     className?: string;
-    content: { type: "book"; value: { id: string; title: string; cover: string | null; }; };
-    onSelect(content: { type: "book"; value: { id: string; title: string; cover: string | null; }; }): void;
+    content: { type: "bookseries"; value: { id: string; title: string; }; };
+    onSelect(content: { type: "bookseries"; value: { id: string; title: string; }; }): void;
   }
 > = ({ content, onSelect, ...props }) => (
   <Component
