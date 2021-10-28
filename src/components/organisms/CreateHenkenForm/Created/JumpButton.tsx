@@ -27,7 +27,7 @@ export const JumpButton = () => {
       }}
       icon={({ className }) => <IconJumpPage className={clsx(className)} />}
       text={({ className }) => (
-        <span className={clsx(className, ["ml-2"])}>
+        <span className={clsx(className)}>
           {LL.CreateHenkenForm.Created.Jump()}
         </span>
       )}

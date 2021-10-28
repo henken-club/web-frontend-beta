@@ -14,19 +14,17 @@ export const View: React.VFC<{
     <div
       className={clsx(
         className,
-        ["inline-flex", ["flex-row"], ["items-start"]],
+        ["inline-flex", ["flex-col", "sm:flex-row"]],
       )}
     >
-      <BookSmallBadge className={clsx()} />
-      <span
-        className={clsx(
-          ["ml-2"],
-          ["py-0.5"],
-          [["text-sm"]],
-        )}
-      >
-        {title}
-      </span>
+      <p className={clsx(["break-words"])}>
+        <BookSmallBadge className={clsx()} />
+        <span
+          className={clsx(["ml-2"], [["text-sm"]])}
+        >
+          {title}
+        </span>
+      </p>
     </div>
   );
 };

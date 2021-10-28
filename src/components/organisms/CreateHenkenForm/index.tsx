@@ -40,7 +40,7 @@ export const Component: React.VFC<{ className?: string; }> = ({ className, ...pr
         className={clsx(
           ["w-full"],
           ["bg-gray-700"],
-          [["px-4"], ["py-4"]],
+          [["px-2", "sm:px-4"], ["py-2", "sm:py-4"]],
           ["flex", ["items-center"]],
         )}
       >
@@ -49,8 +49,8 @@ export const Component: React.VFC<{ className?: string; }> = ({ className, ...pr
       </div>
       <div
         className={clsx(
-          [["px-4"], ["py-4"]],
-          ["grid", ["grid-cols-2"], ["gap-x-2"], ["gap-y-2"]],
+          [["px-2", "sm:px-4"], ["py-2", "sm:py-4"]],
+          ["grid", ["grid-cols-1", "sm:grid-cols-2"], ["gap-x-2"], ["gap-y-2"]],
           ["bg-white", ["bg-opacity-50"], ["backdrop-filter", "backdrop-blur"]],
         )}
       >

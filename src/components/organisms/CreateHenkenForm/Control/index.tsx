@@ -12,7 +12,7 @@ export const Component: React.VFC<{ className?: string; }> = (
       className={clsx(
         className,
         [["px-4"], ["py-4"]],
-        [["inline-flex"], ["flex-row"]],
+        [["inline-flex"], ["flex-col", "sm:flex-row"]],
         ["bg-blue-50"],
         ["border", "border-blue-400"],
         [["rounded-md"]],
@@ -21,8 +21,9 @@ export const Component: React.VFC<{ className?: string; }> = (
       <Comment className={clsx(["flex-grow"])} />
       <div
         className={clsx(
-          ["ml-8"],
-          ["flex", ["flex-col"], ["justify-end"]],
+          ["mt-4", "sm:mt-0"],
+          ["ml-0", "sm:ml-8"],
+          ["flex", ["flex-row", "sm:flex-col"], ["justify-end"]],
         )}
       >
         <CreateButton />

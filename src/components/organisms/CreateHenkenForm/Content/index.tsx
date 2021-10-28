@@ -32,7 +32,7 @@ export const Component: React.VFC<
       className={clsx(
         className,
         [["px-4"], ["py-4"]],
-        ["h-48"],
+        ["h-auto", "sm:h-48"],
         [["inline-flex"], ["flex-row"], ["items-starts"]],
         ["bg-blue-50"],
         ["border", "border-blue-400"],
@@ -40,13 +40,13 @@ export const Component: React.VFC<
       )}
     >
       <Image
-        className={clsx(["w-28"], ["h-36"])}
+        className={clsx(["hidden", "sm:block"], ["w-28"], ["h-36"])}
         content={content}
       />
       <div
         className={clsx(
           ["flex-grow"],
-          ["flex", ["flex-col"]],
+          ["hidden", ["sm:flex", ["flex-col"]]],
           ["ml-4"],
         )}
       >
@@ -57,6 +57,26 @@ export const Component: React.VFC<
             content={content}
           />
         )}
+      </div>
+      <div
+        className={clsx(
+          ["w-full"],
+          [["flex", ["flex-col"]], "sm:hidden"],
+        )}
+      >
+        <div className={clsx(["flex"])}>
+          <Image
+            className={clsx(["w-16"], ["h-20"], ["flex-shrink-0"])}
+            content={content}
+          />
+          {content && (
+            <Details
+              className={clsx(["ml-2"], ["flex-grow"])}
+              content={content}
+            />
+          )}
+        </div>
+        <SearchBox className={clsx(["mt-4"], ["w-full"])} />
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ export const NotSelected: React.VFC<{ className?: string; }> = ({ className }) =
         className={clsx(["text-white"], ["text-lg"])}
       />
       <span
-        className={clsx(["mt-2"], ["text-xs"], ["text-white"])}
+        className={clsx(["hidden", "sm:block"], ["mt-2"], ["text-xs"], ["text-white"])}
       >
         {LL.CreateHenkenForm.Content.Image.NotSelected()}
       </span>
