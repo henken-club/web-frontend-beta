@@ -16,3 +16,6 @@ export const IconNotification = (props) => <FontAwesomeIcon fixedWidth icon={sol
 
 export const IconHenkenUserFrom = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-kiss-beam")} {...props} />;
 export const IconHenkenUserTo = (props) => <FontAwesomeIcon fixedWidth icon={solid("face-grin-tears")} {...props} />;
+
+export const IconLogin = (props) => <FontAwesomeIcon fixedWidth icon={solid("right-to-bracket")} {...props} />;
+export const IconRegisterUser = (props) => <FontAwesomeIcon fixedWidth icon={solid("signature")} {...props} />;

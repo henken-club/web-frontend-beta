@@ -1,25 +1,25 @@
 import clsx from "clsx";
 import React from "react";
 
+import { NormalTemplate } from "./Template";
+
 import { useAuth } from "~/auth/useAuth";
+import { IconLogin } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
 
-export const Component: React.VFC<{ className?: string; onClick(): void; }> = ({ className, onClick }) => {
+export const View: React.VFC<{ className?: string; onClick(): void; }> = ({ ...props }) => {
   const { LL } = useTranslation();
   return (
-    <button
-      className={clsx(className)}
-      type="button"
-      onClick={() => onClick()}
-      onKeyPress={() => onClick()}
-    >
-      {LL.Login()}
-    </button>
+    <NormalTemplate
+      {...props}
+      icon={({ className }) => <IconLogin className={clsx(className, [])} />}
+      text={({ className }) => <span className={clsx(className, [])}>{LL.Login()}</span>}
+    />
   );
 };
 
 export const LoginButton: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const { loginWithRedirect } = useAuth();
 
-  return <Component {...props} onClick={loginWithRedirect} />;
+  return <View {...props} onClick={loginWithRedirect} />;
 };
