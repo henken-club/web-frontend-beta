@@ -2,8 +2,6 @@ import React, { useMemo } from "react";
 
 import { useAuth } from "~/auth/useAuth";
 import { useViewer } from "~/auth/useViewer";
-import { LoginButton } from "~/components/atoms/LoginButton";
-import { RegisterButton } from "~/components/atoms/RegisterButton";
 
 export const Component: React.VFC<{
   viewer: undefined | null | { id: string; alias: string; displayName: string; avatar: string; };
@@ -12,8 +10,6 @@ export const Component: React.VFC<{
 }> = ({ viewer, needRegister, needLogin }) => {
   return (
     <>
-      {needLogin && <LoginButton />}
-      {!needLogin && needRegister && <RegisterButton />}
     </>
   );
 };

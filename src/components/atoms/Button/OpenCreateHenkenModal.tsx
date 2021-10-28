@@ -1,46 +1,25 @@
 import clsx from "clsx";
 import React from "react";
 
-import { IconCreateHenken } from "../Icon";
+import { NormalTemplate } from "./Template";
 
+import { IconCreateHenken } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
 import { useOpenCreateHenkenModal } from "~/modals/CreateHenken";
 
-export const Component: React.VFC<{ className?: string; onClick(): void; }> = ({ className, onClick }) => {
+export const View: React.VFC<{ className?: string; onClick(): void; }> = ({ ...props }) => {
   const { LL } = useTranslation();
   return (
-    <button
-      type="button"
-      onClick={() => onClick()}
-      onKeyPress={() => onClick()}
-      className={clsx(
-        className,
-        [["px-3"], ["py-1.5"]],
-        ["inline-flex", ["items-center"]],
-        ["bg-blue-500"],
-        [["text-white"]],
-        ["rounded-md"],
-      )}
-    >
-      <IconCreateHenken
-        className={clsx(
-          [["text-base"]],
-        )}
-      />
-      <span
-        className={clsx(
-          ["ml-1"],
-          [["text-base"]],
-        )}
-      >
-        {LL.Button.CreateHenken()}
-      </span>
-    </button>
+    <NormalTemplate
+      {...props}
+      icon={({ className }) => <IconCreateHenken className={clsx(className, [])} />}
+      text={({ className }) => <span className={clsx(className, [])}>{LL.Button.CreateHenken()}</span>}
+    />
   );
 };
 
 export const OpenCreateHenkenModalButton: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const opener = useOpenCreateHenkenModal();
 
-  return <Component {...props} onClick={opener} />;
+  return <View {...props} onClick={opener} />;
 };

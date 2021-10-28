@@ -5,7 +5,7 @@ import { mockAvatars } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
-  title: "GlobalNav/Notification/Dropdown",
+  title: "molecules/GlobalNav/Notification/Dropdown",
   component: View,
   argTypes: {},
 } as Meta;

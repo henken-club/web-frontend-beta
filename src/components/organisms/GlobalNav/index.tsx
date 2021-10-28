@@ -4,11 +4,16 @@ import React, { useMemo } from "react";
 import { Notification } from "./Notification";
 import { Profile } from "./Profile";
 
+import { useAuth } from "~/auth/useAuth";
 import { useViewer } from "~/auth/useViewer";
-import { OpenCreateHenkenModalButton } from "~/components/atoms/Button";
+import { LoginButton, OpenCreateHenkenModalButton, OpenRegisterUserModalButton } from "~/components/atoms/Button";
 import { useTranslation } from "~/i18n/useTranslation";
 
-export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ className, isLoggedIn }) => {
+export const View: React.VFC<{
+  className?: string;
+  needLogin: boolean;
+  needRegister: boolean;
+}> = ({ className, needLogin, needRegister }) => {
   const { LL } = useTranslation();
 
   return (
@@ -22,7 +27,17 @@ export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ 
         )}
       >
         <div className={clsx(["flex-grow"])} />
-        {isLoggedIn && (
+        {needLogin && (
+          <div className={clsx([["flex"], ["items-center"]])}>
+            <LoginButton />
+          </div>
+        )}
+        {!needLogin && needRegister && (
+          <div className={clsx([["flex"], ["items-center"]])}>
+            <OpenRegisterUserModalButton />
+          </div>
+        )}
+        {!needLogin && !needRegister && (
           <div className={clsx([["flex"], ["items-center"]])}>
             <Notification />
             <OpenCreateHenkenModalButton className={clsx(["ml-4"])} />
@@ -35,8 +50,11 @@ export const View: React.VFC<{ className?: string; isLoggedIn: boolean; }> = ({ 
 };
 
 export const GlobalNav: React.VFC<{ className?: string; }> = ({ ...props }) => {
+  const { isAuthenticated } = useAuth();
   const viewer = useViewer();
-  const isLoggedIn = useMemo(() => Boolean(viewer), [viewer]);
 
-  return <View {...props} isLoggedIn={isLoggedIn} />;
+  const needLogin = useMemo(() => !isAuthenticated, [isAuthenticated]);
+  const needRegister = useMemo(() => isAuthenticated && viewer === null, [isAuthenticated, viewer]);
+
+  return <View {...props} needLogin={needLogin} needRegister={needRegister} />;
 };
