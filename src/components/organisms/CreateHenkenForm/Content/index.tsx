@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { CreateHenkenFormContext } from "../context";
 
 import { Comment } from "./Comment";
-import { Details } from "./Details";
+import { Content } from "./Details";
 import { SearchContent } from "./SearchContent";
 
 import { useTranslation } from "~/i18n/useTranslation";
@@ -37,7 +37,7 @@ export const Component: React.VFC<
         ["bg-gray-50"],
       )}
     >
-      {content && <Details className={clsx(["col-span-1"])} content={content} />}
+      {content && <Content className={clsx(["col-span-1"])} content={content} />}
       {!content && <div className={clsx(["col-span-1"])} />}
       <div
         className={clsx(
@@ -56,7 +56,7 @@ export const Component: React.VFC<
   );
 };
 
-export const Content: React.VFC<{ className?: string; }> = (
+export const ContentSect: React.VFC<{ className?: string; }> = (
   { ...props },
 ) => {
   const { content } = useContext(CreateHenkenFormContext);

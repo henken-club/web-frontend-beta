@@ -2,7 +2,7 @@ import clsx from "clsx";
 import gql from "graphql-tag";
 import React, { ContextType, useMemo, useState } from "react";
 
-import { Content } from "./Content";
+import { ContentSect as Content } from "./Content";
 import { CreateHenkenFormContext } from "./context";
 import { Control } from "./Control";
 import { Created } from "./Created";
