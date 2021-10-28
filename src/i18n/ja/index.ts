@@ -51,7 +51,7 @@ const ja: BaseTranslation = {
     Control: {
       Comment: {
         Label: "コメント入力欄",
-        aria: { CommentInput: "コメント入力欄" },
+        Description: "140文字以下で、必須ではありません",
       },
       CreateHenken: "送信！",
     },

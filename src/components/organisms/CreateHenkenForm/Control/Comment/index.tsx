@@ -14,10 +14,15 @@ export const Component: React.VFC<{
   return (
     <div className={clsx(className, ["inline-flex", ["flex-col"]])}>
       <label className={clsx(["w-full"], ["flex", ["flex-col"]])}>
-        <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Control.Comment.Label()}</span>
+        <span className={clsx(["text-sm"])}>
+          {LL.CreateHenkenForm.Control.Comment.Label()}
+        </span>
+        <span className={clsx(["text-xs"], ["text-gray-700"])}>
+          {LL.CreateHenkenForm.Control.Comment.Description()}
+        </span>
         <textarea
           autoComplete="off"
-          aria-label={LL.CreateHenkenForm.Control.Comment.aria.CommentInput()}
+          aria-label={LL.CreateHenkenForm.Control.Comment.Label()}
           onChange={(event) => onUpdateChange(event.currentTarget.value)}
           rows={4}
           disabled={formDisabled}
