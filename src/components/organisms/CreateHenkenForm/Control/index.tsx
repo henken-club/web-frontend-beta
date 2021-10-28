@@ -19,7 +19,8 @@ export const Component: React.VFC<{
         className,
         [["px-6"], ["py-4"]],
         [["inline-flex"], ["flex-row"], ["items-center"], ["flex-row-reverse"]],
-        ["bg-gray-50"],
+        ["bg-blue-50"],
+        ["border", "border-blue-400"],
       )}
     >
       <button

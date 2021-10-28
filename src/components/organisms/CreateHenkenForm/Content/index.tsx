@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { Comment } from "./Comment";
 import { Content } from "./Details";
 import { SearchContent } from "./SearchContent";
 
@@ -32,25 +31,29 @@ export const Component: React.VFC<
       className={clsx(
         className,
         [["px-6"], ["py-4"]],
-        [["inline-flex"], ["flex-col"], ["items-starts"]],
-        ["grid", ["grid-cols-3"], ["gap-x-8"]],
-        ["bg-gray-50"],
+        [["inline-flex"], ["flex-row"], ["items-starts"]],
+        ["bg-blue-50"],
+        ["border", "border-blue-400"],
       )}
     >
-      {content && <Content className={clsx(["col-span-1"])} content={content} />}
-      {!content && <div className={clsx(["col-span-1"])} />}
+      {content && (
+        <Content
+          className={clsx(["w-32"])}
+          content={content}
+        />
+      )}
+      {!content && (
+        <div
+          className={clsx(["w-32"])}
+        />
+      )}
       <div
         className={clsx(
-          [
-            ["col-start-2"],
-            ["col-span-full"],
-          ],
-          ["h-full"],
+          ["flex-grow"],
           ["flex", ["flex-col"]],
         )}
       >
         <SearchContent className={clsx(["w-full"])} />
-        <Comment className={clsx(["w-full"], ["mt-2"])} />
       </div>
     </div>
   );

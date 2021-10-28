@@ -33,19 +33,20 @@ export const Component: React.VFC<
         className,
         ["relative"],
         ["max-w-screen-sm"],
+        ["bg-gray-700", "bg-opacity-75"],
         ["shadow-xl"],
       )}
     >
       <div
         className={clsx(
-          ["flex", ["flex-col"]],
-          ["divide-y", ["divide-gray-200"]],
+          [["px-2"], ["py-2"]],
+          ["grid", ["grid-cols-2"], ["gap-x-2"], ["gap-y-2"]],
         )}
       >
-        <From className={clsx()} />
-        <To className={clsx()} />
-        <Content className={clsx()} />
-        <Control className={clsx()} />
+        <From className={clsx(["col-span-1"])} />
+        <To className={clsx(["col-span-1"])} />
+        <Content className={clsx(["col-span-full"])} />
+        <Control className={clsx(["col-span-full"])} />
       </div>
       {created && (
         <Created
