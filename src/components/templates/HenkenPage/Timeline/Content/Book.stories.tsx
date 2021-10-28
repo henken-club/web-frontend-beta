@@ -25,3 +25,17 @@ Primary.args = {
     { id: "author_2", name: "著者2", role: null },
   ],
 };
+
+export const NoBookCover: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+NoBookCover.storyName = "書影がない";
+NoBookCover.args = {
+  id: "book_1",
+  title: "Book",
+  cover: null,
+  authors: [
+    { id: "author_1", name: "著者1", role: null },
+    { id: "author_2", name: "著者2", role: null },
+  ],
+};

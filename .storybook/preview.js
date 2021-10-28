@@ -22,6 +22,11 @@ export const decorators = [
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   storySort: { method: "alphabetical" },
+  options: {
+    storySort: {
+      order: ["atoms", "molecules", "organisms", "*templates"],
+    },
+  },
   viewport: {
     viewports: {
       ...TAILWIND_VIEWPORTS,

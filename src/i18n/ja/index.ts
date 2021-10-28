@@ -22,6 +22,10 @@ const ja: BaseTranslation = {
     NoSuggestion: "検索結果がありません",
   },
 
+  BookCover: {
+    NoImage: "画像はありません",
+  },
+
   RegisterUserForm: {
     aria: {
       Alias: "エイリアス",
