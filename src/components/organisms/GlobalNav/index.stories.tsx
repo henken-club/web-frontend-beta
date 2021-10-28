@@ -12,7 +12,7 @@ import { createUrqlClient } from "~/urql/UrqlProvider";
 import { View } from ".";
 
 export default {
-  title: "GlobalNav",
+  title: "molecules/GlobalNav",
   component: View,
   parameters: {
     layout: "fullscreen",

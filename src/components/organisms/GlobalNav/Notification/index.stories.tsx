@@ -6,7 +6,7 @@ import { mockAvatars } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
-  title: "GlobalNav/Notification",
+  title: "molecules/GlobalNav/Notification",
   component: View,
   argTypes: {},
   decorators: [(Story) => {

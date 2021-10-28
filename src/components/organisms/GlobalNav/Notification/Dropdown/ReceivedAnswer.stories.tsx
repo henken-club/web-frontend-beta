@@ -7,7 +7,7 @@ import { View } from "./ReceivedAnswer";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "GlobalNav/Notification/Dropdown/ReceivedAnswer",
+  title: "molecules/GlobalNav/Notification/Dropdown/ReceivedAnswer",
   component: View,
   argTypes: {},
   decorators: [(Story) => {
