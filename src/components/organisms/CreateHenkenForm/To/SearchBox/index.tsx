@@ -60,7 +60,7 @@ export const Component: React.VFC<
       className={clsx(className, ["inline-flex"], ["relative", { "z-infinity": focus }])}
     >
       <label className={clsx(["relative"], ["z-1"])}>
-        <span className={clsx(["text-xs"])}>{LL.CreateHenkenForm.To.SearchBox.Label()}</span>
+        <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.To.SearchBox.Label()}</span>
         <input
           type="search"
           autoComplete="on"
@@ -68,7 +68,13 @@ export const Component: React.VFC<
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
           disabled={formDisabled}
-          className={clsx(["w-full"], [["px-2"], ["py-1"]], ["border"], [["text-md"]])}
+          className={clsx(
+            ["w-full"],
+            [["px-2"], ["py-1"]],
+            ["mt-2"],
+            ["border"],
+            [["text-md"]],
+          )}
         />
       </label>
       {focus &&

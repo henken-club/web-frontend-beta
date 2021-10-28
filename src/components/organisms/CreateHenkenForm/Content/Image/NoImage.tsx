@@ -14,15 +14,15 @@ export const NoImage: React.VFC<{ className?: string; }> = ({ className }) => {
         ["h-full"],
         [["px-2"], ["py-8"]],
         ["flex", ["flex-col"], ["items-center"], ["justify-center"]],
-        ["bg-gray-200"],
+        ["bg-gray-400"],
         ["select-none"],
       )}
     >
       <IconNoImage
-        className={clsx(["text-gray-700"], ["text-lg"])}
+        className={clsx(["text-white"], ["text-lg"])}
       />
       <span
-        className={clsx(["mt-2"], ["text-xs"], ["text-gray-700"])}
+        className={clsx(["mt-2"], ["text-xs"], ["text-white"])}
       >
         {LL.CreateHenkenForm.Content.Image.NoImage()}
       </span>

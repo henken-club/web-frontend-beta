@@ -12,7 +12,7 @@ export const View: React.VFC<{
     <div
       className={clsx(
         className,
-        ["inline-flex", ["flex-row"], ["items-center"]],
+        ["inline-flex", ["flex-row"], ["items-start"]],
       )}
     >
       <BookSeriesSmallBadge className={clsx()} />

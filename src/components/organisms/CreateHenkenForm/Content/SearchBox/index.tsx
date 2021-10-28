@@ -63,7 +63,7 @@ export const Component: React.VFC<
       className={clsx(className, ["inline-flex"], ["relative", { "z-infinity": focus }])}
     >
       <label className={clsx(["w-full"], ["flex", ["flex-col"]], ["relative"], ["z-1"])}>
-        <span className={clsx(["text-xs"])}>
+        <span className={clsx(["text-sm"])}>
           {LL.CreateHenkenForm.Content.SearchBox.Label()}
         </span>
         <input
@@ -76,7 +76,7 @@ export const Component: React.VFC<
           className={clsx(
             ["w-full"],
             [["px-2"], ["py-1"]],
-            ["mt-1"],
+            ["mt-2"],
             ["border"],
             [["text-base"]],
           )}
