@@ -31,6 +31,8 @@ const ja: BaseTranslation = {
   },
 
   CreateHenkenForm: {
+    Title: "偏見を送る",
+
     To: {
       SearchBox: {
         Label: "送り先を探す",

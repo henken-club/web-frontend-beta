@@ -10,6 +10,7 @@ import { From } from "./From";
 import { To } from "./To";
 
 import { useViewer } from "~/auth/useViewer";
+import { IconCreateHenken } from "~/components/atoms/Icon";
 import { useCreateHenkenFormCreateHenkenMutation } from "~/components/codegen";
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -31,14 +32,26 @@ export const Component: React.VFC<{ className?: string; }> = ({ className, ...pr
         className,
         ["relative"],
         ["max-w-screen-sm"],
-        ["bg-gray-700", "bg-opacity-75"],
-        ["shadow-xl"],
+        ["overflow-hidden"],
+        [["rounded-xl"], ["shadow-xl"]],
       )}
     >
       <div
         className={clsx(
-          [["px-2"], ["py-2"]],
+          ["w-full"],
+          ["bg-gray-700"],
+          [["px-4"], ["py-4"]],
+          ["flex", ["items-center"]],
+        )}
+      >
+        <IconCreateHenken className={clsx(["text-2xl"], ["text-white"])} />
+        <p className={clsx(["text-xl"], ["text-white"], ["ml-2"])}>{LL.CreateHenkenForm.Title()}</p>
+      </div>
+      <div
+        className={clsx(
+          [["px-4"], ["py-4"]],
           ["grid", ["grid-cols-2"], ["gap-x-2"], ["gap-y-2"]],
+          ["bg-white", ["bg-opacity-50"], ["backdrop-filter", "backdrop-blur"]],
         )}
       >
         <From className={clsx(["col-span-1"])} />

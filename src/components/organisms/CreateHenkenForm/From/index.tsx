@@ -18,10 +18,11 @@ export const Component: React.VFC<
     <div
       className={clsx(
         className,
-        [["px-6"], ["py-4"]],
+        [["px-4"], ["py-4"]],
         [["inline-flex"], ["flex-col"], ["items-center"]],
         ["bg-henken-from-pale"],
         ["border", "border-henken-from-normal"],
+        [["rounded-md"]],
       )}
     >
       <div

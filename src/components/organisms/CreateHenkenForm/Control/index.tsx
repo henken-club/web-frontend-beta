@@ -11,10 +11,11 @@ export const Component: React.VFC<{ className?: string; }> = (
     <div
       className={clsx(
         className,
-        [["px-6"], ["py-4"]],
+        [["px-4"], ["py-4"]],
         [["inline-flex"], ["flex-row"]],
         ["bg-blue-50"],
         ["border", "border-blue-400"],
+        [["rounded-md"]],
       )}
     >
       <Comment className={clsx(["flex-grow"])} />
