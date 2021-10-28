@@ -21,9 +21,9 @@ export const JumpButton = () => {
 
   return (
     <SkeltonTemplate
-      onClick={() => {
+      onClick={async () => {
+        await router.push(`/henkens/${created.id}`);
         closeForm();
-        router.push(`/henkens/${created.id}`);
       }}
       icon={({ className }) => <IconJumpPage className={clsx(className)} />}
       text={({ className }) => (

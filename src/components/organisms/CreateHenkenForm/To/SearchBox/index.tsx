@@ -71,7 +71,7 @@ export const Component: React.VFC<
           className={clsx(
             ["w-full"],
             [["px-2"], ["py-1"]],
-            ["mt-2"],
+            ["mt-1"],
             ["border"],
             [["text-md"]],
           )}

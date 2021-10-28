@@ -19,6 +19,7 @@ export const View: React.VFC<{
       <span
         className={clsx(
           ["ml-2"],
+          ["py-0.5"],
           [["text-sm"]],
         )}
       >
