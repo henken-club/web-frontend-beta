@@ -33,7 +33,7 @@ const ja: BaseTranslation = {
   CreateHenkenForm: {
     To: {
       SearchBox: {
-        aria: { QueryInput: "" },
+        Label: "送り先を探す",
       },
     },
 
@@ -43,9 +43,6 @@ const ja: BaseTranslation = {
         NotSelected: "コンテンツを選択して下さい",
       },
       SearchBox: {
-        aria: {
-          QueryInput: "コンテンツ入力欄",
-        },
         Label: "コンテンツを探す",
         NoResult: "コンテンツが見つかりませんでした",
       },

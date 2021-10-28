@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { SearchUser } from "./SearchUser";
+import { SearchUser } from "./SearchBox";
 
 import { AvatarLarge } from "~/components/atoms/Avatar";
 import { IconUnknownUser } from "~/components/atoms/Icon";

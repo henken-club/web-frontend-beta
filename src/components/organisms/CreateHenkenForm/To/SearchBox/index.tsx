@@ -57,13 +57,14 @@ export const Component: React.VFC<
   const { LL } = useTranslation();
   return (
     <div
-      className={clsx(className, ["relative", { "z-infinity": focus }])}
+      className={clsx(className, ["inline-flex"], ["relative", { "z-infinity": focus }])}
     >
       <label className={clsx(["relative"], ["z-1"])}>
+        <span className={clsx(["text-xs"])}>{LL.CreateHenkenForm.To.SearchBox.Label()}</span>
         <input
           type="search"
           autoComplete="on"
-          aria-label={LL.CreateHenkenForm.To.SearchBox.aria.QueryInput()}
+          aria-label={LL.CreateHenkenForm.To.SearchBox.Label()}
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
           disabled={formDisabled}
@@ -99,7 +100,7 @@ export const Component: React.VFC<
 };
 
 export const SearchUser: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const { setTo, formDisabled } = useContext(CreateHenkenFormContext);
+  const { setTo, created } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
   const [query, setQuery] = useState<string | undefined>(undefined);
@@ -127,7 +128,7 @@ export const SearchUser: React.VFC<{ className?: string; }> = ({ ...props }) => 
 
   return (
     <Component
-      formDisabled={formDisabled}
+      formDisabled={Boolean(created)}
       onUpdateInput={(query) => {
         setInput(query);
       }}
