@@ -23,9 +23,7 @@ const _CreateHenkenFormCreateHenkenMutation = gql`
   }
 `;
 
-export const Component: React.VFC<
-  { className?: string; created: boolean; }
-> = ({ className, created, ...props }) => {
+export const Component: React.VFC<{ className?: string; }> = ({ className, ...props }) => {
   const { LL } = useTranslation();
   return (
     <div
@@ -48,14 +46,9 @@ export const Component: React.VFC<
         <Content className={clsx(["col-span-full"])} />
         <Control className={clsx(["col-span-full"])} />
       </div>
-      {created && (
-        <Created
-          className={clsx(
-            ["absolute", "inset-0"],
-            ["z-1"],
-          )}
-        />
-      )}
+      <Created
+        className={clsx(["absolute", "inset-0"], ["z-1"])}
+      />
     </div>
   );
 };
@@ -68,7 +61,7 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
   const [content, setContent] = useState<ContextType<typeof CreateHenkenFormContext>["content"]>(null);
   const [comment, setComment] = useState<string>("");
 
-  const [created, setCreated] = useState(false);
+  const [created, setCreated] = useState<ContextType<typeof CreateHenkenFormContext>["created"]>(null);
   const [, createHenken] = useCreateHenkenFormCreateHenkenMutation();
 
   const contextValue = useMemo<ContextType<typeof CreateHenkenFormContext>>(
@@ -84,7 +77,7 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
             setContent: (value) => setContent(value),
             setComment: (value) => setComment(value),
             createHenken: null,
-            created: true,
+            created,
           });
         } else {
           return ({
@@ -98,10 +91,10 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
             createHenken: async () => {
               const { data, error } = await createHenken({ to: to.id, content: content.value.id, comment });
               if (!error && data) {
-                setCreated(true);
+                setCreated({ id: data.createHenken.henken.id });
               }
             },
-            created: false,
+            created: null,
           });
         }
       } else {
@@ -114,7 +107,7 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
           setContent: (value) => setContent(value),
           setComment: (value) => setComment(value),
           createHenken: null,
-          created: false,
+          created: null,
         });
       }
     },
@@ -123,7 +116,7 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
 
   return (
     <CreateHenkenFormContext.Provider value={contextValue}>
-      <Component {...props} created={created} />
+      <Component {...props} />
     </CreateHenkenFormContext.Provider>
   );
 };

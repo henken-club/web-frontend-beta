@@ -16,7 +16,7 @@ type CT = {
   setContent(payload: ContentType): void;
   setComment(value: string): void;
   createHenken: null;
-  created: false;
+  created: null;
 } | {
   from: From;
   to: null | To;
@@ -26,7 +26,7 @@ type CT = {
   setContent(payload: ContentType): void;
   setComment(value: string): void;
   createHenken(): void;
-  created: false;
+  created: null;
 } | {
   from: From;
   to: null | To;
@@ -36,7 +36,7 @@ type CT = {
   setContent(payload: ContentType): void;
   setComment(value: string): void;
   createHenken: null;
-  created: true;
+  created: { id: string; };
 };
 
 export const CreateHenkenFormContext = React.createContext<CT>({
@@ -50,5 +50,5 @@ export const CreateHenkenFormContext = React.createContext<CT>({
   setComment: () => {},
   createHenken: null,
 
-  created: false,
+  created: null,
 });

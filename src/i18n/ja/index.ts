@@ -30,6 +30,42 @@ const ja: BaseTranslation = {
     NoImage: "書影はありません",
   },
 
+  CreateHenkenForm: {
+    To: {
+      SearchBox: {
+        aria: { QueryInput: "" },
+      },
+    },
+
+    Content: {
+      Image: {
+        NoImage: "画像はありません",
+        NotSelected: "コンテンツを選択して下さい",
+      },
+      SearchBox: {
+        aria: {
+          QueryInput: "コンテンツ入力欄",
+        },
+        Label: "コンテンツを探す",
+        NoResult: "コンテンツが見つかりませんでした",
+      },
+    },
+
+    Control: {
+      Comment: {
+        Label: "コメント入力欄",
+        aria: { CommentInput: "コメント入力欄" },
+      },
+      CreateHenken: "送信！",
+    },
+
+    Created: {
+      Title: "偏見を送信しました！",
+      Jump: "ページ",
+      Close: "閉じる",
+    },
+  },
+
   RegisterUserForm: {
     aria: {
       Alias: "エイリアス",
@@ -50,41 +86,6 @@ const ja: BaseTranslation = {
     Register: "登録する",
     Registering: "登録中",
     Registered: "ようこそ、{displayName:string}さん！どうぞお楽しみ下さい！",
-  },
-
-  CreateHenkenForm: {
-    Created: {
-      Title: "偏見を送信しました！",
-      Close: "閉じる",
-    },
-
-    To: {
-      SearchBox: {
-        aria: { QueryInput: "" },
-      },
-    },
-
-    Content: {
-      Image: {
-        NoImage: "画像はありません",
-        NotSelected: "コンテンツを選択して下さい",
-      },
-      SearchBox: {
-        aria: {
-          QueryInput: "コンテンツ入力欄",
-        },
-        Label: "コンテンツ入力欄",
-        NoResult: "コンテンツが見つかりませんでした",
-      },
-    },
-
-    Control: {
-      Comment: {
-        Label: "コメント入力欄",
-        aria: { CommentInput: "コメント入力欄" },
-      },
-      CreateHenken: "送信！",
-    },
   },
 
   Notifications: {

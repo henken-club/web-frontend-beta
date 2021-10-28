@@ -37,7 +37,7 @@ export const Component: React.VFC<{
 };
 
 export const Comment: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const { setComment, formDisabled } = useContext(CreateHenkenFormContext);
+  const { setComment, created } = useContext(CreateHenkenFormContext);
 
-  return <Component {...props} formDisabled={formDisabled} onUpdateChange={(comment) => setComment(comment)} />;
+  return <Component {...props} formDisabled={Boolean(created)} onUpdateChange={(comment) => setComment(comment)} />;
 };

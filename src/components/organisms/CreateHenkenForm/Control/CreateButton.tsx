@@ -34,6 +34,6 @@ export const CreateButton: React.VFC<{ className?: string; }> = (
   if (createHenken) {
     return <View {...props} onClick={() => createHenken()} disabled={false} created={false} />;
   } else {
-    return <View {...props} onClick={() => {}} disabled created={created} />;
+    return <View {...props} onClick={() => {}} disabled created={Boolean(created)} />;
   }
 };

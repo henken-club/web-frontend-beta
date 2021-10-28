@@ -1,11 +1,15 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useContext } from "react";
+
+import { CreateHenkenFormContext } from "../context";
+
+import { CloseButton } from "./CloseButton";
+import { JumpButton } from "./JumpButton";
 
 import { IconCreateHenken } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
-import { useCloseCreateHenkenModal } from "~/modals/CreateHenken";
 
-export const Component: React.VFC<{ className?: string; onClose(): void; }> = ({ className, onClose }) => {
+export const Component: React.VFC<{ className?: string; }> = ({ className }) => {
   const { LL } = useTranslation();
   return (
     <div
@@ -20,33 +24,18 @@ export const Component: React.VFC<{ className?: string; onClose(): void; }> = ({
         {LL.CreateHenkenForm.Created.Title()}
       </p>
       <div className={clsx(["mt-4"], ["flex", "flex-row"], ["space-x-4"])}>
-        <button
-          type="button"
-          className={clsx(
-            [["px-4"], ["py-2"]],
-            ["border", "border-white"],
-            [["text-base"], ["text-white"]],
-            ["rounded-md"],
-          )}
-          onClick={() => onClose()}
-          onKeyPress={() => onClose()}
-        >
-          {LL.CreateHenkenForm.Created.Close()}
-        </button>
+        <JumpButton />
+        <CloseButton />
       </div>
     </div>
   );
 };
 
 export const Created: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const closeForm = useCloseCreateHenkenModal();
+  const { created } = useContext(CreateHenkenFormContext);
 
-  return (
-    <Component
-      {...props}
-      onClose={() => {
-        closeForm();
-      }}
-    />
-  );
+  if (created) {
+    return <Component {...props} />;
+  }
+  return <></>;
 };
