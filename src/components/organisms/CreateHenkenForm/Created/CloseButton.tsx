@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { SkeltonTemplate } from "~/components/atoms/Button/Template";
-import { IconJumpPage } from "~/components/atoms/Icon";
+import { IconClose } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
 import { useCloseCreateHenkenModal } from "~/modals/CreateHenken";
 
@@ -15,7 +15,7 @@ export const CloseButton = () => {
       onClick={() => {
         closeForm();
       }}
-      icon={({ className }) => <IconJumpPage className={clsx(className)} />}
+      icon={({ className }) => <IconClose className={clsx(className)} />}
       text={({ className }) => (
         <span className={clsx(className)}>
           {LL.CreateHenkenForm.Created.Close()}
