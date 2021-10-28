@@ -5,7 +5,7 @@ import React, { ComponentProps } from "react";
 import { Component } from "./BookSeries";
 
 export default {
-  title: "CreateHenkenForm/Content/SearchContent/BookSeriesSuggestion",
+  title: "organisms/CreateHenkenForm/Content/SearchContent/BookSeriesSuggestion",
   component: Component,
   argTypes: {},
 } as Meta;

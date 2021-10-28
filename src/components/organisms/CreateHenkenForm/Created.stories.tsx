@@ -5,7 +5,7 @@ import React, { ComponentProps } from "react";
 import { Component } from "./Created";
 
 export default {
-  title: "CreateHenkenForm/Created",
+  title: "organisms/CreateHenkenForm/Created",
   component: Component,
   argTypes: {},
 } as Meta;

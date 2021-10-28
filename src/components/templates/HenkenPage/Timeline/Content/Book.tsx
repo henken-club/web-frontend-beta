@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import { Image } from "~/components/atoms/Image";
+import { BookCover } from "~/components/atoms/BookCover";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const View: React.VFC<{
@@ -24,22 +24,14 @@ export const View: React.VFC<{
       )}
     >
       <div className={clsx(["flex-shrink"])}>
-        <div
+        <BookCover
           className={clsx(
-            [["w-16", "sm:w-20"]],
-            ["relative"],
-            ["flex"],
+            [
+              ["w-16", "sm:w-20", "md:w-28"],
+            ],
           )}
-        >
-          {cover && (
-            <Image
-              src={cover}
-              className={clsx(["w-full"])}
-              width={128}
-              height={160}
-            />
-          )}
-        </div>
+          book={{ title, cover }}
+        />
       </div>
       <div
         className={clsx(

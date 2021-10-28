@@ -7,7 +7,7 @@ import { Component } from "./SuggestionsList";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "CreateHenkenForm/To/SearchUser/SuggestionsList",
+  title: "organisms/CreateHenkenForm/To/SearchUser/SuggestionsList",
   component: Component,
   argTypes: {},
 } as Meta;

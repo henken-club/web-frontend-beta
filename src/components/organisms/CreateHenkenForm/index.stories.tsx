@@ -9,7 +9,7 @@ import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } f
 import { Component } from ".";
 
 export default {
-  title: "CreateHenkenForm",
+  title: "organisms/CreateHenkenForm",
   component: Component,
   argTypes: {},
   parameters: {
