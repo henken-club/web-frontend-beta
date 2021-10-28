@@ -5,7 +5,7 @@ import { mockAvatars } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
-  title: "CreateHenkenForm/To",
+  title: "organisms/CreateHenkenForm/To",
   component: Component,
   argTypes: {},
 } as Meta;

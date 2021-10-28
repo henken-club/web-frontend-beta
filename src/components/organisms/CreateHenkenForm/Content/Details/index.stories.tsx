@@ -5,7 +5,7 @@ import { mockBookcovers } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
-  title: "CreateHenkenForm/Content/Details",
+  title: "organisms/CreateHenkenForm/Content/Details",
   component: Component,
   argTypes: {},
 } as Meta;
