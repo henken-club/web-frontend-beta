@@ -2,11 +2,11 @@ import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
 import { PageContainer } from "~/components/layouts/Default";
-import { mockAvatars } from "~/mocks/constraints";
+import { c } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
-  title: "Templates/UserPage",
+  title: "Templates/UserPage/Header",
   component: View,
   parameters: {
     layout: "fullscreen",
@@ -27,10 +27,8 @@ export const Primary: Story<StoryProps> = ({ ...props }) => {
   return <View {...props} />;
 };
 Primary.args = {
-  user: {
-    id: "1",
-    alias: "user_1",
-    displayName: "User 1",
-    avatar: mockAvatars[1],
-  },
+  id: "user1",
+  alias: c.users.user1.alias,
+  displayName: c.users.user1.displayName,
+  avatar: c.users.user1.avatar,
 };

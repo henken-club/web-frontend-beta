@@ -1,8 +1,10 @@
+import clsx from "clsx";
 import React from "react";
 
-import { ReceivedHenkensView } from "./ViewReceivedHenkens";
+import { Section } from "./Section";
+import { ViewTemplate } from "./ViewTemplate";
 
-export const TemplateUserPage: React.VFC<{
+export const ReceivedHenkensView: React.VFC<{
   user: {
     id: string;
     alias: string;
@@ -15,7 +17,7 @@ export const TemplateUserPage: React.VFC<{
         id: string;
         comment: string;
         postedBy: { id: string; alias: string; displayName: string; avatar: string; };
-        answer: { type: "right" | "wrong"; comment: string; } | null;
+        answer: { comment: string; type: "right" | "wrong"; } | null;
         content:
           | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
           | { type: "bookseries"; content: { id: string; title: string; }; }
@@ -25,8 +27,19 @@ export const TemplateUserPage: React.VFC<{
   };
 }> = ({ user }) => {
   return (
-    <>
-      {"receivedHenkens" in user && <ReceivedHenkensView user={user} />}
-    </>
+    <ViewTemplate
+      user={{
+        id: user.id,
+        alias: user.alias,
+        displayName: user.displayName,
+        avatar: user.avatar,
+      }}
+      section={({ className }) => (
+        <Section
+          className={clsx(className)}
+          user={{ alias: user.alias, receivedHenkens: user.receivedHenkens }}
+        />
+      )}
+    />
   );
 };

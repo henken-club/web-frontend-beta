@@ -8,6 +8,8 @@ const ja: BaseTranslation = {
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
 
+  NoImage: "画像はありません",
+
   Format: {
     Alias: "@{alias:string}",
     CommentQuote: "「{comment:string}」",
@@ -94,6 +96,21 @@ const ja: BaseTranslation = {
     },
     ReceivedAnswer: {
       Label: "{displayName:string}さんが回答しました",
+    },
+  },
+
+  UserPage: {
+    Section: {
+      Tab: {
+        Timeline: "タイムライン",
+        ReceivedHenkens: "送られてきた偏見",
+        SendHenkens: "送った偏見",
+      },
+      HenkenList: {
+        ListItem: {
+          NoComment: "（コメントはありません）",
+        },
+      },
     },
   },
 

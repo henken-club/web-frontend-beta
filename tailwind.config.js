@@ -21,7 +21,7 @@ module.exports = {
           pale: colors.teal[50],
           light: colors.teal[200],
           normal: colors.teal[400],
-          dark: colors.teal[800],
+          dark: colors.teal[700],
         },
 
         "henken-to": {
@@ -32,16 +32,19 @@ module.exports = {
         },
 
         book: {
+          pale: colors.emerald[50],
           light: colors.emerald[200],
           normal: colors.emerald[500],
           dark: colors.emerald[800],
         },
         "book-series": {
+          pale: colors.sky[50],
           light: colors.sky[200],
           normal: colors.sky[500],
           dark: colors.sky[800],
         },
         author: {
+          pale: colors.amber[50],
           light: colors.amber[200],
           normal: colors.amber[500],
           dark: colors.amber[800],

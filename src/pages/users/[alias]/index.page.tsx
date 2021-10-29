@@ -38,6 +38,46 @@ query UserPage($alias: String!) {
       alias
       displayName
       avatar
+      receivedHenkens(first:20,orderBy:{direction:ASC,field:CREATED_AT}){
+        totalCount
+        pageInfo{
+          hasNextPage
+          endCursor
+        }
+        edges{
+          node{
+            id
+            comment
+            createdAt
+            postedBy{
+              id
+              alias
+              displayName
+              avatar
+            }
+            answer{
+              type
+              comment
+            }
+            content {
+              __typename
+              ... on Book {
+                id
+                title
+                cover
+              }
+              ... on BookSeries {
+                id
+                title
+              }
+              ... on Author {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
