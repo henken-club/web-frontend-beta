@@ -1,10 +1,11 @@
 import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps, ContextType } from "react";
+import { RecoilRoot } from "recoil";
 
 import { CreateHenkenFormContext } from "./context";
 
-import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { c } from "~/mocks/constraints";
 import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~/mocks/handlers";
 import { Component } from ".";
 
@@ -24,46 +25,6 @@ type StoryProps = ComponentProps<typeof Component> & {
   contextValue: ContextType<typeof CreateHenkenFormContext>;
 };
 
-export const Primary: Story<StoryProps> = ({ contextValue, ...props }) => {
-  return (
-    <CreateHenkenFormContext.Provider value={contextValue}>
-      <Component {...props} />
-    </CreateHenkenFormContext.Provider>
-  );
-};
-Primary.storyName = "通常";
-Primary.args = {
-  contextValue: {
-    from: {
-      id: "from",
-      alias: "from",
-      displayName: "From User",
-      avatar: mockAvatars[1],
-    },
-    to: {
-      id: "to",
-      alias: "to",
-      displayName: "To User",
-      avatar: mockAvatars[2],
-    },
-    setTo: action("set-to-user"),
-    content: {
-      type: "book",
-      value: {
-        id: "content_book1",
-        title: "Book 1",
-        cover: mockBookcovers[1],
-      },
-    },
-    setContent: action("set-content"),
-    comment: "",
-    setComment: action("set-comment"),
-    createHenken: action("create-henken"),
-    formDisabled: false,
-    created: false,
-  },
-};
-
 export const LoadingFrom: Story<StoryProps> = ({ contextValue, ...props }) => {
   return (
     <CreateHenkenFormContext.Provider value={contextValue}>
@@ -75,15 +36,14 @@ LoadingFrom.storyName = "ログインユーザを取得中";
 LoadingFrom.args = {
   contextValue: {
     from: undefined,
-    to: null,
-    setTo: action("set-to-user"),
-    content: null,
-    setContent: action("set-content"),
+    to: { id: "to", ...c.users.user1 },
+    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
     comment: "",
+    setContent: action("set-content"),
+    setTo: action("set-to-user"),
     setComment: action("set-comment"),
-    createHenken: action("create-henken"),
-    formDisabled: false,
-    created: false,
+    createHenken: null,
+    created: null,
   },
 };
 
@@ -98,15 +58,14 @@ NoFrom.storyName = "未ログイン";
 NoFrom.args = {
   contextValue: {
     from: null,
-    to: null,
-    setTo: action("set-to-user"),
-    content: null,
-    setContent: action("set-content"),
+    to: { id: "to", ...c.users.user1 },
+    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
     comment: "",
+    setContent: action("set-content"),
+    setTo: action("set-to-user"),
     setComment: action("set-comment"),
-    createHenken: action("create-henken"),
-    formDisabled: false,
-    created: false,
+    createHenken: null,
+    created: null,
   },
 };
 
@@ -120,44 +79,60 @@ export const NoTo: Story<StoryProps> = ({ contextValue, ...props }) => {
 NoTo.storyName = "送り先を指定していない";
 NoTo.args = {
   contextValue: {
-    from: {
-      id: "from",
-      alias: "from",
-      displayName: "From User",
-      avatar: mockAvatars[1],
-    },
+    from: { id: "from", ...c.users.viewer },
     to: null,
-    setTo: action("set-to-user"),
-    content: null,
-    setContent: action("set-content"),
+    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
     comment: "",
+    setContent: action("set-content"),
+    setTo: action("set-to-user"),
     setComment: action("set-comment"),
-    createHenken: action("create-henken"),
-    formDisabled: false,
-    created: false,
+    createHenken: null,
+    created: null,
   },
 };
 
-export const Created: Story<StoryProps> = ({ contextValue, ...props }) => {
+export const Creatable: Story<StoryProps> = ({ contextValue, ...props }) => {
   return (
     <CreateHenkenFormContext.Provider value={contextValue}>
       <Component {...props} />
     </CreateHenkenFormContext.Provider>
   );
 };
-Created.storyName = "作成済み";
-Created.args = {
-  created: true,
+Creatable.storyName = "送信可能";
+Creatable.args = {
   contextValue: {
-    from: { id: "from", alias: "from", displayName: "From User", avatar: mockAvatars[1] },
-    to: { id: "to", alias: "to", displayName: "To User", avatar: mockAvatars[2] },
-    setTo: action("set-to-user"),
-    content: { type: "book", value: { id: "content_book1", title: "Book 1", cover: mockBookcovers[1] } },
-    setContent: action("set-content"),
+    from: { id: "from", ...c.users.viewer },
+    to: { id: "to", ...c.users.user1 },
+    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
     comment: "",
+    setContent: action("set-content"),
+    setTo: action("set-to-user"),
     setComment: action("set-comment"),
     createHenken: action("create-henken"),
-    formDisabled: true,
-    created: true,
+    created: null,
+  },
+};
+
+export const Created: Story<StoryProps> = ({ contextValue, ...props }) => {
+  return (
+    <RecoilRoot>
+      <CreateHenkenFormContext.Provider value={contextValue}>
+        <Component {...props} />
+      </CreateHenkenFormContext.Provider>
+    </RecoilRoot>
+  );
+};
+Created.storyName = "送信済み";
+Created.args = {
+  contextValue: {
+    from: { id: "from", ...c.users.viewer },
+    to: { id: "to", ...c.users.user1 },
+    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    comment: "",
+    setContent: action("set-content"),
+    setTo: action("set-to-user"),
+    setComment: action("set-comment"),
+    createHenken: null,
+    created: { id: "created" },
   },
 };

@@ -24,7 +24,8 @@
     "reexecute",
     "typesafe",
     "unfollow",
-    "viewports"
+    "viewports",
+    "xmark"
   ],
   "ignoreWords": [
     "fontawesome",

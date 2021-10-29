@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
+import { AuthorSmallBadge } from "~/components/atoms/ContentBadge";
+
 export const View: React.VFC<{
   className?: string;
   id: string;
@@ -10,12 +12,17 @@ export const View: React.VFC<{
     <div
       className={clsx(
         className,
-        ["inline-flex", ["flex-col"], ["items-center"]],
+        ["inline-flex", ["flex-col", "sm:flex-row"]],
       )}
     >
-      <div className={clsx(["w-full"], ["flex-grow"], ["mt-2"])}>
-        <span className={clsx([["text-base"]])}>{name}</span>
-      </div>
+      <p className={clsx(["break-words"])}>
+        <AuthorSmallBadge className={clsx()} />
+        <span
+          className={clsx(["ml-2"], [["text-sm"]])}
+        >
+          {name}
+        </span>
+      </p>
     </div>
   );
 };

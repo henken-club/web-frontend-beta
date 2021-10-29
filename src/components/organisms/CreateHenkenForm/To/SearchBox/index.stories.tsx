@@ -6,7 +6,7 @@ import { mockAvatars } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
-  title: "organisms/CreateHenkenForm/To/SearchUser",
+  title: "organisms/CreateHenkenForm/To/SearchBox",
   component: Component,
   argTypes: {
     focus: { table: { disable: true } },

@@ -1,41 +1,33 @@
 import clsx from "clsx";
-import React, { useContext } from "react";
+import React from "react";
 
-import { CreateHenkenFormContext } from "../context";
+import { Comment } from "./Comment";
+import { CreateButton } from "./CreateButton";
 
-import { useTranslation } from "~/i18n/useTranslation";
-
-export const Component: React.VFC<{
-  className?: string;
-  onCreateHenken(): void;
-  created: boolean;
-}> = (
-  { className, onCreateHenken, created, ...props },
+export const Component: React.VFC<{ className?: string; }> = (
+  { className, ...props },
 ) => {
-  const { LL } = useTranslation();
   return (
     <div
       className={clsx(
         className,
-        [["px-6"], ["py-4"]],
-        [["inline-flex"], ["flex-row"], ["items-center"], ["flex-row-reverse"]],
-        ["bg-gray-50"],
+        [["px-4"], ["py-4"]],
+        [["inline-flex"], ["flex-col", "sm:flex-row"]],
+        ["bg-blue-50"],
+        ["border", "border-blue-400"],
+        [["rounded-md"]],
       )}
     >
-      <button
+      <Comment className={clsx(["flex-grow"])} />
+      <div
         className={clsx(
-          [["px-2"], ["py-1"]],
-          ["rounded-md"],
-          ["bg-blue-400"],
-          ["text-white"],
+          ["mt-4", "sm:mt-0"],
+          ["ml-0", "sm:ml-8"],
+          ["flex", ["flex-row", "sm:flex-col"], ["justify-end"]],
         )}
-        type="button"
-        onClick={() => onCreateHenken()}
-        onKeyPress={() => onCreateHenken()}
-        disabled={created}
       >
-        {LL.Button.CreateHenken()}
-      </button>
+        <CreateButton />
+      </div>
     </div>
   );
 };
@@ -43,7 +35,5 @@ export const Component: React.VFC<{
 export const Control: React.VFC<{ className?: string; }> = (
   { ...props },
 ) => {
-  const { createHenken, created } = useContext(CreateHenkenFormContext);
-
-  return <Component {...props} onCreateHenken={() => createHenken()} created={created} />;
+  return <Component {...props} />;
 };

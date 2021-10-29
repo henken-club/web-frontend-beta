@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { SearchUser } from "./SearchUser";
+import { SearchUser } from "./SearchBox";
 
 import { AvatarLarge } from "~/components/atoms/Avatar";
 import { IconUnknownUser } from "~/components/atoms/Icon";
@@ -20,9 +20,11 @@ export const Component: React.VFC<
     <div
       className={clsx(
         className,
-        [["px-6"], ["py-4"]],
-        [["inline-flex"], ["flex-row"], ["items-center"]],
-        ["bg-gray-100"],
+        [["px-4"], ["py-4"]],
+        [["inline-flex"], ["flex-col"]],
+        ["bg-henken-to-pale"],
+        ["border", "border-henken-to-normal"],
+        [["rounded-md"]],
       )}
     >
       <div
@@ -31,37 +33,39 @@ export const Component: React.VFC<
           ["flex", ["flex-row"], ["items-center"]],
         )}
       >
-        <div className={clsx([["w-12"], ["h-12"]])}>
-          {user &&
-            <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />}
-          {!user &&
-            (
-              <div
-                className={clsx(
-                  ["w-full", "h-full"],
-                  ["flex", ["items-center"], ["justify-center"]],
-                  ["bg-gray-400"],
-                  ["rounded-full"],
-                )}
-              >
-                <IconUnknownUser className={clsx([["text-2xl"], ["text-white"]])} />
-              </div>
-            )}
-        </div>
         {user && (
           <>
-            <span className={clsx(["ml-4"], ["flex", "flex-col"])}>
-              <span className={clsx(["text-gray-900"], ["text-sm"], ["select-all"])}>
-                {user.displayName}
+            <div className={clsx([["w-12"], ["h-12"]])}>
+              <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />
+            </div>
+            <div className={clsx(["flex-grow"])}>
+              <span className={clsx(["ml-4"], ["flex", "flex-col"])}>
+                <span className={clsx(["text-gray-900"], ["text-sm"], ["select-all"])}>
+                  {user.displayName}
+                </span>
+                <span className={clsx(["text-gray-500"], ["mt-0.5"], ["text-xs"], ["select-all"])}>
+                  {LL.Format.Alias({ alias: user.alias })}
+                </span>
               </span>
-              <span className={clsx(["text-gray-500"], ["mt-0.5"], ["text-xs"], ["select-all"])}>
-                {LL.Format.Alias({ alias: user.alias })}
-              </span>
-            </span>
+            </div>
           </>
         )}
+        {!user && (
+          <div className={clsx([["w-12"], ["h-12"]])}>
+            <div
+              className={clsx(
+                ["w-full", "h-full"],
+                ["flex", ["items-center"], ["justify-center"]],
+                ["bg-gray-400"],
+                ["rounded-full"],
+              )}
+            >
+              <IconUnknownUser className={clsx([["text-2xl"], ["text-white"]])} />
+            </div>
+          </div>
+        )}
       </div>
-      <SearchUser className={clsx(["w-64"], ["ml-2"])} />
+      <SearchUser className={clsx(["w-full"], ["mt-4"])} />
     </div>
   );
 };

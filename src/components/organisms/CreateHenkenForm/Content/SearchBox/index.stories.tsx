@@ -6,7 +6,7 @@ import { mockBookcovers } from "~/mocks/constraints";
 import { Component } from ".";
 
 export default {
-  title: "organisms/CreateHenkenForm/Content/SearchContent",
+  title: "organisms/CreateHenkenForm/Content/SearchBox",
   component: Component,
   argTypes: {
     focus: { table: { disable: true } },

@@ -2,10 +2,10 @@ import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { Component } from "./Book";
+import { Component } from "./BookSeries";
 
 export default {
-  title: "organisms/CreateHenkenForm/Content/SearchContent/BookSuggestion",
+  title: "organisms/CreateHenkenForm/Content/SearchBox/BookSeriesSuggestion",
   component: Component,
   argTypes: {},
 } as Meta;

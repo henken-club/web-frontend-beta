@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link, LinkType } from "./types";
 
+export * from "./Henken";
 export * from "./User";
 
 export const LinkIndex: LinkType = ({ ...props }) => <Link href="/" {...props} />;

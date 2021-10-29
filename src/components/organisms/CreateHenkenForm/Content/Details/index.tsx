@@ -5,10 +5,10 @@ import { Author } from "./Author";
 import { Book } from "./Book";
 import { BookSeries } from "./BookSeries";
 
-export const Content: React.VFC<{
+export const Details: React.VFC<{
   className?: string;
   content:
-    | { type: "book"; value: { id: string; title: string; cover: string | null; }; }
+    | { type: "book"; value: { id: string; title: string; }; }
     | { type: "bookseries"; value: { id: string; title: string; }; }
     | { type: "author"; value: { id: string; name: string; }; };
 }> = ({

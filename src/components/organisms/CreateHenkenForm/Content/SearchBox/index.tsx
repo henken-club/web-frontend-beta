@@ -60,14 +60,16 @@ export const Component: React.VFC<
   const { LL } = useTranslation();
   return (
     <div
-      className={clsx(className, ["relative", { "z-infinity": focus }])}
+      className={clsx(className, ["inline-flex"], ["relative", { "z-infinity": focus }])}
     >
-      <label className={clsx(["flex", ["flex-col"]], ["relative"], ["z-1"])}>
-        <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.SearchBox.Label()}</span>
+      <label className={clsx(["w-full"], ["flex", ["flex-col"]], ["relative"], ["z-1"])}>
+        <span className={clsx(["text-sm"])}>
+          {LL.CreateHenkenForm.Content.SearchBox.Label()}
+        </span>
         <input
           type="search"
           autoComplete="on"
-          aria-label={LL.CreateHenkenForm.Content.SearchBox.aria.QueryInput()}
+          aria-label={LL.CreateHenkenForm.Content.SearchBox.Label()}
           onChange={(event) => onUpdateInput(event.currentTarget.value)}
           onFocus={() => onFocus()}
           disabled={formDisabled}
@@ -103,8 +105,8 @@ export const Component: React.VFC<
   );
 };
 
-export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const { setContent, formDisabled } = useContext(CreateHenkenFormContext);
+export const SearchBox: React.VFC<{ className?: string; }> = ({ ...props }) => {
+  const { setContent, created } = useContext(CreateHenkenFormContext);
 
   const [input, setInput] = useState<string | undefined>(undefined);
   const [query, setQuery] = useState<string | undefined>(undefined);
@@ -136,7 +138,7 @@ export const SearchContent: React.VFC<{ className?: string; }> = ({ ...props }) 
 
   return (
     <Component
-      formDisabled={formDisabled}
+      formDisabled={Boolean(created)}
       onUpdateInput={(query) => {
         setInput(query);
       }}

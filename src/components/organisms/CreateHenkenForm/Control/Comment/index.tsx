@@ -12,12 +12,17 @@ export const Component: React.VFC<{
 }> = ({ className, onUpdateChange, formDisabled }) => {
   const { LL } = useTranslation();
   return (
-    <div className={clsx(className)}>
-      <label>
-        <span className={clsx(["text-sm"])}>{LL.CreateHenkenForm.Content.CommentBox.Label()}</span>
+    <div className={clsx(className, ["inline-flex", ["flex-col"]])}>
+      <label className={clsx(["w-full"], ["flex", ["flex-col"]])}>
+        <span className={clsx(["text-sm"])}>
+          {LL.CreateHenkenForm.Control.Comment.Label()}
+        </span>
+        <span className={clsx(["text-xs"], ["text-gray-700"])}>
+          {LL.CreateHenkenForm.Control.Comment.Description()}
+        </span>
         <textarea
           autoComplete="off"
-          aria-label={LL.CreateHenkenForm.Content.CommentBox.aria.CommentInput()}
+          aria-label={LL.CreateHenkenForm.Control.Comment.Label()}
           onChange={(event) => onUpdateChange(event.currentTarget.value)}
           rows={4}
           disabled={formDisabled}
@@ -26,8 +31,9 @@ export const Component: React.VFC<{
             [["px-2"], ["py-1"]],
             ["mt-1"],
             ["border"],
-            [["text-base"]],
+            [["text-sm"]],
             ["resize-none"],
+            ["overflow-y-scroll"],
           )}
         />
       </label>
@@ -36,7 +42,7 @@ export const Component: React.VFC<{
 };
 
 export const Comment: React.VFC<{ className?: string; }> = ({ ...props }) => {
-  const { setComment, formDisabled } = useContext(CreateHenkenFormContext);
+  const { setComment, created } = useContext(CreateHenkenFormContext);
 
-  return <Component {...props} formDisabled={formDisabled} onUpdateChange={(comment) => setComment(comment)} />;
+  return <Component {...props} formDisabled={Boolean(created)} onUpdateChange={(comment) => setComment(comment)} />;
 };

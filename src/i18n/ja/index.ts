@@ -1,6 +1,10 @@
 import type { BaseTranslation } from "typesafe-i18n";
 
 const ja: BaseTranslation = {
+  Book: "本",
+  BookSeries: "本のシリーズ",
+  Author: "著者",
+
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
 
@@ -23,7 +27,42 @@ const ja: BaseTranslation = {
   },
 
   BookCover: {
-    NoImage: "画像はありません",
+    NoImage: "書影はありません",
+  },
+
+  CreateHenkenForm: {
+    Title: "偏見を送る",
+
+    To: {
+      SearchBox: {
+        Label: "送り先を探す",
+      },
+    },
+
+    Content: {
+      Image: {
+        NoImage: "画像はありません",
+        NotSelected: "コンテンツを選択して下さい",
+      },
+      SearchBox: {
+        Label: "コンテンツを探す",
+        NoResult: "コンテンツが見つかりませんでした",
+      },
+    },
+
+    Control: {
+      Comment: {
+        Label: "コメント入力欄",
+        Description: "140文字以下で、必須ではありません",
+      },
+      CreateHenken: "送信！",
+    },
+
+    Created: {
+      Title: "偏見を送信しました！",
+      Jump: "ページ",
+      Close: "閉じる",
+    },
   },
 
   RegisterUserForm: {
@@ -46,35 +85,6 @@ const ja: BaseTranslation = {
     Register: "登録する",
     Registering: "登録中",
     Registered: "ようこそ、{displayName:string}さん！どうぞお楽しみ下さい！",
-  },
-
-  CreateHenkenForm: {
-    Created: {
-      Title: "偏見を送信しました！",
-      Close: "閉じる",
-    },
-
-    To: {
-      SearchBox: {
-        aria: { QueryInput: "" },
-      },
-    },
-    Content: {
-      Info: {
-        NoImage: "画像はありません",
-      },
-      CommentBox: {
-        Label: "コメント入力欄",
-        aria: { CommentInput: "コメント入力欄" },
-      },
-      SearchBox: {
-        aria: {
-          QueryInput: "コンテンツ入力欄",
-        },
-        Label: "コンテンツ入力欄",
-        NoResult: "コンテンツが見つかりませんでした",
-      },
-    },
   },
 
   Notifications: {

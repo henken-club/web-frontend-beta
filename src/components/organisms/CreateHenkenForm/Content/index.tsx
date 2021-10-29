@@ -3,9 +3,9 @@ import React, { useContext } from "react";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { Comment } from "./Comment";
-import { Content } from "./Details";
-import { SearchContent } from "./SearchContent";
+import { Details } from "./Details";
+import { Image } from "./Image";
+import { SearchBox } from "./SearchBox";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -31,26 +31,52 @@ export const Component: React.VFC<
     <div
       className={clsx(
         className,
-        [["px-6"], ["py-4"]],
-        [["inline-flex"], ["flex-col"], ["items-starts"]],
-        ["grid", ["grid-cols-3"], ["gap-x-8"]],
-        ["bg-gray-50"],
+        [["px-4"], ["py-4"]],
+        ["h-auto", "sm:h-48"],
+        [["inline-flex"], ["flex-row"], ["items-starts"]],
+        ["bg-blue-50"],
+        ["border", "border-blue-400"],
+        [["rounded-md"]],
       )}
     >
-      {content && <Content className={clsx(["col-span-1"])} content={content} />}
-      {!content && <div className={clsx(["col-span-1"])} />}
+      <Image
+        className={clsx(["hidden", "sm:block"], ["w-28"], ["h-36"])}
+        content={content}
+      />
       <div
         className={clsx(
-          [
-            ["col-start-2"],
-            ["col-span-full"],
-          ],
-          ["h-full"],
-          ["flex", ["flex-col"]],
+          ["flex-grow"],
+          ["hidden", ["sm:flex", ["flex-col"]]],
+          ["ml-4"],
         )}
       >
-        <SearchContent className={clsx(["w-full"])} />
-        <Comment className={clsx(["w-full"], ["mt-2"])} />
+        <SearchBox className={clsx(["w-full"])} />
+        {content && (
+          <Details
+            className={clsx(["mt-2"], ["flex-grow"])}
+            content={content}
+          />
+        )}
+      </div>
+      <div
+        className={clsx(
+          ["w-full"],
+          [["flex", ["flex-col"]], "sm:hidden"],
+        )}
+      >
+        <div className={clsx(["flex"])}>
+          <Image
+            className={clsx(["w-16"], ["h-20"], ["flex-shrink-0"])}
+            content={content}
+          />
+          {content && (
+            <Details
+              className={clsx(["ml-2"], ["flex-grow"])}
+              content={content}
+            />
+          )}
+        </div>
+        <SearchBox className={clsx(["mt-4"], ["w-full"])} />
       </div>
     </div>
   );
