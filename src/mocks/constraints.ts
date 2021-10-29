@@ -1,29 +1,30 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* cSpell:disable */
 
 import { AnswerType } from "./codegen";
 
 // images
 
-export const mockAuth0Picture = "/.mock/avatar/auth0Picture.png" as const;
+export const mockAuth0Picture: string = require("./assets/auth0/picture.png");
 
-export const mockAvatars = {
-  viewer: "/.mock/avatar/viewer.png",
-  1: "/.mock/avatar/1.png",
-  2: "/.mock/avatar/2.png",
-  3: "/.mock/avatar/3.png",
-  4: "/.mock/avatar/4.png",
-  5: "/.mock/avatar/5.png",
-  6: "/.mock/avatar/6.png",
-} as const;
+export const mockAvatars: Record<string, string> = {
+  viewer: require("./assets/avatar/viewer.png"),
+  1: require("./assets/avatar/1.png"),
+  2: require("./assets/avatar/2.png"),
+  3: require("./assets/avatar/3.png"),
+  4: require("./assets/avatar/4.png"),
+  5: require("./assets/avatar/5.png"),
+  6: require("./assets/avatar/6.png"),
+};
 
-export const mockBookcovers = {
-  1: "/.mock/bookcover/1.jpg",
-  2: "/.mock/bookcover/2.jpg",
-  3: "/.mock/bookcover/3.jpg",
-  4: "/.mock/bookcover/4.jpg",
-  5: "/.mock/bookcover/5.jpg",
-  6: "/.mock/bookcover/6.jpg",
-} as const;
+export const mockBookcovers: Record<string, string> = {
+  1: require("./assets/bookcover/1.jpg"),
+  2: require("./assets/bookcover/2.jpg"),
+  3: require("./assets/bookcover/3.jpg"),
+  4: require("./assets/bookcover/4.jpg"),
+  5: require("./assets/bookcover/5.jpg"),
+  6: require("./assets/bookcover/6.jpg"),
+};
 
 // eslint-disable-next-line id-length
 export const c = {
