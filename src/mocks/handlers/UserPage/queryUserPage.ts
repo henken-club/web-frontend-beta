@@ -1,7 +1,7 @@
 import { graphql } from "msw";
 
-import { UserPageDocument } from "~/mocks/codegen";
-import { c } from "~/mocks/constraints";
+import { AnswerType, UserPageDocument } from "~/mocks/codegen";
+import { c, mockAvatars, mockBookcovers } from "~/mocks/constraints";
 
 export const queryUserPage = graphql.query(UserPageDocument, (req, res, ctx) => {
   const userId = Object.entries(c.users).find(([, { alias }]) => alias === req.variables.alias)?.[0];
@@ -29,6 +29,38 @@ export const queryUserPage = graphql.query(UserPageDocument, (req, res, ctx) => 
           alias,
           displayName,
           avatar,
+          receivedHenkens: {
+            __typename: "HenkenConnection",
+            totalCount: 5,
+            pageInfo: { __typename: "PageInfo", hasNextPage: true, endCursor: "cursor" },
+            edges: [{
+              __typename: "HenkenEdge",
+              node: {
+                __typename: "Henken",
+                id: "henken1",
+                comment: "",
+                createdAt: "2021-10-01T07:00:00:0000Z",
+                postedBy: {
+                  __typename: "User",
+                  id: "user2",
+                  alias: "user_2",
+                  displayName: "User 2",
+                  avatar: mockAvatars[2],
+                },
+                answer: {
+                  __typename: "Answer",
+                  comment: "",
+                  type: AnswerType.Right,
+                },
+                content: {
+                  __typename: "Book",
+                  id: "",
+                  title: "",
+                  cover: mockBookcovers[1],
+                },
+              },
+            }],
+          },
         },
       },
     }),

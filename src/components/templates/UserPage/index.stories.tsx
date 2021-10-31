@@ -1,14 +1,13 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { ReceivedHenkensView } from "./ViewReceivedHenkens";
-
 import { PageContainer } from "~/components/layouts/Default";
 import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { View } from ".";
 
 export default {
-  title: "Templates/UserPage/ViewReceivedHenkens",
-  component: ReceivedHenkensView,
+  title: "Templates/UserPage",
+  component: View,
   parameters: {
     layout: "fullscreen",
   },
@@ -22,12 +21,13 @@ export default {
   ],
 } as Meta;
 
-type StoryProps = ComponentProps<typeof ReceivedHenkensView>;
+type StoryProps = ComponentProps<typeof View>;
 
-export const Primary: Story<StoryProps> = ({ ...props }) => {
-  return <ReceivedHenkensView {...props} />;
+export const ReceivedHenkens: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
 };
-Primary.args = {
+ReceivedHenkens.storyName = "送られてきた偏見";
+ReceivedHenkens.args = {
   user: {
     id: "user1",
     alias: "user_1",

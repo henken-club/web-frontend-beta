@@ -16,33 +16,27 @@ export const View: React.VFC<{
     <header
       className={clsx(
         className,
-        [["py-2"], ["px-4"]],
+        [
+          ["px-2", "sm:px-8"],
+          ["py-2", "sm:py-4"],
+        ],
+        ["flex"],
       )}
     >
       <div
         className={clsx(
-          ["w-full"],
-          ["max-w-screen-lg"],
-          ["mx-auto"],
-          ["flex", ["flex-row"]],
+          ["flex-shrink-0"],
+          ["w-16", "sm:w-24"],
+          ["h-16", "sm:h-24"],
         )}
       >
-        <div className={clsx(["flex"])}>
-          <div
-            className={clsx(
-              ["w-24"],
-              ["h-24"],
-            )}
-          >
-            <AvatarLarge user={{ alias, avatar }} />
-          </div>
-        </div>
-        <div className={clsx(["flex-grow"], ["flex"])}>
-          <span className={clsx()}>
-            <span>{displayName}</span>
-            <span>{LL.Format.Alias({ alias })}</span>
-          </span>
-        </div>
+        <AvatarLarge user={{ alias, avatar }} />
+      </div>
+      <div className={clsx(["flex-grow"], ["flex"])}>
+        <span className={clsx()}>
+          <span>{displayName}</span>
+          <span>{LL.Format.Alias({ alias })}</span>
+        </span>
       </div>
     </header>
   );

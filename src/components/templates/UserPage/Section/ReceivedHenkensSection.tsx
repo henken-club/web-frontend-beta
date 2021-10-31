@@ -2,7 +2,6 @@ import clsx from "clsx";
 import React from "react";
 
 import { List } from "./HenkenList";
-import { Tab } from "./TabSwitch";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -29,11 +28,9 @@ export const View: React.VFC<{
     <section
       className={clsx(
         className,
-        ["pt-4"],
         ["inline-flex", ["flex-col"]],
       )}
     >
-      <Tab className={clsx(["w-full"], ["max-w-screen-lg"], ["mx-auto"])} select="received-henkens" alias={alias} />
       <div
         className={clsx(
           ["w-full"],
@@ -48,7 +45,7 @@ export const View: React.VFC<{
   );
 };
 
-export const Section: React.VFC<{
+export const ReceivedHenkensSection: React.VFC<{
   className?: string;
   user: {
     alias: string;
