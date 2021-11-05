@@ -89,7 +89,7 @@ export const serializer = ({ findUser: { user } }: PageQueryResult): SerializedP
           deTypename({
             ...henken,
             content: serializeContent(henken.content),
-            postTo: deTypename({ ...henken.postedBy }),
+            postTo: deTypename({ ...henken.postsTo }),
             answer: henken.answer
               ? deTypename({ ...henken.answer, type: serializeAnswerType(henken.answer.type) })
               : null,

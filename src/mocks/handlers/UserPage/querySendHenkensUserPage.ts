@@ -40,7 +40,7 @@ export const querySendHenkensUserPage = graphql.query(UserSendHenkensPageDocumen
                 id: "henken1",
                 comment: "",
                 createdAt: "2021-10-01T07:00:00:0000Z",
-                postedBy: {
+                postsTo: {
                   __typename: "User",
                   id: "user2",
                   alias: "user_2",
