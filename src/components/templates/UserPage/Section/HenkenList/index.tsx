@@ -5,13 +5,15 @@ import { ListItem } from "./ListItem";
 
 export const List: React.VFC<{
   className?: string;
-  receivedHenkens: {
+  type: "received-henkens" | "post-henkens";
+  henkens: {
     totalCount: number;
     pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
     nodes: {
       id: string;
       comment: string;
       postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+      postTo: { id: string; alias: string; displayName: string; avatar: string; };
       answer: { comment: string; type: "right" | "wrong"; } | null;
       content:
         | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
@@ -19,7 +21,7 @@ export const List: React.VFC<{
         | { type: "author"; content: { id: string; name: string; }; };
     }[];
   };
-}> = ({ className, receivedHenkens: { totalCount, pageInfo, nodes } }) => {
+}> = ({ className, type, henkens: { totalCount, pageInfo, nodes } }) => {
   return (
     <div className={clsx(className)}>
       <ul
@@ -33,7 +35,7 @@ export const List: React.VFC<{
           ],
         )}
       >
-        {nodes.map((henken) => <ListItem key={henken.id} henken={henken} />)}
+        {nodes.map((henken) => <ListItem key={henken.id} type={type} henken={henken} />)}
       </ul>
     </div>
   );

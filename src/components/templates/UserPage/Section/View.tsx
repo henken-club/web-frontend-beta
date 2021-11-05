@@ -7,13 +7,14 @@ import { useTranslation } from "~/i18n/useTranslation";
 
 export const View: React.VFC<{
   className?: string;
-  alias: string;
-  receivedHenkens: {
+  type: "received-henkens" | "post-henkens";
+  henkens: {
     totalCount: number;
     pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
     nodes: {
       id: string;
       comment: string;
+      postTo: { id: string; alias: string; displayName: string; avatar: string; };
       postedBy: { id: string; alias: string; displayName: string; avatar: string; };
       answer: { comment: string; type: "right" | "wrong"; } | null;
       content:
@@ -22,7 +23,7 @@ export const View: React.VFC<{
         | { type: "author"; content: { id: string; name: string; }; };
     }[];
   };
-}> = ({ className, alias, receivedHenkens }) => {
+}> = ({ className, type, henkens }) => {
   const { LL } = useTranslation();
   return (
     <section
@@ -39,31 +40,12 @@ export const View: React.VFC<{
           ["py-2", "sm:py-4", "xl:py-8"],
         )}
       >
-        <List className={clsx(["w-full"])} receivedHenkens={receivedHenkens} />
+        <List
+          className={clsx(["w-full"])}
+          henkens={henkens}
+          type={type}
+        />
       </div>
     </section>
   );
-};
-
-export const ReceivedHenkensSection: React.VFC<{
-  className?: string;
-  user: {
-    alias: string;
-    receivedHenkens: {
-      totalCount: number;
-      pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
-      nodes: {
-        id: string;
-        comment: string;
-        postedBy: { id: string; alias: string; displayName: string; avatar: string; };
-        answer: { comment: string; type: "right" | "wrong"; } | null;
-        content:
-          | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
-          | { type: "bookseries"; content: { id: string; title: string; }; }
-          | { type: "author"; content: { id: string; name: string; }; };
-      }[];
-    };
-  };
-}> = ({ user, ...props }) => {
-  return <View {...user} {...props} />;
 };

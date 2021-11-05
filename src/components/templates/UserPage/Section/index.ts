@@ -1,1 +1,2 @@
-export { ReceivedHenkensSection } from "./ReceivedHenkensSection";
+export { PostHenkensSection } from "./PostHenkens";
+export { ReceivedHenkensSection } from "./ReceivedHenkens";

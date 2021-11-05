@@ -38,7 +38,7 @@ query UserSendHenkensPage($alias: String!) {
             id
             comment
             createdAt
-            postedBy{
+            postsTo{
               id
               alias
               displayName

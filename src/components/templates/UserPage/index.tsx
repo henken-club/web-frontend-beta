@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { Header } from "./Header";
-import { ReceivedHenkensSection } from "./Section";
+import { PostHenkensSection, ReceivedHenkensSection } from "./Section";
 import { TabNav } from "./TabNav";
 
 export const View: React.VFC<{
@@ -38,7 +38,7 @@ export const View: React.VFC<{
         nodes: {
           id: string;
           comment: string;
-          postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+          postTo: { id: string; alias: string; displayName: string; avatar: string; };
           answer: { type: "right" | "wrong"; comment: string; } | null;
           content:
             | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
@@ -69,7 +69,15 @@ export const View: React.VFC<{
               select="received-henkens"
               alias={user.alias}
             />
-            <ReceivedHenkensSection user={{ alias: user.alias, receivedHenkens: user.receivedHenkens }} />
+            <ReceivedHenkensSection
+              user={{
+                id: user.id,
+                alias: user.alias,
+                displayName: user.displayName,
+                avatar: user.avatar,
+                receivedHenkens: user.receivedHenkens,
+              }}
+            />
           </>
         )}
       {"postHenkens" in user &&
@@ -80,7 +88,15 @@ export const View: React.VFC<{
               select="post-henkens"
               alias={user.alias}
             />
-            <ReceivedHenkensSection user={{ alias: user.alias, receivedHenkens: user.postHenkens }} />
+            <PostHenkensSection
+              user={{
+                id: user.id,
+                alias: user.alias,
+                displayName: user.displayName,
+                avatar: user.avatar,
+                postsHenkens: user.postHenkens,
+              }}
+            />
           </>
         )}
     </main>
@@ -121,7 +137,7 @@ export const TemplateUserPage: React.VFC<
           nodes: {
             id: string;
             comment: string;
-            postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+            postTo: { id: string; alias: string; displayName: string; avatar: string; };
             answer: { type: "right" | "wrong"; comment: string; } | null;
             content:
               | { type: "book"; content: { id: string; title: string; cover: string | null; }; }

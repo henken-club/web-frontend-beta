@@ -17,10 +17,17 @@ export const Primary: Story<StoryProps> = ({ ...props }) => {
   return <ListItem {...props} />;
 };
 Primary.args = {
+  type: "post-henkens",
   henken: {
     id: "henken1",
     comment: "テスト",
     postedBy: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postTo: {
       id: "user2",
       alias: "user_2",
       displayName: "User 2",
@@ -42,10 +49,17 @@ export const EmptyComment: Story<StoryProps> = ({ ...props }) => {
   return <ListItem {...props} />;
 };
 EmptyComment.args = {
+  type: "post-henkens",
   henken: {
     id: "henken1",
     comment: "",
     postedBy: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postTo: {
       id: "user2",
       alias: "user_2",
       displayName: "User 2",
@@ -68,10 +82,17 @@ export const NoAnswer: Story<StoryProps> = ({ ...props }) => {
 };
 NoAnswer.storyName = "未回答";
 NoAnswer.args = {
+  type: "post-henkens",
   henken: {
     id: "henken1",
     comment: "テスト",
     postedBy: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postTo: {
       id: "user2",
       alias: "user_2",
       displayName: "User 2",
@@ -94,10 +115,17 @@ export const Book: Story<StoryProps> = ({ ...props }) => {
 };
 Book.storyName = "本";
 Book.args = {
+  type: "post-henkens",
   henken: {
     id: "henken1",
     comment: "テスト",
     postedBy: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postTo: {
       id: "user2",
       alias: "user_2",
       displayName: "User 2",
@@ -120,10 +148,17 @@ export const Author: Story<StoryProps> = ({ ...props }) => {
 };
 Author.storyName = "著者";
 Author.args = {
+  type: "post-henkens",
   henken: {
     id: "henken1",
     comment: "テスト",
     postedBy: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postTo: {
       id: "user2",
       alias: "user_2",
       displayName: "User 2",
@@ -145,10 +180,17 @@ export const BookSeries: Story<StoryProps> = ({ ...props }) => {
 };
 BookSeries.storyName = "本のシリーズ";
 BookSeries.args = {
+  type: "post-henkens",
   henken: {
     id: "henken1",
     comment: "テスト",
     postedBy: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postTo: {
       id: "user2",
       alias: "user_2",
       displayName: "User 2",

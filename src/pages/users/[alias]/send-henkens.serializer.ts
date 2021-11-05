@@ -52,7 +52,7 @@ type SerializedProps = {
         id: string;
         comment: string;
         createdAt: string;
-        postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+        postTo: { id: string; alias: string; displayName: string; avatar: string; };
         answer: { type: "right" | "wrong"; comment: string; } | null;
         content: {
           type: "book";
@@ -89,7 +89,7 @@ export const serializer = ({ findUser: { user } }: PageQueryResult): SerializedP
           deTypename({
             ...henken,
             content: serializeContent(henken.content),
-            postedBy: deTypename({ ...henken.postedBy }),
+            postTo: deTypename({ ...henken.postedBy }),
             answer: henken.answer
               ? deTypename({ ...henken.answer, type: serializeAnswerType(henken.answer.type) })
               : null,
