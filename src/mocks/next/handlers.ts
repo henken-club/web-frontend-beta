@@ -9,6 +9,7 @@ import {
   queryGlobalNavNotifications,
   queryHenkenPage,
   queryRegisterUserFormIsAliasUnique,
+  querySendHenkensUserPage,
   queryUserPage,
 } from "../handlers";
 
@@ -24,4 +25,5 @@ export const handlers = [
   queryHenkenPage,
   queryAllUserPages,
   queryUserPage,
+  querySendHenkensUserPage,
 ];

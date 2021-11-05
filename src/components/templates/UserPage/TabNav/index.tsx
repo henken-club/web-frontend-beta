@@ -6,7 +6,7 @@ import { TabItem } from "./TabItem";
 import { LinkUserReceivedHenkens, LinkUserSendHenkens } from "~/components/atoms/Link";
 import { useTranslation } from "~/i18n/useTranslation";
 
-export const TabNav: React.VFC<{ className: string; select: "received-henkens" | "send-henkens"; alias: string; }> = (
+export const TabNav: React.VFC<{ className: string; select: "received-henkens" | "post-henkens"; alias: string; }> = (
   { className, select, alias },
 ) => {
   const { LL } = useTranslation();
@@ -35,7 +35,7 @@ export const TabNav: React.VFC<{ className: string; select: "received-henkens" |
         />
         <TabItem
           className={clsx()}
-          selected={select === "send-henkens"}
+          selected={select === "post-henkens"}
           Link={({ ...props }) => <LinkUserSendHenkens alias={alias} {...props} />}
           Text={({ className }) => (
             <span className={clsx(className)}>
