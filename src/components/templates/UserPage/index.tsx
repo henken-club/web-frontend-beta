@@ -1,18 +1,53 @@
 import clsx from "clsx";
 import React from "react";
 
-import { AvatarLarge } from "~/components/atoms/Avatar";
-import { useTranslation } from "~/i18n/useTranslation";
+import { Header } from "./Header";
+import { PostHenkensSection, ReceivedHenkensSection } from "./Section";
+import { TabNav } from "./TabNav";
 
 export const View: React.VFC<{
-  user: {
-    id: string;
-    alias: string;
-    displayName: string;
-    avatar: string;
-  };
+  user:
+    | {
+      id: string;
+      alias: string;
+      displayName: string;
+      avatar: string;
+      receivedHenkens: {
+        totalCount: number;
+        pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
+        nodes: {
+          id: string;
+          comment: string;
+          postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+          answer: { type: "right" | "wrong"; comment: string; } | null;
+          content:
+            | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+            | { type: "bookseries"; content: { id: string; title: string; }; }
+            | { type: "author"; content: { id: string; name: string; }; };
+        }[];
+      };
+    }
+    | {
+      id: string;
+      alias: string;
+      displayName: string;
+      avatar: string;
+      postHenkens: {
+        totalCount: number;
+        pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
+        nodes: {
+          id: string;
+          comment: string;
+          postTo: { id: string; alias: string; displayName: string; avatar: string; };
+          answer: { type: "right" | "wrong"; comment: string; } | null;
+          content:
+            | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+            | { type: "bookseries"; content: { id: string; title: string; }; }
+            | { type: "author"; content: { id: string; name: string; }; };
+        }[];
+      };
+    };
 }> = ({ user }) => {
-  const { LL } = useTranslation();
   return (
     <main
       className={clsx(
@@ -22,35 +57,96 @@ export const View: React.VFC<{
         ["flex", ["flex-col"]],
       )}
     >
-      <header className={clsx(["w-full"], ["flex", ["flex-row"]])}>
-        <div className={clsx(["flex"])}>
-          <div
-            className={clsx(
-              ["w-32"],
-              ["h-32"],
-            )}
-          >
-            <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />
-          </div>
-        </div>
-        <div className={clsx(["flex-grow"], ["flex"])}>
-          <span className={clsx()}>
-            <span>{user.displayName}</span>
-            <span>{LL.Format.Alias({ alias: user.alias })}</span>
-          </span>
-        </div>
-      </header>
+      <Header
+        className={clsx(["w-full"], ["max-w-screen-lg"], ["mx-auto"])}
+        user={{ id: user.id, alias: user.alias, displayName: user.displayName, avatar: user.avatar }}
+      />
+      {"receivedHenkens" in user &&
+        (
+          <>
+            <TabNav
+              className={clsx(["w-full"], ["max-w-screen-lg"], ["mx-auto"])}
+              select="received-henkens"
+              alias={user.alias}
+            />
+            <ReceivedHenkensSection
+              user={{
+                id: user.id,
+                alias: user.alias,
+                displayName: user.displayName,
+                avatar: user.avatar,
+                receivedHenkens: user.receivedHenkens,
+              }}
+            />
+          </>
+        )}
+      {"postHenkens" in user &&
+        (
+          <>
+            <TabNav
+              className={clsx(["w-full"], ["max-w-screen-lg"], ["mx-auto"])}
+              select="post-henkens"
+              alias={user.alias}
+            />
+            <PostHenkensSection
+              user={{
+                id: user.id,
+                alias: user.alias,
+                displayName: user.displayName,
+                avatar: user.avatar,
+                postsHenkens: user.postHenkens,
+              }}
+            />
+          </>
+        )}
     </main>
   );
 };
 
-export const TemplateUserPage: React.VFC<{
-  user: {
-    id: string;
-    alias: string;
-    displayName: string;
-    avatar: string;
-  };
-}> = ({ user }) => {
+export const TemplateUserPage: React.VFC<
+  {
+    user:
+      | {
+        id: string;
+        alias: string;
+        displayName: string;
+        avatar: string;
+        receivedHenkens: {
+          totalCount: number;
+          pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
+          nodes: {
+            id: string;
+            comment: string;
+            postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+            answer: { type: "right" | "wrong"; comment: string; } | null;
+            content:
+              | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+              | { type: "bookseries"; content: { id: string; title: string; }; }
+              | { type: "author"; content: { id: string; name: string; }; };
+          }[];
+        };
+      }
+      | {
+        id: string;
+        alias: string;
+        displayName: string;
+        avatar: string;
+        postHenkens: {
+          totalCount: number;
+          pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
+          nodes: {
+            id: string;
+            comment: string;
+            postTo: { id: string; alias: string; displayName: string; avatar: string; };
+            answer: { type: "right" | "wrong"; comment: string; } | null;
+            content:
+              | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+              | { type: "bookseries"; content: { id: string; title: string; }; }
+              | { type: "author"; content: { id: string; name: string; }; };
+          }[];
+        };
+      };
+  }
+> = ({ user }) => {
   return <View user={user} />;
 };

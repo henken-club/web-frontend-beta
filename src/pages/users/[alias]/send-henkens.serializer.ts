@@ -1,4 +1,4 @@
-import { UserPageQuery as PageQueryResult } from "./index.page.codegen";
+import { UserSendHenkensPageQuery as PageQueryResult } from "./send-henkens.page.codegen";
 
 import { serializeAnswerType } from "~/pages/_serializer";
 
@@ -6,7 +6,7 @@ type ResultHenken = Exclude<PageQueryResult["findUser"]["user"], null | undefine
 
 export const deTypename = <T extends { __typename: string; }>(user: T): Omit<T, "__typename"> => ({ ...user });
 
-export const serializeContent = (content: ResultHenken["receivedHenkens"]["edges"][number]["node"]["content"]):
+export const serializeContent = (content: ResultHenken["postsHenkens"]["edges"][number]["node"]["content"]):
   | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
   | { type: "bookseries"; content: { id: string; title: string; }; }
   | { type: "author"; content: { id: string; name: string; }; } => {
@@ -45,14 +45,14 @@ type SerializedProps = {
     alias: string;
     displayName: string;
     avatar: string;
-    receivedHenkens: {
+    postHenkens: {
       totalCount: number;
       pageInfo: { hasNextPage: boolean; endCursor: string; } | null;
       nodes: {
         id: string;
         comment: string;
         createdAt: string;
-        postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+        postTo: { id: string; alias: string; displayName: string; avatar: string; };
         answer: { type: "right" | "wrong"; comment: string; } | null;
         content: {
           type: "book";
@@ -77,19 +77,19 @@ export const serializer = ({ findUser: { user } }: PageQueryResult): SerializedP
       alias: user.alias,
       displayName: user.displayName,
       avatar: user.avatar,
-      receivedHenkens: {
-        totalCount: user.receivedHenkens.totalCount,
-        pageInfo: user.receivedHenkens.pageInfo.hasNextPage && user.receivedHenkens.pageInfo.endCursor
+      postHenkens: {
+        totalCount: user.postsHenkens.totalCount,
+        pageInfo: user.postsHenkens.pageInfo.hasNextPage && user.postsHenkens.pageInfo.endCursor
           ? {
-            hasNextPage: user.receivedHenkens.pageInfo.hasNextPage,
-            endCursor: user.receivedHenkens.pageInfo.endCursor,
+            hasNextPage: user.postsHenkens.pageInfo.hasNextPage,
+            endCursor: user.postsHenkens.pageInfo.endCursor,
           }
           : null,
-        nodes: user.receivedHenkens.edges.map(({ node: henken }) => (
+        nodes: user.postsHenkens.edges.map(({ node: henken }) => (
           deTypename({
             ...henken,
             content: serializeContent(henken.content),
-            postedBy: deTypename({ ...henken.postedBy }),
+            postTo: deTypename({ ...henken.postsTo }),
             answer: henken.answer
               ? deTypename({ ...henken.answer, type: serializeAnswerType(henken.answer.type) })
               : null,

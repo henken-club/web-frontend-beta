@@ -7,9 +7,9 @@ export const Template: React.VFC<{ className?: string; Text: React.VFC<{ classNa
   { className, Text },
 ) => {
   return (
-    <div className={clsx(className, ["inline-flex"], ["rounded-lg"], [["px-2"], ["py-0.5"]])}>
+    <span className={clsx(className, ["inline-flex"], ["rounded-lg"], [["px-2"], ["py-0.5"]])}>
       <Text className={clsx(["text-sm"])} />
-    </div>
+    </span>
   );
 };
 

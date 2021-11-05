@@ -19,4 +19,5 @@ export { queryHenkenPage } from "./HenkenPage/queryHenkenPage";
 
 // user page
 export { queryAllUserPages } from "./UserPage/queryAllUserPages";
+export { querySendHenkensUserPage } from "./UserPage/querySendHenkensUserPage";
 export { queryUserPage } from "./UserPage/queryUserPage";
