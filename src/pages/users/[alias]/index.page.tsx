@@ -61,6 +61,9 @@ query UserPage($alias: String!) {
             }
             content {
               __typename
+              ... on TempContent{
+                  id name type
+              }
               ... on Book {
                 id
                 title

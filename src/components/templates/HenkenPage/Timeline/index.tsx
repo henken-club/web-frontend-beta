@@ -16,6 +16,7 @@ export const View: React.VFC<{
     type: "right" | "wrong";
   } | null;
   content:
+    | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
     | {
       type: "book";
       content: {
@@ -86,6 +87,7 @@ export const Timeline: React.VFC<{
       type: "right" | "wrong";
     } | null;
     content:
+      | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
       | {
         type: "book";
         content: {

@@ -120,15 +120,15 @@ export const View: React.VFC<{
 export const Notification: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const [{ data }] = useGlobalNavFetchNotificationsQuery();
   const notifications = useMemo<NotificationType[]>(() => {
-    if (!data || !data.viewer) return [];
-    return data.viewer.activities.edges.map(({ node }) => {
+    if (!data || !data.notifications) return [];
+    return data.notifications.edges.map(({ node }) => {
       switch (node.__typename) {
-        case "ReceivedHenkenActivity":
+        case "ReceivedHenkenNotification":
           return {
             type: "receivedHenken",
             value: {
               id: node.id,
-              unread: node.unread,
+              unread: !node.read,
               comment: node.henken.comment,
               createdAt: node.createdAt,
               from: {
@@ -139,12 +139,12 @@ export const Notification: React.VFC<{ className?: string; }> = ({ ...props }) =
               },
             },
           };
-        case "ReceivedAnswerActivity":
+        case "ReceivedAnswerNotification":
           return {
             type: "receivedAnswer",
             value: {
               id: node.id,
-              unread: node.unread,
+              unread: !node.read,
               comment: node.answer.comment,
               createdAt: node.createdAt,
               from: {

@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import React, { ContextType, useMemo, useState } from "react";
 
 import { ContentSect as Content } from "./Content";
-import { CreateHenkenFormContext } from "./context";
+import { ContentType, CreateHenkenFormContext } from "./context";
 import { Control } from "./Control";
 import { Created } from "./Created";
 import { From } from "./From";
@@ -11,7 +11,7 @@ import { To } from "./To";
 
 import { useViewer } from "~/auth/useViewer";
 import { IconCreateHenken } from "~/components/atoms/Icon";
-import { useCreateHenkenFormCreateHenkenMutation } from "~/components/codegen";
+import { CreateHenkenArgsContentType, useCreateHenkenFormCreateHenkenMutation } from "~/components/codegen";
 import { useTranslation } from "~/i18n/useTranslation";
 
 const _CreateHenkenFormCreateHenkenMutation = gql`
@@ -23,6 +23,17 @@ const _CreateHenkenFormCreateHenkenMutation = gql`
     }
   }
 `;
+
+export const transferGraphQLContentTypeEnum = (type: ContentType["type"]) => {
+  switch (type) {
+    case "author":
+      return CreateHenkenArgsContentType.Author;
+    case "book":
+      return CreateHenkenArgsContentType.Book;
+    case "bookseries":
+      return CreateHenkenArgsContentType.BookSeries;
+  }
+};
 
 export const Component: React.VFC<{ className?: string; }> = ({ className, ...props }) => {
   const { LL } = useTranslation();
@@ -102,7 +113,12 @@ export const CreateHenkenForm: React.VFC<{ className?: string; }> = (
             setContent: (value) => setContent(value),
             setComment: (value) => setComment(value),
             createHenken: async () => {
-              const { data, error } = await createHenken({ to: to.id, content: content.value.id, comment });
+              const { data, error } = await createHenken({
+                to: to.id,
+                contentId: content.value.id,
+                contentType: transferGraphQLContentTypeEnum(content.type),
+                comment,
+              });
               if (!error && data) {
                 setCreated({ id: data.createHenken.henken.id });
               }

@@ -5,7 +5,7 @@ import { c } from "~/mocks/constraints";
 import { Random } from "~/mocks/random";
 
 const resultUser = (id: keyof typeof c.users) => ({
-  __typename: "SearchUsersResult" as const,
+  __typename: "SearchUserResult" as const,
   user: { __typename: "User" as const, id, ...c.users[id] },
 });
 
@@ -23,9 +23,9 @@ export const querySearchUser = graphql.query(
     return res(
       ctx.data({
         __typename: "Query",
-        searchUsers: {
-          __typename: "SearchUsersPayload",
-          nodes: generator.pick(searchNodes, generator.integer(0, 4)),
+        searchUser: {
+          __typename: "SearchUserPayload",
+          results: generator.pick(searchNodes, generator.integer(0, 4)),
         },
       }),
     );

@@ -7,6 +7,7 @@ import { BookSeries } from "./BookSeries";
 export const Content: React.VFC<{
   className?: string;
   content:
+    | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
     | {
       type: "book";
       content: {
@@ -20,14 +21,8 @@ export const Content: React.VFC<{
         }[];
       };
     }
-    | {
-      type: "bookseries";
-      content: { id: string; title: string; };
-    }
-    | {
-      type: "author";
-      content: { id: string; name: string; };
-    };
+    | { type: "bookseries"; content: { id: string; title: string; }; }
+    | { type: "author"; content: { id: string; name: string; }; };
 }> = ({ content, ...props }) => {
   return (
     <>

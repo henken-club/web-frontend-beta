@@ -41,7 +41,7 @@ export const Alias: React.VFC<{ className?: string; }> = ({ className }) => {
               client.query<RegisterUserIsAliasUniqueQuery, RegisterUserIsAliasUniqueQueryVariables>(
                 RegisterUserIsAliasUniqueDocument,
                 { alias },
-              ).toPromise().then(({ data }) => data?.isAliasUnique || false),
+              ).toPromise().then(({ data }) => Boolean(data?.findUser.user)),
           },
         })}
         name="alias"

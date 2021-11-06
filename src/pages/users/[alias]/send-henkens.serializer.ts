@@ -1,4 +1,4 @@
-import { UserSendHenkensPageQuery as PageQueryResult } from "./send-henkens.page.codegen";
+import { ContentType, UserSendHenkensPageQuery as PageQueryResult } from "./send-henkens.page.codegen";
 
 import { serializeAnswerType } from "~/pages/_serializer";
 
@@ -7,35 +7,28 @@ type ResultHenken = Exclude<PageQueryResult["findUser"]["user"], null | undefine
 export const deTypename = <T extends { __typename: string; }>(user: T): Omit<T, "__typename"> => ({ ...user });
 
 export const serializeContent = (content: ResultHenken["postsHenkens"]["edges"][number]["node"]["content"]):
+  | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
   | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
   | { type: "bookseries"; content: { id: string; title: string; }; }
   | { type: "author"; content: { id: string; name: string; }; } => {
   switch (content.__typename) {
     case "Book":
-      return {
-        type: "book",
-        content: {
-          id: content.id,
-          title: content.title,
-          cover: content.cover || null,
-        },
-      };
+      return { type: "book", content: { id: content.id, title: content.title, cover: content.cover || null } };
     case "BookSeries":
-      return {
-        type: "bookseries",
-        content: {
-          id: content.id,
-          title: content.title,
-        },
-      };
+      return { type: "bookseries", content: { id: content.id, title: content.title } };
     case "Author":
-      return {
-        type: "author",
-        content: {
-          id: content.id,
-          name: content.name,
-        },
-      };
+      return { type: "author", content: { id: content.id, name: content.name } };
+    case "TempContent":
+      switch (content.type) {
+        case ContentType.Author:
+          return { type: "tempContent", content: { id: content.id, name: content.name, type: "author" } };
+        case ContentType.Book:
+          return { type: "tempContent", content: { id: content.id, name: content.name, type: "book" } };
+        case ContentType.BookSeries:
+          return { type: "tempContent", content: { id: content.id, name: content.name, type: "bookseries" } };
+        default:
+          throw new Error("Invalid temporary content type");
+      }
   }
 };
 
@@ -54,16 +47,11 @@ type SerializedProps = {
         createdAt: string;
         postTo: { id: string; alias: string; displayName: string; avatar: string; };
         answer: { type: "right" | "wrong"; comment: string; } | null;
-        content: {
-          type: "book";
-          content: { id: string; title: string; cover: string | null; };
-        } | {
-          type: "bookseries";
-          content: { id: string; title: string; };
-        } | {
-          type: "author";
-          content: { id: string; name: string; };
-        };
+        content:
+          | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
+          | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
+          | { type: "bookseries"; content: { id: string; title: string; }; }
+          | { type: "author"; content: { id: string; name: string; }; };
       }[];
     };
   };

@@ -1,21 +1,18 @@
-import { AnswerType, HenkenPageQuery as PageQueryResult } from "./index.page.codegen";
+import { AnswerType, ContentType, HenkenPageQuery as PageQueryResult } from "./index.page.codegen";
 
 type ResultHenken = Exclude<PageQueryResult["findHenken"]["henken"], null | undefined>;
 
 export const deTypename = <T extends { __typename: string; }>(user: T): Omit<T, "__typename"> => ({ ...user });
 
 export const serializeContent = (content: ResultHenken["content"]):
+  | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
   | {
     type: "book";
     content: {
       id: string;
       title: string;
       cover: string | null;
-      authors: {
-        id: string;
-        name: string;
-        role: null;
-      }[];
+      authors: { id: string; name: string; role: null; }[];
     };
   }
   | { type: "bookseries"; content: { id: string; title: string; }; }
@@ -51,6 +48,17 @@ export const serializeContent = (content: ResultHenken["content"]):
           name: content.name,
         },
       };
+    case "TempContent":
+      switch (content.type) {
+        case ContentType.Author:
+          return { type: "tempContent", content: { id: content.id, name: content.name, type: "author" } };
+        case ContentType.Book:
+          return { type: "tempContent", content: { id: content.id, name: content.name, type: "book" } };
+        case ContentType.BookSeries:
+          return { type: "tempContent", content: { id: content.id, name: content.name, type: "bookseries" } };
+        default:
+          throw new Error("Invalid temporary content type");
+      }
   }
 };
 

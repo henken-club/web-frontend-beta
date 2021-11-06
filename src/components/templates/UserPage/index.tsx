@@ -21,6 +21,7 @@ export const View: React.VFC<{
           postedBy: { id: string; alias: string; displayName: string; avatar: string; };
           answer: { type: "right" | "wrong"; comment: string; } | null;
           content:
+            | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
             | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
             | { type: "bookseries"; content: { id: string; title: string; }; }
             | { type: "author"; content: { id: string; name: string; }; };
@@ -41,6 +42,7 @@ export const View: React.VFC<{
           postTo: { id: string; alias: string; displayName: string; avatar: string; };
           answer: { type: "right" | "wrong"; comment: string; } | null;
           content:
+            | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
             | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
             | { type: "bookseries"; content: { id: string; title: string; }; }
             | { type: "author"; content: { id: string; name: string; }; };
@@ -120,6 +122,7 @@ export const TemplateUserPage: React.VFC<
             postedBy: { id: string; alias: string; displayName: string; avatar: string; };
             answer: { type: "right" | "wrong"; comment: string; } | null;
             content:
+              | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
               | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
               | { type: "bookseries"; content: { id: string; title: string; }; }
               | { type: "author"; content: { id: string; name: string; }; };
@@ -140,6 +143,7 @@ export const TemplateUserPage: React.VFC<
             postTo: { id: string; alias: string; displayName: string; avatar: string; };
             answer: { type: "right" | "wrong"; comment: string; } | null;
             content:
+              | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
               | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
               | { type: "bookseries"; content: { id: string; title: string; }; }
               | { type: "author"; content: { id: string; name: string; }; };

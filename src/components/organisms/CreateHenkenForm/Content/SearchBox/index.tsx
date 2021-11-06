@@ -15,6 +15,7 @@ const _CreateHenkenFormSearchContentQuery = gql`
     searchContent(query:$query,limit: 4, skip:0,filter:{type:null}){
       results{
         content{
+          __typename
           ... on Book {
             id title cover
           }
@@ -122,7 +123,7 @@ export const SearchBox: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const suggestions = useMemo<ComponentProps<typeof Component>["suggestions"]>(
     () => {
       if (Boolean(input) && input === "") return [];
-      return searchData?.searchContent.nodes.map(({ content }) => {
+      return searchData?.searchContent.results.map(({ content }) => {
         switch (content.__typename) {
           case "Book":
             return { type: "book", value: { id: content.id, title: content.title, cover: content.cover || null } };

@@ -25,17 +25,14 @@ export const View: React.VFC<{
       type: "right" | "wrong";
     } | null;
     content:
+      | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
       | {
         type: "book";
         content: {
           id: string;
           title: string;
           cover: string | null;
-          authors: {
-            id: string;
-            name: string;
-            role: null;
-          }[];
+          authors: { id: string; name: string; role: null; }[];
         };
       }
       | { type: "bookseries"; content: { id: string; title: string; }; }
@@ -116,6 +113,7 @@ export const TemplateHenkenPage: React.VFC<{
       type: "right" | "wrong";
     } | null;
     content:
+      | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
       | {
         type: "book";
         content: {
