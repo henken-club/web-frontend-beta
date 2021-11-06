@@ -10,19 +10,18 @@ import { useGlobalNavFetchNotificationsQuery } from "~/components/codegen";
 
 const _GlobalNavFetchNotifications = gql`
   query GlobalNavFetchNotifications{
-    viewer{
-      activities(first:10,orderBy:{direction:DESC,field:CREATED_AT}){
+      notifications(first:10,orderBy:{direction:DESC,field:CREATED_AT}){
         pageInfo{
           hasNextPage
           endCursor
         }
         edges{
           node{
-            ... on ReceivedHenkenActivity{
+            ... on  ReceivedHenkenNotification{
               id
               createdAt
-              unread
-              henken{
+              read
+              henken {
                 id
                 comment
                 postedBy{
@@ -33,10 +32,10 @@ const _GlobalNavFetchNotifications = gql`
                 }
               }
             }
-            ... on ReceivedAnswerActivity{
+            ... on ReceivedAnswerNotification{
               id
               createdAt
-              unread
+              read
               answer {
                 id
                 comment
@@ -50,7 +49,6 @@ const _GlobalNavFetchNotifications = gql`
                   }
                 }
               }
-            }
           }
         }
       }

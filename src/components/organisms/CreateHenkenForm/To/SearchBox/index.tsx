@@ -13,8 +13,8 @@ import { useTranslation } from "~/i18n/useTranslation";
 const _CreateHenkenFormSearchUserQuery = gql`
   query CreateHenkenFormSearchUser( $query: String!
   ) {
-searchUsers(query:$query,limit: 4, skip:0){
-  nodes{
+searchUser(query:$query,limit: 4, skip:0){
+  results{
     user{
       id
       alias

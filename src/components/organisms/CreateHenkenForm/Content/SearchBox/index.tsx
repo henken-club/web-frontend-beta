@@ -12,8 +12,8 @@ import { useTranslation } from "~/i18n/useTranslation";
 
 const _CreateHenkenFormSearchContentQuery = gql`
   query CreateHenkenFormSearchContent( $query: String!) {
-    searchContent(query:$query,limit: 4, skip:0){
-      nodes{
+    searchContent(query:$query,limit: 4, skip:0,filter:{type:null}){
+      results{
         content{
           ... on Book {
             id title cover

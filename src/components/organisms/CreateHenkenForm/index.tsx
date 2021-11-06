@@ -15,8 +15,8 @@ import { useCreateHenkenFormCreateHenkenMutation } from "~/components/codegen";
 import { useTranslation } from "~/i18n/useTranslation";
 
 const _CreateHenkenFormCreateHenkenMutation = gql`
-  mutation CreateHenkenFormCreateHenken( $to:ID!, $content:ID!,$comment:String!) {
-    createHenken(to:$to,content:$content, comment:$comment ){
+  mutation CreateHenkenFormCreateHenken( $to:ID!, $comment:String!,$contentId:ID!,$contentType:CreateHenkenArgsContentType!) {
+    createHenken(toUserId:$to,comment:$comment, contentId:$contentId, contentType:$contentType ){
       henken{
         id
       }

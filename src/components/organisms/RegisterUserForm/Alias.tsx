@@ -15,7 +15,7 @@ import { useTranslation } from "~/i18n/useTranslation";
 
 const _RegisterUserIsAliasUniqueQuery = gql`
 query RegisterUserIsAliasUnique($alias:String!){
-  isAliasUnique(alias:$alias)
+  findUser(alias:$alias){user{id}}
 }
 `;
 
