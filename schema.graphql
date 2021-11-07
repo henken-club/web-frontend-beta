@@ -279,11 +279,16 @@ type PostAnswerActivity implements Activity & Node {
   id: ID!
 }
 
+type PostHenkenActivity implements Activity & Node {
+  createdAt: DateTime!
+  id: ID!
+}
+
 type Query {
   answer(id: ID!): Answer!
   author(id: ID!): Author!
   book(id: ID!): Book!
-  bookseries(id: ID!): BookSeries!
+  bookSeries(id: ID!): BookSeries!
   findAnswer(id: ID!): FindAnswerPayload!
   findHenken(id: ID!): FindHenkenPayload!
   findUser(alias: String, id: ID): FindUserPayload!
@@ -301,6 +306,7 @@ type Query {
 }
 
 type ReceivedAnswerActivity implements Activity & Node {
+  answer: Answer!
   createdAt: DateTime!
   id: ID!
 }
@@ -314,6 +320,7 @@ type ReceivedAnswerNotification implements Node & Notification {
 
 type ReceivedHenkenActivity implements Activity & Node {
   createdAt: DateTime!
+  henken: Henken!
   id: ID!
 }
 
@@ -354,11 +361,6 @@ type SearchUserResult {
   user: User!
 }
 
-type SendHenkenActivity implements Activity & Node {
-  createdAt: DateTime!
-  id: ID!
-}
-
 type TempContent implements Node {
   id: ID!
   name: String!
@@ -370,7 +372,9 @@ type User implements Node {
   alias: String!
   avatar: String!
   displayName: String!
+  followee(to: ID!): Following
   followees(after: String, before: String, first: Int, last: Int, orderBy: FollowingOrder!): FollowingConnection!
+  follower(from: ID!): Following
   followers(after: String, before: String, first: Int, last: Int, orderBy: FollowingOrder!): FollowingConnection!
   id: ID!
   postsHenkens(after: String, before: String, filter: UserPostsHenkensFilter, first: Int, last: Int, orderBy: HenkenOrder!): HenkenConnection!
