@@ -10,19 +10,18 @@ import { useGlobalNavFetchNotificationsQuery } from "~/components/codegen";
 
 const _GlobalNavFetchNotifications = gql`
   query GlobalNavFetchNotifications{
-    viewer{
-      activities(first:10,orderBy:{direction:DESC,field:CREATED_AT}){
+      notifications(first:10,orderBy:{direction:DESC,field:CREATED_AT}){
         pageInfo{
           hasNextPage
           endCursor
         }
         edges{
           node{
-            ... on ReceivedHenkenActivity{
+            ... on  ReceivedHenkenNotification{
               id
               createdAt
-              unread
-              henken{
+              read
+              henken {
                 id
                 comment
                 postedBy{
@@ -33,10 +32,10 @@ const _GlobalNavFetchNotifications = gql`
                 }
               }
             }
-            ... on ReceivedAnswerActivity{
+            ... on ReceivedAnswerNotification{
               id
               createdAt
-              unread
+              read
               answer {
                 id
                 comment
@@ -50,7 +49,6 @@ const _GlobalNavFetchNotifications = gql`
                   }
                 }
               }
-            }
           }
         }
       }
@@ -122,15 +120,15 @@ export const View: React.VFC<{
 export const Notification: React.VFC<{ className?: string; }> = ({ ...props }) => {
   const [{ data }] = useGlobalNavFetchNotificationsQuery();
   const notifications = useMemo<NotificationType[]>(() => {
-    if (!data || !data.viewer) return [];
-    return data.viewer.activities.edges.map(({ node }) => {
+    if (!data || !data.notifications) return [];
+    return data.notifications.edges.map(({ node }) => {
       switch (node.__typename) {
-        case "ReceivedHenkenActivity":
+        case "ReceivedHenkenNotification":
           return {
             type: "receivedHenken",
             value: {
               id: node.id,
-              unread: node.unread,
+              unread: !node.read,
               comment: node.henken.comment,
               createdAt: node.createdAt,
               from: {
@@ -141,12 +139,12 @@ export const Notification: React.VFC<{ className?: string; }> = ({ ...props }) =
               },
             },
           };
-        case "ReceivedAnswerActivity":
+        case "ReceivedAnswerNotification":
           return {
             type: "receivedAnswer",
             value: {
               id: node.id,
-              unread: node.unread,
+              unread: !node.read,
               comment: node.answer.comment,
               createdAt: node.createdAt,
               from: {

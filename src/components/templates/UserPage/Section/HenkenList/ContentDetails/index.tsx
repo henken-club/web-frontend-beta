@@ -6,6 +6,7 @@ import { AuthorSmallBadge, BookSeriesSmallBadge, BookSmallBadge } from "~/compon
 export const ContentDetails: React.VFC<{
   className?: string;
   content:
+    | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
     | { type: "book"; content: { id: string; title: string; }; }
     | { type: "bookseries"; content: { id: string; title: string; }; }
     | { type: "author"; content: { id: string; name: string; }; };

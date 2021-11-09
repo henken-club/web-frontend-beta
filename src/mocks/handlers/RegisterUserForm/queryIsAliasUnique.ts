@@ -10,7 +10,7 @@ export const queryIsAliasUnique = graphql.query(
   (req, res, ctx) => {
     return res(ctx.data({
       __typename: "Query",
-      isAliasUnique: aliases.includes(req.variables.alias),
+      findUser: { __typename: "FindUserPayload", user: { __typename: "User", id: "id" } },
     }));
   },
 );

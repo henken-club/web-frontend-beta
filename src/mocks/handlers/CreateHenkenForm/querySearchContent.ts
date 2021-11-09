@@ -5,17 +5,17 @@ import { c } from "~/mocks/constraints";
 import { Random } from "~/mocks/random";
 
 const resultBook = (id: keyof typeof c.books) => ({
-  __typename: "SearchResult" as const,
+  __typename: "SearchContentResult" as const,
   content: { __typename: "Book" as const, id, ...c.books[id] },
 });
 
 const resultBookSeries = (id: keyof typeof c.bookseries) => ({
-  __typename: "SearchResult" as const,
+  __typename: "SearchContentResult" as const,
   content: { __typename: "BookSeries" as const, id, ...c.bookseries[id] },
 });
 
 const resultAuthor = (id: keyof typeof c.authors) => ({
-  __typename: "SearchResult" as const,
+  __typename: "SearchContentResult" as const,
   content: { __typename: "Author" as const, id, ...c.authors[id] },
 });
 
@@ -45,7 +45,7 @@ export const querySearchContent = graphql.query(
         __typename: "Query",
         searchContent: {
           __typename: "SearchContentPayload",
-          nodes: generator.pick(searchNodes, generator.integer(0, 4)),
+          results: generator.pick(searchNodes, generator.integer(0, 4)),
         },
       }),
     );

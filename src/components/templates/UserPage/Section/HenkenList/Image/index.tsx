@@ -8,9 +8,8 @@ import { BookCover } from "~/components/atoms/BookCover";
 export const Image: React.VFC<{
   className?: string;
   content:
-    | { type: "book"; content: { id: string; title: string; cover: string | null; }; }
-    | { type: "bookseries"; content: { id: string; title: string; }; }
-    | { type: "author"; content: { id: string; name: string; }; };
+    | { type: "tempContent" | "bookseries" | "author"; }
+    | { type: "book"; content: { id: string; title: string; cover: string | null; }; };
 }> = ({
   content,
   className,
@@ -23,6 +22,7 @@ export const Image: React.VFC<{
           {content.type === "book" && <BookCover className={clsx(["w-full"])} {...props} book={content.content} />}
           {content.type === "author" && <NoImage {...props} />}
           {content.type === "bookseries" && <NoImage {...props} />}
+          {content.type === "tempContent" && <NoImage {...props} />}
         </>
       )}
     </div>

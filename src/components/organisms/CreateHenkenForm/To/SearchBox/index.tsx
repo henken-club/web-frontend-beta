@@ -13,8 +13,8 @@ import { useTranslation } from "~/i18n/useTranslation";
 const _CreateHenkenFormSearchUserQuery = gql`
   query CreateHenkenFormSearchUser( $query: String!
   ) {
-searchUsers(query:$query,limit: 4, skip:0){
-  nodes{
+searchUser(query:$query,limit: 4, skip:0){
+  results{
     user{
       id
       alias
@@ -122,7 +122,7 @@ export const SearchUser: React.VFC<{ className?: string; }> = ({ ...props }) => 
   const suggestions = useMemo<{ id: string; displayName: string; alias: string; avatar: string; }[]>(
     () => {
       if (Boolean(input) && input === "") return [];
-      return searchData?.searchUsers.nodes.map(({ user }) => ({
+      return searchData?.searchUser.results.map(({ user }) => ({
         id: user.id,
         alias: user.alias,
         displayName: user.displayName,

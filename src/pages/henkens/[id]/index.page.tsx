@@ -55,6 +55,9 @@ query HenkenPage($id: ID!) {
       }
       content {
         __typename
+        ... on TempContent{
+          id name type
+        }
         ... on Book {
           id
           title
