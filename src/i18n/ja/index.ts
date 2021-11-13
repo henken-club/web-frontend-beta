@@ -67,6 +67,10 @@ const ja: BaseTranslation = {
     },
   },
 
+  AnswerHenkenForm: {
+    Title: "返答する",
+  },
+
   RegisterUserForm: {
     aria: {
       Alias: "エイリアス",
