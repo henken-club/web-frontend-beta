@@ -37,6 +37,10 @@ type AnswerEdge implements Edge {
   node: Answer!
 }
 
+type AnswerHenkenPayload {
+  answer: Answer!
+}
+
 enum AnswerType {
   RIGHT
   WRONG
@@ -228,6 +232,7 @@ enum HenkenOrderField {
 }
 
 type Mutation {
+  answerHenken(comment: String!, henkenId: ID!, type: AnswerType!): AnswerHenkenPayload!
   createHenken(comment: String = "", contentId: ID!, contentType: CreateHenkenArgsContentType!, toUserId: ID!): CreateHenkenPayload!
   registerUser(alias: String!, avatar: String!, displayName: String!): RegisterUserPayload!
 }

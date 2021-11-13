@@ -22,7 +22,7 @@ generates:
 
   ./src/components/codegen.ts:
     documents:
-      - "src/components/**/*.{ts,tsx}"
+      - "src/components/**/*.{ts,tsx,graphql}"
       - "!src/components/**/*.codegen.ts"
     plugins:
       - typescript
