@@ -6,7 +6,7 @@ import { View } from "./To";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "HenkenPage/Timeline/Comment/To",
+  title: "templates/HenkenPage/Timeline/Comment/To",
   component: View,
   argTypes: {
     type: { table: { disable: true } },
