@@ -8,7 +8,7 @@ import { FormValue } from "./FormValue";
 import { Component } from ".";
 
 export default {
-  title: "RegisterUserForm",
+  title: "organisms/RegisterUserForm",
   component: Component,
   argTypes: {},
 } as Meta;
