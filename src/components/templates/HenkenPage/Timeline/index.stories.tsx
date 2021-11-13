@@ -7,7 +7,7 @@ import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
-  title: "HenkenPage/Timeline",
+  title: "templates/HenkenPage/Timeline",
   component: View,
   parameters: {
     layout: "fullscreen",

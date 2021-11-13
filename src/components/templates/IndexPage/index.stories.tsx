@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 import { Component } from ".";
 
 export default {
-  title: "UserPage",
+  title: "templates/UserPage",
   component: Component,
   parameters: {
     layout: "fullscreen",
