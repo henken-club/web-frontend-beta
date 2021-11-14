@@ -1,0 +1,14 @@
+mutation AnswerHenkenFormAnswerHenken(
+  $henkenId: ID!
+  $comment: String!
+  $answerType: AnswerType!
+) {
+  answerHenken(henkenId: $henkenId, comment: $comment, type: $answerType) {
+    answer {
+      id
+      henken {
+        id
+      }
+    }
+  }
+}
