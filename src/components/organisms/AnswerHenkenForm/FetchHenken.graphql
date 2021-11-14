@@ -1,0 +1,39 @@
+query AnswerHenkenFormFetchHenken($henkenId: ID!) {
+  henken(id: $henkenId) {
+    id
+    comment
+    postedBy {
+      id
+      alias
+      displayName
+      avatar
+    }
+    postsTo {
+      id
+      alias
+      displayName
+      avatar
+    }
+    content {
+      __typename
+      ... on TempContent {
+        id
+        name
+        type
+      }
+      ... on Book {
+        id
+        title
+        cover
+      }
+      ... on BookSeries {
+        id
+        title
+      }
+      ... on Author {
+        id
+        name
+      }
+    }
+  }
+}
