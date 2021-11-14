@@ -5,7 +5,7 @@ import React from "react";
 import { getSdk } from "./index.page.codegen";
 import { serializer } from "./index.serializer";
 
-import { TemplateHenkenPage } from "~/components/templates/HenkenPage";
+import { TemplateHenkenPage } from "~/components/templates/HenkenPage2";
 import { graphqlClient } from "~/pages/graphql-client";
 
 const _AllHenkenPagesQueryDocument = gql`

@@ -5,23 +5,23 @@ type ResultHenken = Exclude<PageQueryResult["findHenken"]["henken"], null | unde
 export const deTypename = <T extends { __typename: string; }>(user: T): Omit<T, "__typename"> => ({ ...user });
 
 export const serializeContent = (content: ResultHenken["content"]):
-  | { type: "tempContent"; content: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
+  | { type: "tempContent"; value: { id: string; name: string; type: "book" | "bookseries" | "author"; }; }
   | {
     type: "book";
-    content: {
+    value: {
       id: string;
       title: string;
       cover: string | null;
       authors: { id: string; name: string; role: null; }[];
     };
   }
-  | { type: "bookseries"; content: { id: string; title: string; }; }
-  | { type: "author"; content: { id: string; name: string; }; } => {
+  | { type: "bookseries"; value: { id: string; title: string; }; }
+  | { type: "author"; value: { id: string; name: string; }; } => {
   switch (content.__typename) {
     case "Book":
       return {
         type: "book",
-        content: {
+        value: {
           id: content.id,
           title: content.title,
           cover: content.cover || null,
@@ -35,7 +35,7 @@ export const serializeContent = (content: ResultHenken["content"]):
     case "BookSeries":
       return {
         type: "bookseries",
-        content: {
+        value: {
           id: content.id,
           title: content.title,
         },
@@ -43,7 +43,7 @@ export const serializeContent = (content: ResultHenken["content"]):
     case "Author":
       return {
         type: "author",
-        content: {
+        value: {
           id: content.id,
           name: content.name,
         },
@@ -51,11 +51,11 @@ export const serializeContent = (content: ResultHenken["content"]):
     case "TempContent":
       switch (content.type) {
         case ContentType.Author:
-          return { type: "tempContent", content: { id: content.id, name: content.name, type: "author" } };
+          return { type: "tempContent", value: { id: content.id, name: content.name, type: "author" } };
         case ContentType.Book:
-          return { type: "tempContent", content: { id: content.id, name: content.name, type: "book" } };
+          return { type: "tempContent", value: { id: content.id, name: content.name, type: "book" } };
         case ContentType.BookSeries:
-          return { type: "tempContent", content: { id: content.id, name: content.name, type: "bookseries" } };
+          return { type: "tempContent", value: { id: content.id, name: content.name, type: "bookseries" } };
         default:
           throw new Error("Invalid temporary content type");
       }

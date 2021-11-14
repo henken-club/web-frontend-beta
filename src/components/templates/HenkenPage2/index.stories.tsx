@@ -1,0 +1,116 @@
+import { Meta, Story } from "@storybook/react";
+import React, { ComponentProps, ContextType } from "react";
+
+import { HenkenPageContext } from "./types";
+
+import { PageContainer } from "~/components/layouts/Default";
+import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { View } from ".";
+
+export default {
+  title: "templates/HenkenPage2",
+  component: View,
+  parameters: {
+    layout: "fullscreen",
+  },
+  argTypes: {},
+  decorators: [
+    (Story) => (
+      <PageContainer>
+        <Story />
+      </PageContainer>
+    ),
+  ],
+} as Meta;
+
+type StoryProps = ComponentProps<typeof View> & { contextValue: ContextType<typeof HenkenPageContext>; };
+
+export const ContentIsBook: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+ContentIsBook.storyName = "コンテンツがBookである場合";
+ContentIsBook.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "book",
+      value: {
+        id: "book_1",
+        title: "アー",
+        cover: mockBookcovers[1],
+        authors: [
+          { id: "author_1", name: "著者1", role: null },
+          { id: "author_2", name: "著者2", role: null },
+        ],
+      },
+    },
+  },
+};
+
+export const ContentIsAuthor: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+ContentIsAuthor.storyName = "コンテンツがAuthorである場合";
+ContentIsAuthor.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "author",
+      value: {
+        id: "author_1",
+        name: "伊藤計劃",
+      },
+    },
+  },
+};
+
+export const ContentIsBookSeries: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+ContentIsBookSeries.storyName = "コンテンツがBookSeriesである場合";
+ContentIsBookSeries.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "bookseries",
+      value: {
+        id: "bookseries_1",
+        title: "それでも町は廻っている",
+      },
+    },
+  },
+};
+
+export const ContentIsTempContent: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+ContentIsTempContent.storyName = "コンテンツがTempContent(Book)である場合";
+ContentIsTempContent.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "tempContent",
+      value: {
+        id: "temp_1",
+        name: "仮コンテンツ(本)",
+        type: "book",
+      },
+    },
+  },
+};
