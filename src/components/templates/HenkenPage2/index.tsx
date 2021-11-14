@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
+import { Content } from "./Content";
 import { AnswerType, HenkenContent } from "./types";
 import { UserFrom, UserTo } from "./User";
 
@@ -29,18 +30,14 @@ export const View: React.VFC<{
           ["flex", ["flex-col", "lg:flex-row"]],
         )}
       >
-        <div
-          className={clsx(
-            ["flex-grow"],
-            [["bg-blue-50"]],
-          )}
+        <Content
+          className={clsx(["flex-grow"], [["bg-blue-50"]])}
+          content={henken.content}
         />
         <div
           className={clsx(
             ["w-full", "lg:w-1/3"],
             ["flex", ["flex-col", "sm:flex-row", "lg:flex-col"]],
-            ["space-y-1", "sm:space-y-0"],
-            ["space-x-0", "sm:space-x-2", "lg:space-x-0"],
           )}
         >
           <UserFrom

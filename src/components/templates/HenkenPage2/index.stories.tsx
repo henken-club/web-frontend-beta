@@ -93,11 +93,11 @@ ContentIsBookSeries.args = {
   },
 };
 
-export const ContentIsTempContent: Story<StoryProps> = ({ ...props }) => {
+export const ContentIsTempContentBook: Story<StoryProps> = ({ ...props }) => {
   return <View {...props} />;
 };
-ContentIsTempContent.storyName = "コンテンツがTempContent(Book)である場合";
-ContentIsTempContent.args = {
+ContentIsTempContentBook.storyName = "コンテンツがTempContent(Book)である場合";
+ContentIsTempContentBook.args = {
   henken: {
     id: "1",
     comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
@@ -110,6 +110,50 @@ ContentIsTempContent.args = {
         id: "temp_1",
         name: "仮コンテンツ(本)",
         type: "book",
+      },
+    },
+  },
+};
+
+export const ContentIsTempContentAuthor: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+ContentIsTempContentAuthor.storyName = "コンテンツがTempContent(Author)である場合";
+ContentIsTempContentAuthor.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "tempContent",
+      value: {
+        id: "temp_2",
+        name: "仮コンテンツ(著者)",
+        type: "author",
+      },
+    },
+  },
+};
+
+export const ContentIsTempContentBookSeries: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+ContentIsTempContentBookSeries.storyName = "コンテンツがTempContent(BookSeries)である場合";
+ContentIsTempContentBookSeries.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "tempContent",
+      value: {
+        id: "temp_3",
+        name: "仮コンテンツ(本のシリーズ)",
+        type: "bookseries",
       },
     },
   },

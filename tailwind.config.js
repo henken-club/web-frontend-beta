@@ -49,6 +49,12 @@ module.exports = {
           normal: colors.amber[500],
           dark: colors.amber[800],
         },
+        "temp-content": {
+          pale: colors.yellow[50],
+          light: colors.yellow[200],
+          normal: colors.yellow[400],
+          dark: colors.yellow[800],
+        },
       },
       screens: {
         xs: "360px",

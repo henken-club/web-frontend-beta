@@ -18,7 +18,8 @@ export const ViewTemplate: React.VFC<
     <div
       className={clsx(
         className,
-        [["px-4"], ["py-4"]],
+        ["px-4"],
+        ["py-2", "sm:py-4"],
         [["inline-flex"], ["flex-col"]],
       )}
     >
@@ -27,8 +28,8 @@ export const ViewTemplate: React.VFC<
           [["inline-flex"], ["flex-row"], ["items-center"]],
         )}
       >
-        <Icon className={clsx(["text-xl"])} />
-        <Label className={clsx(["ml-2"], ["text-sm"])} />
+        <Icon className={clsx(["text-base", "sm:text-xl"])} />
+        <Label className={clsx(["ml-2"], ["text-xs", "sm:text-sm"])} />
       </div>
       <div
         className={clsx(
@@ -37,7 +38,7 @@ export const ViewTemplate: React.VFC<
         )}
       >
         <LinkUser alias={user.alias}>
-          <a className={clsx([["w-12"], ["h-12"]])}>
+          <a className={clsx([["w-8", "sm:w-12"], ["h-8", "sm:h-12"]])}>
             <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />
           </a>
         </LinkUser>

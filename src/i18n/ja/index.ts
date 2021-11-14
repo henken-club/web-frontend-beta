@@ -4,6 +4,7 @@ const ja: BaseTranslation = {
   Book: "本",
   BookSeries: "本のシリーズ",
   Author: "著者",
+  TempContent: "仮コンテンツ({type:string})",
 
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
