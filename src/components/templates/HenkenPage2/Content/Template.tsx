@@ -12,19 +12,19 @@ export const TemplateContent: React.VFC<{
     <div
       className={clsx(
         className,
-        ["px-2", "sm:px-6", "md:px-8"],
-        ["py-2", "sm:py-6", "md:py-8"],
+        ["px-2", "sm:px-6", "md:px-4"],
+        ["py-2", "sm:py-6", "md:py-2"],
         ["inline-flex", ["flex-row"]],
       )}
     >
       <a
         className={clsx(
           ["flex-shrink-0"],
-          ["w-16", "sm:w-20", "lg:w-28"],
+          ["w-16", "sm:w-20", "md:w-28"],
           ["flex"],
         )}
       >
-        <Image className={clsx(["w-full"], ["h-full"])} />
+        <Image className={clsx(["w-full"])} />
       </a>
       <div
         className={clsx(

@@ -12,9 +12,7 @@ export const UserToView: React.VFC<
   const { LL } = useTranslation();
   return (
     <ViewTemplate
-      className={clsx(className, [
-        ["bg-henken-to-pale"],
-      ])}
+      className={clsx(className)}
       Icon={({ className }) => <IconHenkenUserTo className={clsx(className, ["text-henken-to-normal"])} />}
       Label={({ className }) => <span className={clsx(className)}>{LL.HenkenPage.Timeline.UserTo()}</span>}
       {...props}

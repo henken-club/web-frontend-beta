@@ -18,8 +18,8 @@ export const ViewTemplate: React.VFC<
     <div
       className={clsx(
         className,
-        ["px-4"],
-        ["py-2", "sm:py-4"],
+        ["px-2", "sm:px-4", "md:px-2"],
+        ["py-2"],
         [["inline-flex"], ["flex-col"]],
       )}
     >
@@ -38,7 +38,12 @@ export const ViewTemplate: React.VFC<
         )}
       >
         <LinkUser alias={user.alias}>
-          <a className={clsx([["w-8", "sm:w-12"], ["h-8", "sm:h-12"]])}>
+          <a
+            className={clsx([
+              ["w-8", "sm:w-8"],
+              ["h-8", "sm:h-8"],
+            ])}
+          >
             <AvatarLarge user={{ alias: user.alias, avatar: user.avatar }} />
           </a>
         </LinkUser>
@@ -49,10 +54,10 @@ export const ViewTemplate: React.VFC<
             ["ml-2"],
           )}
         >
-          <span className={clsx(["text-gray-900"], ["text-sm"], ["select-all"])}>
+          <span className={clsx(["text-gray-900"], ["text-xs", "sm:text-sm"], ["select-all"])}>
             {user.displayName}
           </span>
-          <span className={clsx(["text-gray-500"], ["mt-0.5"], ["text-xs"], ["select-all"])}>
+          <span className={clsx(["text-gray-500"], ["sm:mt-0.5"], ["text-xs"], ["select-all"])}>
             {LL.Format.Alias({ alias: user.alias })}
           </span>
         </div>

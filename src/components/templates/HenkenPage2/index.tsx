@@ -19,33 +19,32 @@ export const View: React.VFC<{
     <main
       className={clsx(
         ["w-full"],
-        ["bg-white"],
-        ["shadow-xl"],
+        ["py-4"],
       )}
     >
       <div
         className={clsx(
           ["container", "max-w-screen-lg"],
           ["mx-auto"],
-          ["flex", ["flex-col", "lg:flex-row"]],
+          ["flex", ["flex-col", "md:flex-row"]],
         )}
       >
         <Content
-          className={clsx(["flex-grow"], [["bg-blue-50"]])}
+          className={clsx(["flex-grow"])}
           content={henken.content}
         />
         <div
           className={clsx(
-            ["w-full", "lg:w-1/3"],
-            ["flex", ["flex-col", "sm:flex-row", "lg:flex-col"]],
+            ["w-full", "md:w-1/3"],
+            ["flex", ["flex-col", "sm:flex-row", "md:flex-col"]],
           )}
         >
           <UserFrom
-            className={clsx(["w-full", "sm:w-1/2", "lg:w-full"])}
+            className={clsx(["w-full", "sm:w-1/2", "md:w-full"])}
             user={henken.postedBy}
           />
           <UserTo
-            className={clsx(["w-full", "sm:w-1/2", "lg:w-full"])}
+            className={clsx(["w-full", "sm:w-1/2", "md:w-full"])}
             user={henken.postsTo}
           />
         </div>
