@@ -1,9 +1,8 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { View } from "./From";
-
 import { mockAvatars } from "~/mocks/constraints";
+import { View } from ".";
 
 export default {
   title: "templates/HenkenPage/Timeline/From",
