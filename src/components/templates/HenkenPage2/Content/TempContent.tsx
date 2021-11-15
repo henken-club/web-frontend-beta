@@ -21,6 +21,7 @@ export const View: React.VFC<{
       title={name}
       Image={({ ...props }) => <NoImage {...props} />}
       Badge={({ ...props }) => <TempContentSmallBadge {...props} type={type} />}
+      Details={() => <></>}
     />
   );
 };

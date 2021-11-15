@@ -6,7 +6,8 @@ export const TemplateContent: React.VFC<{
   title: string;
   Image: React.VFC<{ className?: string; }>;
   Badge: React.VFC<{ className?: string; }>;
-}> = ({ className, title, Image, Badge }) => {
+  Details: React.VFC<{ className?: string; }>;
+}> = ({ className, title, Image, Badge, Details }) => {
   return (
     <div
       className={clsx(
@@ -28,20 +29,29 @@ export const TemplateContent: React.VFC<{
       <div
         className={clsx(
           ["flex-grow"],
-          ["ml-2", "sm:ml-4"],
+          ["ml-2", "sm:ml-4", "md:ml-6"],
           ["flex", ["flex-col"], ["items-start"]],
         )}
       >
-        <Badge className={clsx()} />
-        <span
+        <div className={clsx(["flex", ["flex-col"], ["items-start"]])}>
+          <Badge className={clsx()} />
+          <span
+            className={clsx(
+              ["mt-1"],
+              ["select-all"],
+              [["text-gray-700"], ["text-base", "sm:text-lg", "md:text-xl"], ["font-bold"]],
+            )}
+          >
+            {title}
+          </span>
+        </div>
+        <Details
           className={clsx(
-            ["mt-1"],
-            ["select-all"],
-            [["text-gray-700"], ["text-base", "sm:text-lg", "md:text-xl"], ["font-bold"]],
+            ["flex-grow"],
+            ["w-full"],
+            ["mt-0.5", "sm:mt-1", "lg:mt-2"],
           )}
-        >
-          {title}
-        </span>
+        />
       </div>
     </div>
   );

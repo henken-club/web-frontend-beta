@@ -18,6 +18,7 @@ export const View: React.VFC<{
       title={title}
       Image={({ ...props }) => <NoImage {...props} />}
       Badge={({ ...props }) => <BookSeriesSmallBadge {...props} />}
+      Details={() => <></>}
     />
   );
 };
