@@ -8,12 +8,21 @@ import { mockAvatars } from "~/mocks/constraints";
 export default {
   title: "templates/HenkenPage/User/To",
   component: UserToView,
-  argTypes: {},
+  argTypes: {
+    isViewer: { table: { disable: true } },
+  },
 } as Meta;
 
 type StoryProps = ComponentProps<typeof UserToView>;
 
 export const Primary: Story<StoryProps> = ({ ...props }) => <UserToView {...props} />;
 Primary.args = {
-  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  user: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  isViewer: false,
+};
+
+export const IsViewer: Story<StoryProps> = ({ ...props }) => <UserToView {...props} />;
+IsViewer.args = {
+  user: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  isViewer: true,
 };

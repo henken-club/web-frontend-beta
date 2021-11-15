@@ -9,8 +9,9 @@ export const NoAnswerView: React.VFC<
   {
     className?: string;
     user: { id: string; alias: string; displayName: string; avatar: string; };
+    isViewer: boolean;
   }
-> = ({ className, user, ...props }) => {
+> = ({ className, user, isViewer }) => {
   const { LL } = useTranslation();
   return (
     <Template
@@ -19,6 +20,7 @@ export const NoAnswerView: React.VFC<
         ["border-gray-400"],
       )}
       user={user}
+      isViewer={isViewer}
       HeaderWrap={({ className, ...props }) => (
         <div
           className={clsx(className, ["bg-gray-100"])}

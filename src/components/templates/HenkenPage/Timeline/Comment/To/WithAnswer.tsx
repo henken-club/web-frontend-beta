@@ -10,10 +10,11 @@ export const WithAnswerView: React.VFC<
   {
     className?: string;
     user: { id: string; alias: string; displayName: string; avatar: string; };
+    isViewer: boolean;
     comment: string;
     type: "right" | "wrong";
   }
-> = ({ className, user, comment, type, ...props }) => {
+> = ({ className, user, comment, type, isViewer }) => {
   const { LL } = useTranslation();
   return (
     <Template
@@ -22,6 +23,7 @@ export const WithAnswerView: React.VFC<
         ["border-henken-to-normal"],
       )}
       user={user}
+      isViewer={isViewer}
       HeaderWrap={({ className, ...props }) => <div className={clsx(className, ["bg-henken-to-light"])} {...props} />}
       Body={({ className }) => (
         <div className={clsx(className)}>

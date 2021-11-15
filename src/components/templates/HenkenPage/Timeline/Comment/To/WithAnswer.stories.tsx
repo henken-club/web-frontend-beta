@@ -8,7 +8,9 @@ import { mockAvatars } from "~/mocks/constraints";
 export default {
   title: "templates/HenkenPage/Timeline/ToComment/WithAnswer",
   component: WithAnswerView,
-  argTypes: {},
+  argTypes: {
+    isViewer: { table: { disable: true } },
+  },
 } as Meta;
 
 type StoryProps = ComponentProps<typeof WithAnswerView>;
@@ -18,6 +20,7 @@ export const Right: Story<StoryProps> = ({ ...props }) => {
 };
 Right.args = {
   user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: false,
   comment: "はいじゃないが",
   type: "right",
 };
@@ -32,6 +35,7 @@ export const Wrong: Story<StoryProps> = ({ ...props }) => {
 Wrong.storyName = "不正解";
 Wrong.args = {
   user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: false,
   comment: "はいじゃないが",
   type: "wrong",
 };
@@ -45,9 +49,22 @@ export const EmptyComment: Story<StoryProps> = ({ ...props }) => {
 EmptyComment.storyName = "コメント無し";
 EmptyComment.args = {
   user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: false,
   comment: "",
   type: "right",
 };
 EmptyComment.argTypes = {
   comment: { table: { disable: true } },
 };
+
+export const IsViewer: Story<StoryProps> = ({ ...props }) => {
+  return <WithAnswerView {...props} />;
+};
+IsViewer.storyName = "投稿者が自分";
+IsViewer.args = {
+  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: true,
+  comment: "はいじゃないが",
+  type: "right",
+};
+IsViewer.argTypes = {};

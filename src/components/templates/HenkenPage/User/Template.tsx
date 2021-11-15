@@ -8,11 +8,12 @@ import { useTranslation } from "~/i18n/useTranslation";
 export const ViewTemplate: React.VFC<
   {
     className?: string;
+    isViewer: boolean;
     Icon: React.VFC<{ className?: string; }>;
     Label: React.VFC<{ className?: string; }>;
     user: { id: string; alias: string; displayName: string; avatar: string; };
   }
-> = ({ className, Icon, Label, user }) => {
+> = ({ className, Icon, Label, user, isViewer }) => {
   const { LL } = useTranslation();
   return (
     <div
@@ -28,8 +29,24 @@ export const ViewTemplate: React.VFC<
           [["inline-flex"], ["flex-row"], ["items-center"]],
         )}
       >
-        <Icon className={clsx(["text-base", "sm:text-xl"])} />
+        <Icon className={clsx(["text-xl", "sm:text-2xl"])} />
         <Label className={clsx(["ml-2"], ["text-xs", "sm:text-sm"])} />
+        {isViewer && (
+          <span
+            className={clsx(
+              ["ml-4"],
+              ["inline-block"],
+              ["px-0.5", "sm:px-1"],
+              ["sm:py-0.5"],
+              ["text-xs"],
+              ["text-gray-500"],
+              ["border", ["border-gray-500"]],
+              ["rounded-sm"],
+            )}
+          >
+            {LL.HenkenPage.IsYou()}
+          </span>
+        )}
       </div>
       <div
         className={clsx(

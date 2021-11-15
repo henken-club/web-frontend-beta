@@ -18,6 +18,7 @@ export const FullComment: Story<StoryProps> = ({ ...props }) => {
 };
 FullComment.args = {
   user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: false,
   comment: "はい",
 };
 
@@ -26,8 +27,21 @@ export const EmptyComment: Story<StoryProps> = ({ ...props }) => {
 };
 EmptyComment.args = {
   user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: false,
   comment: "",
 };
+EmptyComment.storyName = "コメントが空";
 EmptyComment.argTypes = {
   comment: { table: { disable: true } },
 };
+
+export const IsViewer: Story<StoryProps> = ({ ...props }) => {
+  return <View {...props} />;
+};
+IsViewer.storyName = "投稿者が自分";
+IsViewer.args = {
+  user: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  isViewer: true,
+  comment: "はい",
+};
+IsViewer.argTypes = {};

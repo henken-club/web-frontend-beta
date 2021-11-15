@@ -3,11 +3,16 @@ import React from "react";
 
 import { ViewTemplate } from "./Template";
 
+import { useViewer } from "~/auth/useViewer";
 import { IconHenkenUserFrom } from "~/components/atoms/Icon";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const UserFromView: React.VFC<
-  { className?: string; user: { id: string; alias: string; displayName: string; avatar: string; }; }
+  {
+    className?: string;
+    user: { id: string; alias: string; displayName: string; avatar: string; };
+    isViewer: boolean;
+  }
 > = ({ className, ...props }) => {
   const { LL } = useTranslation();
   return (
@@ -23,5 +28,6 @@ export const UserFromView: React.VFC<
 export const UserFrom: React.VFC<
   { className?: string; user: { id: string; alias: string; displayName: string; avatar: string; }; }
 > = ({ user, ...props }) => {
-  return <UserFromView user={user} {...props} />;
+  const viewer = useViewer();
+  return <UserFromView user={user} {...props} isViewer={viewer?.id === user.id} />;
 };
