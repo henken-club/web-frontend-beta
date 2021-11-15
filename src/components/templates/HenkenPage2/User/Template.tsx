@@ -18,7 +18,7 @@ export const ViewTemplate: React.VFC<
     <div
       className={clsx(
         className,
-        ["px-2", "sm:px-4", "md:px-2"],
+        ["px-4", "md:px-2"],
         ["py-2"],
         [["inline-flex"], ["flex-col"]],
       )}

@@ -14,7 +14,7 @@ export const UserFromView: React.VFC<
     <ViewTemplate
       className={clsx(className)}
       Icon={({ className }) => <IconHenkenUserFrom className={clsx(className, ["text-henken-from-normal"])} />}
-      Label={({ className }) => <span className={clsx(className)}>{LL.HenkenPage.Timeline.UserFrom()}</span>}
+      Label={({ className }) => <span className={clsx(className)}>{LL.HenkenPage.UserFrom()}</span>}
       {...props}
     />
   );

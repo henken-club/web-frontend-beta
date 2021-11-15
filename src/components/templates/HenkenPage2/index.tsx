@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { Content } from "./Content";
+import { Timeline } from "./Timeline";
 import { AnswerType, HenkenContent } from "./types";
 import { UserFrom, UserTo } from "./User";
 
@@ -48,6 +49,21 @@ export const View: React.VFC<{
             user={henken.postsTo}
           />
         </div>
+      </div>
+      <div
+        className={clsx(
+          ["container", "max-w-screen-lg"],
+          ["mx-auto"],
+          ["flex", ["flex-col", "lg:flex-row"]],
+        )}
+      >
+        <Timeline
+          className={clsx(["w-full", "lg:w-2/3"])}
+          postedBy={henken.postedBy}
+          postsTo={henken.postsTo}
+          comment={henken.comment}
+          answer={henken.answer}
+        />
       </div>
     </main>
   );

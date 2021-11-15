@@ -29,7 +29,7 @@ export const TemplateContent: React.VFC<{
       <div
         className={clsx(
           ["flex-grow"],
-          ["ml-2", "sm:ml-4", "md:ml-6"],
+          ["ml-4", "md:ml-6"],
           ["flex", ["flex-col"], ["items-start"]],
         )}
       >
