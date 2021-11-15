@@ -6,7 +6,7 @@ import { View } from "./From";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "templates/HenkenPage2/Timeline/From",
+  title: "templates/HenkenPage/Timeline/From",
   component: View,
   argTypes: {},
 } as Meta;

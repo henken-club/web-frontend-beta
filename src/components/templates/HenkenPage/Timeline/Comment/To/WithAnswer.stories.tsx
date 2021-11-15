@@ -6,7 +6,7 @@ import { WithAnswerView } from "./WithAnswer";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "templates/HenkenPage2/Timeline/ToComment/WithAnswer",
+  title: "templates/HenkenPage/Timeline/ToComment/WithAnswer",
   component: WithAnswerView,
   argTypes: {},
 } as Meta;

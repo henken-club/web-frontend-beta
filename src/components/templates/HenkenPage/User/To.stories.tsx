@@ -6,7 +6,7 @@ import { UserToView } from "./To";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "templates/HenkenPage2/User/To",
+  title: "templates/HenkenPage/User/To",
   component: UserToView,
   argTypes: {},
 } as Meta;

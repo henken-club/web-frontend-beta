@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 import { View } from "./TempContent";
 
 export default {
-  title: "templates/HenkenPage2/Content/TempContent",
+  title: "templates/HenkenPage/Content/TempContent",
   component: View,
   argTypes: {
     type: { table: { disable: true } },

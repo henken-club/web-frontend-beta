@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 import { View } from "./BookSeries";
 
 export default {
-  title: "templates/HenkenPage2/Content/BookSeries",
+  title: "templates/HenkenPage/Content/BookSeries",
   component: View,
   argTypes: {},
 } as Meta;

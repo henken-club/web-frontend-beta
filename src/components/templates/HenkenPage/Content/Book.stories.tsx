@@ -6,7 +6,7 @@ import { View } from "./Book";
 import { mockBookcovers } from "~/mocks/constraints";
 
 export default {
-  title: "templates/HenkenPage2/Content/Book",
+  title: "templates/HenkenPage/Content/Book",
   component: View,
   argTypes: {},
 } as Meta;

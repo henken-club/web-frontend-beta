@@ -6,7 +6,7 @@ import { NoAnswerView } from "./NoAnswer";
 import { mockAvatars } from "~/mocks/constraints";
 
 export default {
-  title: "templates/HenkenPage2/Timeline/ToComment/NoAnswer",
+  title: "templates/HenkenPage/Timeline/ToComment/NoAnswer",
   component: NoAnswerView,
   argTypes: {},
 } as Meta;
