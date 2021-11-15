@@ -1,8 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import { CommentFrom } from "./Comment/From";
-import { CommentTo } from "./Comment/To";
+import { CommentFrom, CommentTo } from "./Comment";
 
 export const View: React.VFC<{
   className?: string;

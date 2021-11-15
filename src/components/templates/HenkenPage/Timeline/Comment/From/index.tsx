@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import { Template } from "./Template";
+import { Template } from "../Template";
 
 import { useViewer } from "~/auth/useViewer";
 import { useTranslation } from "~/i18n/useTranslation";
