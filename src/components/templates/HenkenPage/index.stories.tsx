@@ -243,7 +243,7 @@ PostedByYou.args = {
   },
 };
 
-export const PostedToYou: Story<StoryProps> = ({ ...props }) => {
+export const PostedToYouWithAnswer: Story<StoryProps> = ({ ...props }) => {
   return (
     <RecoilRoot
       initializeState={({ set }) => {
@@ -254,14 +254,48 @@ export const PostedToYou: Story<StoryProps> = ({ ...props }) => {
     </RecoilRoot>
   );
 };
-PostedToYou.storyName = "送り先が自分";
-PostedToYou.args = {
+PostedToYouWithAnswer.storyName = "送り先が自分かつ返答済み";
+PostedToYouWithAnswer.args = {
   henken: {
     id: "1",
     comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
     postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
     postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
     answer: { comment: "はいじゃないが", type: "right" },
+    content: {
+      type: "book",
+      value: {
+        id: "book_1",
+        title: "アー",
+        cover: mockBookcovers[1],
+        authors: [
+          { id: "author_1", name: "著者1", role: null },
+          { id: "author_2", name: "著者2", role: null },
+        ],
+      },
+    },
+  },
+};
+
+export const PostedToYouAndNoAnswer: Story<StoryProps> = ({ ...props }) => {
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(viewerState, { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] });
+      }}
+    >
+      <View {...props} />
+    </RecoilRoot>
+  );
+};
+PostedToYouAndNoAnswer.storyName = "送り先が自分かつ未返答";
+PostedToYouAndNoAnswer.args = {
+  henken: {
+    id: "1",
+    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
+    postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+    postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+    answer: null,
     content: {
       type: "book",
       value: {

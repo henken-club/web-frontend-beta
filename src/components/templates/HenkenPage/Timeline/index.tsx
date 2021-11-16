@@ -35,7 +35,11 @@ export const View: React.VFC<{
         user={postsTo}
         isViewer={state === "to"}
       />
-      {!answer && state === "to" && <AnswerForm />}
+      {!answer && state === "to" && (
+        <AnswerForm
+          className={clsx(["mt-2", "sm:mt-4"])}
+        />
+      )}
     </div>
   );
 };
