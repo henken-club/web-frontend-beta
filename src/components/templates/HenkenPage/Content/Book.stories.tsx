@@ -6,17 +6,18 @@ import { View } from "./Book";
 import { mockBookcovers } from "~/mocks/constraints";
 
 export default {
-  title: "templates/HenkenPage/Timeline/Content/Book",
+  title: "templates/HenkenPage/Content/Book",
   component: View,
   argTypes: {},
 } as Meta;
 
 type StoryProps = ComponentProps<typeof View>;
 
-export const Primary: Story<StoryProps> = ({ ...props }) => {
+export const HasBookcover: Story<StoryProps> = ({ ...props }) => {
   return <View {...props} />;
 };
-Primary.args = {
+HasBookcover.storyName = "書影がある";
+HasBookcover.args = {
   id: "book_1",
   title: "Book",
   cover: mockBookcovers[1],

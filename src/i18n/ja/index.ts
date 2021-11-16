@@ -4,6 +4,7 @@ const ja: BaseTranslation = {
   Book: "本",
   BookSeries: "本のシリーズ",
   Author: "著者",
+  TempContent: "仮コンテンツ({type:string})",
 
   Login: "ログイン",
   RegisterUser: "ユーザー登録",
@@ -115,17 +116,12 @@ const ja: BaseTranslation = {
   },
 
   HenkenPage: {
+    UserFrom: "送り元",
+    UserTo: "送り先",
+    IsYou: "あなた",
     Timeline: {
-      UserFrom: "送り元",
-      UserTo: "送り先",
-      HenkenComment: "{displayName:string}さんからの偏見",
-      AnswerComment: "{displayName:string}さんからの回答",
-      NoAnswer: "（回答していません）",
-      NoComment: "（コメントはありません）",
-      AnswerType: {
-        Right: "正解！",
-        Wrong: "残念…",
-      },
+      NoAnswer: "回答していません",
+      NoComment: "コメントはありません",
     },
   },
 };

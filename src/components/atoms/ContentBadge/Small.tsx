@@ -8,8 +8,35 @@ export const Template: React.VFC<{ className?: string; Text: React.VFC<{ classNa
 ) => {
   return (
     <span className={clsx(className, ["inline-flex"], ["rounded-lg"], [["px-2"], ["py-0.5"]])}>
-      <Text className={clsx(["text-sm"])} />
+      <Text className={clsx(["text-xs"], ["whitespace-nowrap"])} />
     </span>
+  );
+};
+
+export const TempContent: React.VFC<{ className?: string; type: "book" | "bookseries" | "author"; }> = (
+  { className, type },
+) => {
+  const { LL } = useTranslation();
+  return (
+    <Template
+      className={clsx(className, ["bg-temp-content-normal"])}
+      Text={({ className }) => (
+        <span className={clsx(className, ["text-black"])}>
+          {LL.TempContent({
+            type: ((type) => {
+              switch (type) {
+                case "author":
+                  return LL.Author();
+                case "book":
+                  return LL.Book();
+                case "bookseries":
+                  return LL.BookSeries();
+              }
+            })(type),
+          })}
+        </span>
+      )}
+    />
   );
 };
 

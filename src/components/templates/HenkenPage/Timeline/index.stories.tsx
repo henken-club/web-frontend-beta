@@ -1,142 +1,91 @@
 import { Meta, Story } from "@storybook/react";
-import clsx from "clsx";
 import React, { ComponentProps } from "react";
+import { RecoilRoot } from "recoil";
 
-import { PageContainer } from "~/components/layouts/Default";
-import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { viewerState } from "~/auth/useViewer";
+import { mockAvatars } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {
   title: "templates/HenkenPage/Timeline",
   component: View,
-  parameters: {
-    layout: "fullscreen",
-  },
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <PageContainer>
-        <Story />
-      </PageContainer>
-    ),
-  ],
 } as Meta;
 
 type StoryProps = ComponentProps<typeof View>;
 
-export const Book: Story<StoryProps> = ({ ...props }) => {
-  return <View className={clsx(["w-full"])} {...props} />;
+export const Primary: Story<StoryProps> = ({ ...props }) => {
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(viewerState, null);
+      }}
+    >
+      <View css={{ width: "480px" }} {...props} />
+    </RecoilRoot>
+  );
 };
-Book.storyName = "Book";
-Book.args = {
+Primary.storyName = "返答あり";
+Primary.args = {
   comment: "はい",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
-  answer: {
-    comment: "はいじゃないが",
-    type: "right",
-  },
-  content: {
-    type: "book",
-    content: {
-      id: "book_1",
-      title: "本 タイトル",
-      cover: mockBookcovers[1],
-      authors: [
-        { id: "author_1", name: "著者1", role: null },
-        { id: "author_2", name: "著者2", role: null },
-      ],
-    },
-  },
-};
-
-export const BookSeries: Story<StoryProps> = ({ ...props }) => {
-  return <View className={clsx(["w-full"])} {...props} />;
-};
-BookSeries.storyName = "BookSeries";
-BookSeries.args = {
-  comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
-  answer: {
-    comment: "はいじゃないが",
-    type: "right",
-  },
-  content: {
-    type: "bookseries",
-    content: {
-      id: "bookseries_1",
-      title: "本のシリーズ タイトル",
-    },
-  },
-};
-
-export const Author: Story<StoryProps> = ({ ...props }) => {
-  return <View className={clsx(["w-full"])} {...props} />;
-};
-Author.storyName = "Author";
-Author.args = {
-  comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
-  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
-  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
-  answer: {
-    comment: "はいじゃないが",
-    type: "right",
-  },
-  content: {
-    type: "author",
-    content: {
-      id: "author_1",
-      name: "著者 名前",
-    },
-  },
+  answer: { comment: "はいじゃないが", type: "right" },
 };
 
 export const NoAnswer: Story<StoryProps> = ({ ...props }) => {
-  return <View className={clsx(["w-full"])} {...props} />;
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(viewerState, null);
+      }}
+    >
+      <View css={{ width: "480px" }} {...props} />
+    </RecoilRoot>
+  );
 };
-NoAnswer.storyName = "回答なし";
+NoAnswer.storyName = "返答無し";
 NoAnswer.args = {
   comment: "はい",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
   answer: null,
-  content: {
-    type: "book",
-    content: {
-      id: "book_1",
-      title: "本 タイトル",
-      cover: mockBookcovers[1],
-      authors: [
-        { id: "author_1", name: "著者1", role: null },
-        { id: "author_2", name: "著者2", role: null },
-      ],
-    },
-  },
 };
 
-export const WrongAnswer: Story<StoryProps> = ({ ...props }) => {
-  return <View className={clsx(["w-full"])} {...props} />;
+export const PostedByYou: Story<StoryProps> = ({ ...props }) => {
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(viewerState, { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] });
+      }}
+    >
+      <View css={{ width: "480px" }} {...props} />
+    </RecoilRoot>
+  );
 };
-WrongAnswer.storyName = "回答が違う";
-WrongAnswer.args = {
+PostedByYou.storyName = "送り元が自分";
+PostedByYou.args = {
   comment: "はい",
   postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
   postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
-  answer: {
-    comment: "ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!",
-    type: "wrong",
-  },
-  content: {
-    type: "book",
-    content: {
-      id: "book_1",
-      title: "本 タイトル",
-      cover: mockBookcovers[1],
-      authors: [
-        { id: "author_1", name: "著者1", role: null },
-        { id: "author_2", name: "著者2", role: null },
-      ],
-    },
-  },
+  answer: { comment: "はいじゃないが", type: "right" },
+};
+
+export const PostedToYou: Story<StoryProps> = ({ ...props }) => {
+  return (
+    <RecoilRoot
+      initializeState={({ set }) => {
+        set(viewerState, { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] });
+      }}
+    >
+      <View css={{ width: "480px" }} {...props} />
+    </RecoilRoot>
+  );
+};
+PostedToYou.storyName = "送り先が自分";
+PostedToYou.args = {
+  comment: "はい",
+  postedBy: { id: "1", alias: "user_1", displayName: "User 1", avatar: mockAvatars[1] },
+  postsTo: { id: "2", alias: "user_2", displayName: "User 2", avatar: mockAvatars[2] },
+  answer: { comment: "はいじゃないが", type: "right" },
 };
