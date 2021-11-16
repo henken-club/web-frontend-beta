@@ -1,7 +1,10 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useMemo } from "react";
 
+import { AnswerForm } from "./AnswerForm";
 import { CommentFrom, CommentTo } from "./Comment";
+
+import { useViewer } from "~/auth/useViewer";
 
 export const View: React.VFC<{
   className?: string;
@@ -9,7 +12,8 @@ export const View: React.VFC<{
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
   comment: string;
   answer: { comment: string; type: "right" | "wrong"; } | null;
-}> = ({ className, comment, postedBy, postsTo, answer }) => {
+  viewer: "from" | "to" | null;
+}> = ({ className, comment, postedBy, postsTo, answer, viewer: state }) => {
   return (
     <div
       className={clsx(
@@ -23,12 +27,15 @@ export const View: React.VFC<{
         className={clsx()}
         comment={comment}
         user={postedBy}
+        isViewer={state === "from"}
       />
       <CommentTo
         className={clsx(["mt-2", "sm:mt-4"])}
         answer={answer}
         user={postsTo}
+        isViewer={state === "to"}
       />
+      {!answer && state === "to" && <AnswerForm />}
     </div>
   );
 };
@@ -39,6 +46,13 @@ export const Timeline: React.VFC<{
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
   comment: string;
   answer: { comment: string; type: "right" | "wrong"; } | null;
-}> = ({ ...props }) => {
-  return <View {...props} />;
+}> = ({ postedBy, postsTo, ...props }) => {
+  const viewer = useViewer();
+  const viewerState = useMemo(() => {
+    if (viewer?.id === postedBy.id) return "from";
+    else if (viewer?.id === postsTo.id) return "to";
+    else return null;
+  }, [postedBy.id, postsTo.id, viewer]);
+
+  return <View {...props} postedBy={postedBy} postsTo={postsTo} viewer={viewerState} />;
 };
