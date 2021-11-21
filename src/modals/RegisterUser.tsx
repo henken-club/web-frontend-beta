@@ -3,8 +3,8 @@ import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
 import { useAuth } from "~/auth/useAuth";
 import { useViewer } from "~/auth/useViewer";
-import { Modal } from "~/components/atoms/Modal";
-import { RegisterUserForm } from "~/components/organisms/RegisterUserForm";
+import { Modal } from "~/components/Modal";
+import { RegisterUserForm } from "~/components/RegisterUserForm";
 
 export const manualRegisterUserModalState = atom<boolean>({
   key: "modalRegisterUserManual",

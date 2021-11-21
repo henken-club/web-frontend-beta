@@ -2,8 +2,8 @@ import clsx from "clsx";
 import React, { useMemo } from "react";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
-import { Modal } from "~/components/atoms/Modal";
-import { CreateHenkenForm } from "~/components/organisms/CreateHenkenForm";
+import { CreateHenkenForm } from "~/components/CreateHenkenForm";
+import { Modal } from "~/components/Modal";
 
 export const manualCreateHenkenModalState = atom<boolean>({
   key: "modalManualCreateHenken",

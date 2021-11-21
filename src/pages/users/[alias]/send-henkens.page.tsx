@@ -6,8 +6,8 @@ import { getSdk as getIndexSdk } from "./index.page.codegen";
 import { getSdk } from "./send-henkens.page.codegen";
 import { serializer } from "./send-henkens.serializer";
 
-import { TemplateUserPage } from "~/components/templates/UserPage";
 import { graphqlClient } from "~/pages/graphql-client";
+import { TemplateUserPage } from "~/templates/UserPage";
 
 export type UrlQuery = { alias: string; };
 export const getStaticPaths: GetStaticPaths<UrlQuery> = async () => {

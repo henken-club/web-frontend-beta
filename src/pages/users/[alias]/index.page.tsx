@@ -5,8 +5,8 @@ import React from "react";
 import { getSdk } from "./index.page.codegen";
 import { serializer } from "./index.serializer";
 
-import { TemplateUserPage } from "~/components/templates/UserPage";
 import { graphqlClient } from "~/pages/graphql-client";
+import { TemplateUserPage } from "~/templates/UserPage";
 
 const _AllUsersPagesQueryDocument = gql`
   query AllUsersPages($limit: Int!) {
