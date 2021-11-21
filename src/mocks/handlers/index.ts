@@ -14,8 +14,7 @@ export { mutationRegisterUser as mutationRegisterUserFormRegisterUser } from "./
 export { queryIsAliasUnique as queryRegisterUserFormIsAliasUnique } from "./RegisterUserForm/queryIsAliasUnique";
 
 // henken page
-export { queryAllHenkenPages } from "./HenkenPage/queryAllHenkenPages";
-export { queryHenkenPage } from "./HenkenPage/queryHenkenPage";
+export { queryAllHenkenPages, queryHenkenPage } from "./HenkenPage";
 
 // user page
 export { queryAllUserPages } from "./UserPage/queryAllUserPages";
