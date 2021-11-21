@@ -2,7 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import clsx from "clsx";
 import React, { ComponentProps } from "react";
 
-import { mockBookcovers } from "~/mocks/constraints";
+import { mockBookcovers } from "~~/.mock/assets";
 import { BookCover } from ".";
 
 export default {

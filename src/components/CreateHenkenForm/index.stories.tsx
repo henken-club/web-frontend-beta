@@ -5,8 +5,8 @@ import { RecoilRoot } from "recoil";
 
 import { CreateHenkenFormContext } from "./context";
 
-import { c } from "~/mocks/constraints";
-import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~/mocks/handlers";
+import { mockAvatars, mockBookcovers } from "~~/.mock/assets";
+import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~~/.msw/handlers";
 import { Component } from ".";
 
 export default {
@@ -36,8 +36,20 @@ LoadingFrom.storyName = "ログインユーザを取得中";
 LoadingFrom.args = {
   contextValue: {
     from: undefined,
-    to: { id: "to", ...c.users.user1 },
-    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    to: {
+      id: "user1",
+      alias: "user1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    content: {
+      type: "book",
+      value: {
+        id: "book1",
+        title: "虐殺器官",
+        cover: mockBookcovers[1],
+      },
+    },
     comment: "",
     setContent: action("set-content"),
     setTo: action("set-to-user"),
@@ -57,9 +69,26 @@ export const NoFrom: Story<StoryProps> = ({ contextValue, ...props }) => {
 NoFrom.storyName = "未ログイン";
 NoFrom.args = {
   contextValue: {
-    from: null,
-    to: { id: "to", ...c.users.user1 },
-    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    from: {
+      id: "viewer",
+      alias: "viewer",
+      displayName: "Viewer",
+      avatar: mockAvatars.viewer,
+    },
+    to: {
+      id: "user1",
+      alias: "user1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    content: {
+      type: "book",
+      value: {
+        id: "book1",
+        title: "虐殺器官",
+        cover: mockBookcovers[1],
+      },
+    },
     comment: "",
     setContent: action("set-content"),
     setTo: action("set-to-user"),
@@ -79,9 +108,21 @@ export const NoTo: Story<StoryProps> = ({ contextValue, ...props }) => {
 NoTo.storyName = "送り先を指定していない";
 NoTo.args = {
   contextValue: {
-    from: { id: "from", ...c.users.viewer },
+    from: {
+      id: "viewer",
+      alias: "viewer",
+      displayName: "Viewer",
+      avatar: mockAvatars.viewer,
+    },
     to: null,
-    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    content: {
+      type: "book",
+      value: {
+        id: "book1",
+        title: "虐殺器官",
+        cover: mockBookcovers[1],
+      },
+    },
     comment: "",
     setContent: action("set-content"),
     setTo: action("set-to-user"),
@@ -101,9 +142,26 @@ export const Creatable: Story<StoryProps> = ({ contextValue, ...props }) => {
 Creatable.storyName = "送信可能";
 Creatable.args = {
   contextValue: {
-    from: { id: "from", ...c.users.viewer },
-    to: { id: "to", ...c.users.user1 },
-    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    from: {
+      id: "viewer",
+      alias: "viewer",
+      displayName: "Viewer",
+      avatar: mockAvatars.viewer,
+    },
+    to: {
+      id: "user1",
+      alias: "user1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    content: {
+      type: "book",
+      value: {
+        id: "book1",
+        title: "虐殺器官",
+        cover: mockBookcovers[1],
+      },
+    },
     comment: "",
     setContent: action("set-content"),
     setTo: action("set-to-user"),
@@ -125,9 +183,26 @@ export const Created: Story<StoryProps> = ({ contextValue, ...props }) => {
 Created.storyName = "送信済み";
 Created.args = {
   contextValue: {
-    from: { id: "from", ...c.users.viewer },
-    to: { id: "to", ...c.users.user1 },
-    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    from: {
+      id: "viewer",
+      alias: "viewer",
+      displayName: "Viewer",
+      avatar: mockAvatars.viewer,
+    },
+    to: {
+      id: "user1",
+      alias: "user1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    content: {
+      type: "book",
+      value: {
+        id: "book1",
+        title: "虐殺器官",
+        cover: mockBookcovers[1],
+      },
+    },
     comment: "",
     setContent: action("set-content"),
     setTo: action("set-to-user"),

@@ -2,7 +2,7 @@ import { graphql } from "msw";
 import { mockAvatars } from "~~/.mock/assets";
 import { GlobalNavFetchNotificationsDocument } from "./codegen";
 
-export const queryNotifications = graphql.query(
+export const queryGlobalNavNotifications = graphql.query(
   GlobalNavFetchNotificationsDocument,
   (req, res, ctx) => {
     return res(ctx.data({

@@ -3,7 +3,7 @@ import React, { ComponentProps } from "react";
 
 import { ListItem } from "./ListItem";
 
-import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { mockAvatars, mockBookcovers } from "~~/.mock/assets";
 
 export default {
   title: "Templates/UserPage/Section/HenkenList/ListItem",

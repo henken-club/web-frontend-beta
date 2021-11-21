@@ -5,7 +5,7 @@ import {
   CreateHenkenFormSearchUserDocument,
 } from "./codegen";
 
-export const querySearchUser = graphql.query(
+export const queryCreateHenkenFormSearchUser = graphql.query(
   CreateHenkenFormSearchUserDocument,
   (req, res, ctx) => {
     return res(
@@ -13,14 +13,14 @@ export const querySearchUser = graphql.query(
         __typename: "Query",
         searchUser: {
           __typename: "SearchUserPayload",
-          results: generator.pick(searchNodes, generator.integer(0, 4)),
+          results: [],
         },
       }),
     );
   },
 );
 
-export const mutationCreateHenken = graphql.mutation(
+export const mutationCreateHenkenFormCreateHenken = graphql.mutation(
   CreateHenkenFormCreateHenkenDocument,
   (req, res, ctx) => {
     return res(ctx.data({
@@ -36,7 +36,7 @@ export const mutationCreateHenken = graphql.mutation(
   },
 );
 
-export const querySearchContent = graphql.query(
+export const queryCreateHenkenFormSearchContent = graphql.query(
   CreateHenkenFormSearchContentDocument,
   (req, res, ctx) => {
     return res(
@@ -44,7 +44,7 @@ export const querySearchContent = graphql.query(
         __typename: "Query",
         searchContent: {
           __typename: "SearchContentPayload",
-          results: generator.pick(searchNodes, generator.integer(0, 4)),
+          results: [],
         },
       }),
     );

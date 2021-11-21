@@ -2,7 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
 import { PageContainer } from "~/layouts/Default";
-import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
+import { mockAvatars, mockBookcovers } from "~~/.mock/assets";
 import { View } from ".";
 
 export default {

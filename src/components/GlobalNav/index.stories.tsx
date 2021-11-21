@@ -4,11 +4,11 @@ import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";
 
 import { viewerState } from "~/auth/useViewer";
-import { c } from "~/mocks/constraints";
-import { queryGlobalNavNotifications } from "~/mocks/handlers";
 import { manualCreateHenkenModalState } from "~/modals/CreateHenken";
 import { manualRegisterUserModalState } from "~/modals/RegisterUser";
 import { createUrqlClient } from "~/urql/UrqlProvider";
+import { mockAvatars } from "~~/.mock/assets";
+import { queryGlobalNavNotifications } from "~~/.msw/handlers";
 import { View } from ".";
 
 export default {
@@ -68,9 +68,9 @@ export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
       initializeState={({ set }) => {
         set(viewerState, {
           id: "viewer",
-          alias: c.users.viewer.alias,
-          displayName: c.users.viewer.displayName,
-          avatar: c.users.viewer.avatar,
+          alias: "viewer",
+          displayName: "Viewer",
+          avatar: mockAvatars.viewer,
         });
         set(manualRegisterUserModalState, false);
         set(manualCreateHenkenModalState, false);
