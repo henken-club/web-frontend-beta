@@ -5,8 +5,8 @@ import React from "react";
 import { getSdk } from "./index.page.codegen";
 import { serializer } from "./index.serializer";
 
-import { TemplateHenkenPage } from "~/components/templates/HenkenPage";
 import { graphqlClient } from "~/pages/graphql-client";
+import { TemplateHenkenPage } from "~/templates/HenkenPage";
 
 const _AllHenkenPagesQueryDocument = gql`
   query AllHenkenPages($limit: Int!) {
