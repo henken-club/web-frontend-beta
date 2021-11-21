@@ -1,0 +1,78 @@
+import { graphql } from "msw";
+
+import { AllHenkenPagesDocument, AnswerType, HenkenPageDocument } from "~/mocks/codegen";
+import { mockAvatars } from "~/mocks/constraints";
+
+export const mocks: Record<
+  string,
+  {
+    comment: string;
+    postedBy: { id: string; alias: string; displayName: string; avatar: string; };
+    postsTo: { id: string; alias: string; displayName: string; avatar: string; };
+    answer?: { id: string; comment: string; type: AnswerType; };
+  }
+> = {
+  "viewer-not-answer": {
+    comment: "はい",
+    postedBy: {
+      id: "user_1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    postsTo: {
+      id: "viewer",
+      alias: "viewer",
+      displayName: "Viewer",
+      avatar: mockAvatars.viewer,
+    },
+  },
+};
+
+export const queryAllHenkenPages = graphql.query(AllHenkenPagesDocument, (req, res, ctx) => {
+  return res(
+    ctx.data({
+      __typename: "Query",
+      manyHenkens: {
+        __typename: "HenkenConnection",
+        edges: Object.keys(mocks).map((id) => ({
+          __typename: "HenkenEdge",
+          node: { __typename: "Henken", id },
+        })),
+      },
+    }),
+  );
+});
+
+export const queryHenkenPage = graphql.query(HenkenPageDocument, (req, res, ctx) => {
+  const payload = mocks[req.variables.id];
+  if (!payload) {
+    return res(ctx.data({ __typename: "Query", findHenken: { __typename: "FindHenkenPayload", henken: null } }));
+  }
+
+  const { comment, postedBy, postsTo, answer } = payload;
+
+  return res(
+    ctx.data({
+      __typename: "Query",
+      findHenken: {
+        __typename: "FindHenkenPayload",
+        henken: {
+          __typename: "Henken",
+          id: req.variables.id,
+          comment,
+          postedBy: { __typename: "User", ...postedBy },
+          postsTo: { __typename: "User", ...postsTo },
+          answer: answer
+            ? { __typename: "Answer", ...answer }
+            : null,
+          content: {
+            __typename: "Author",
+            id: "author1",
+            name: "コトヤマ",
+          },
+        },
+      },
+    }),
+  );
+});
