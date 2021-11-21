@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
@@ -40,7 +40,10 @@ export const AnswerForm: React.VFC<{ className?: string; }> = ({ className, ...p
     watch,
   } = useForm<FormValue>({ defaultValues: { answerType: "right" } });
   const { answerType } = watch();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValue> = (data) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  };
 
   return (
     <div
