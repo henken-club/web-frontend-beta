@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useRouter } from "next/router";
 import React from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
@@ -54,11 +55,13 @@ export const View: React.VFC<{
 };
 
 export const AnswerForm: React.VFC<{ className?: string; henkenId: string; }> = ({ henkenId, ...props }) => {
+  const router = useRouter();
   const methods = useForm<FormValue>({ defaultValues: { answerType: "right" } });
-  const [result, answer] = useHenkenPageAnswerHenkenMutation();
+  const [, mutateAnswer] = useHenkenPageAnswerHenkenMutation();
 
   const onSubmit: SubmitHandler<FormValue> = async (data) => {
-    await answer({ henkenId, comment: data.comment, type: convertType(data.answerType) });
+    await mutateAnswer({ henkenId, comment: data.comment, type: convertType(data.answerType) });
+    await router.reload();
   };
 
   return (
