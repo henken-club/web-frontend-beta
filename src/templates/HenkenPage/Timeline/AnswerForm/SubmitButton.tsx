@@ -3,11 +3,12 @@ import React from "react";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
-export const SubmitButton: React.VFC<{ className?: string; }> = ({ className }) => {
+export const SubmitButton: React.VFC<{ className?: string; disabled: boolean; }> = ({ className, disabled }) => {
   const { LL } = useTranslation();
   return (
     <button
       type="submit"
+      disabled={disabled}
       className={clsx(
         className,
         [["px-3"], ["py-1.5"]],

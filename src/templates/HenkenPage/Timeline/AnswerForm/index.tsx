@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useMemo } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 import { useHenkenPageAnswerHenkenMutation } from "./AnswerHenken.codegen";
@@ -13,8 +13,9 @@ import { useTranslation } from "~/i18n/useTranslation";
 
 export const View: React.VFC<{
   className?: string;
+  disabled: boolean;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
-}> = ({ className, onSubmit }) => {
+}> = ({ className, onSubmit, disabled }) => {
   const { LL } = useTranslation();
 
   return (
@@ -47,7 +48,7 @@ export const View: React.VFC<{
               ["divide-x", ["divide-gray-300"]],
             )}
           />
-          <SubmitButton />
+          <SubmitButton disabled={disabled} />
         </div>
       </form>
     </div>
@@ -57,16 +58,21 @@ export const View: React.VFC<{
 export const AnswerForm: React.VFC<{ className?: string; henkenId: string; }> = ({ henkenId, ...props }) => {
   const router = useRouter();
   const methods = useForm<FormValue>({ defaultValues: { answerType: "right" } });
-  const [, mutateAnswer] = useHenkenPageAnswerHenkenMutation();
+  const [result, mutateAnswer] = useHenkenPageAnswerHenkenMutation();
 
   const onSubmit: SubmitHandler<FormValue> = async (data) => {
     await mutateAnswer({ henkenId, comment: data.comment, type: convertType(data.answerType) });
     await router.reload();
   };
 
+  const disabled = useMemo(
+    () => result.fetching || Boolean(result.data?.answerHenken),
+    [result.data, result.fetching],
+  );
+
   return (
     <FormProvider {...methods}>
-      <View onSubmit={methods.handleSubmit(onSubmit)} {...props} />
+      <View onSubmit={methods.handleSubmit(onSubmit)} {...props} disabled={disabled} />
     </FormProvider>
   );
 };
