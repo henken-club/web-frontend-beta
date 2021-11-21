@@ -31,6 +31,13 @@ module.exports = {
           dark: colors.pink[800],
         },
 
+        "answer-right": {
+          normal: colors.green[400],
+        },
+        "answer-wrong": {
+          normal: colors.purple[400],
+        },
+
         book: {
           pale: colors.emerald[50],
           light: colors.emerald[200],

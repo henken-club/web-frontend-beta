@@ -3,7 +3,6 @@ import React from "react";
 
 import { Template } from "../Template";
 
-import { useViewer } from "~/auth/useViewer";
 import { useTranslation } from "~/i18n/useTranslation";
 
 export const View: React.VFC<{
@@ -45,7 +44,7 @@ export const CommentFrom: React.VFC<{
   className?: string;
   comment: string;
   user: { id: string; alias: string; displayName: string; avatar: string; };
+  isViewer: boolean;
 }> = ({ ...props }) => {
-  const viewer = useViewer();
-  return <View {...props} {...props} isViewer={viewer?.id === props.user.id} />;
+  return <View {...props} {...props} />;
 };

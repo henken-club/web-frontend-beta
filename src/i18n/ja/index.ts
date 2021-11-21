@@ -116,12 +116,20 @@ const ja: BaseTranslation = {
   },
 
   HenkenPage: {
+    IsYou: "あなた",
     UserFrom: "送り元",
     UserTo: "送り先",
-    IsYou: "あなた",
     Timeline: {
       NoAnswer: "回答していません",
       NoComment: "コメントはありません",
+      AnswerForm: {
+        Title: "返答する",
+        Comment: {
+          Label: "コメント",
+          PlaceHolder: "コメントを残す",
+        },
+        Submit: "返答する",
+      },
     },
   },
 };
