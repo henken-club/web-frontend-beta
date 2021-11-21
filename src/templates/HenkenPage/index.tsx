@@ -59,6 +59,7 @@ export const View: React.VFC<{
       >
         <Timeline
           className={clsx(["w-full", "lg:w-2/3"])}
+          henkenId={henken.id}
           postedBy={henken.postedBy}
           postsTo={henken.postsTo}
           comment={henken.comment}

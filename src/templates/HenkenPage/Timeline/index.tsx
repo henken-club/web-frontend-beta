@@ -8,12 +8,13 @@ import { useViewer } from "~/auth/useViewer";
 
 export const View: React.VFC<{
   className?: string;
+  henkenId: string;
   postedBy: { id: string; alias: string; displayName: string; avatar: string; };
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
   comment: string;
   answer: { comment: string; type: "right" | "wrong"; } | null;
   viewer: "from" | "to" | null;
-}> = ({ className, comment, postedBy, postsTo, answer, viewer: state }) => {
+}> = ({ className, henkenId, comment, postedBy, postsTo, answer, viewer: state }) => {
   return (
     <div
       className={clsx(
@@ -38,6 +39,7 @@ export const View: React.VFC<{
       {!answer && state === "to" && (
         <AnswerForm
           className={clsx(["mt-2", "sm:mt-4"])}
+          henkenId={henkenId}
         />
       )}
     </div>
@@ -46,6 +48,7 @@ export const View: React.VFC<{
 
 export const Timeline: React.VFC<{
   className?: string;
+  henkenId: string;
   postedBy: { id: string; alias: string; displayName: string; avatar: string; };
   postsTo: { id: string; alias: string; displayName: string; avatar: string; };
   comment: string;
