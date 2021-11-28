@@ -8,6 +8,7 @@
   "plugins": ["unused-imports"],
   "rules": {
     "curly": [0, "multi-or-nest"],
+    "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/label-has-associated-control": [2],
     "jsx-a11y/anchor-is-valid": [
