@@ -3,7 +3,7 @@ import React, { ComponentProps } from "react";
 
 import { UserFromView } from "./From";
 
-import { mockAvatars } from "~~/.mock/assets";
+import { mockAvatars } from "~/mocks/assets";
 
 export default {
   title: "templates/HenkenPage/User/From",

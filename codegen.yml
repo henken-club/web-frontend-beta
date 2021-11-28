@@ -8,7 +8,7 @@ generates:
     config:
       sort: true
 
-  .msw/handlers/codegen.ts:
+  ./src/msw/codegen.ts:
     documents:
       - "src/**/*.{ts,tsx,graphql}"
       - "!src/**/codegen.ts"

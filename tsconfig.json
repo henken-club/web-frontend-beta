@@ -15,8 +15,6 @@
     }
   },
   "include": [
-    ".mocks",
-    ".msw",
     "next-env.d.ts",
     "**/*.js",
     "**/*.ts",

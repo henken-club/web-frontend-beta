@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { mockAvatars } from "~~/.mock/assets";
+import { mockAvatars } from "~/mocks/assets";
 import { Component } from ".";
 
 export default {

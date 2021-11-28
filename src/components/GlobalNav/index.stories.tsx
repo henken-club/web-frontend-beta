@@ -4,11 +4,11 @@ import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";
 
 import { viewerState } from "~/auth/useViewer";
+import { mockAvatars } from "~/mocks/assets";
 import { manualCreateHenkenModalState } from "~/modals/CreateHenken";
 import { manualRegisterUserModalState } from "~/modals/RegisterUser";
+import { queryGlobalNavNotifications } from "~/msw/handlers";
 import { createUrqlClient } from "~/urql/UrqlProvider";
-import { mockAvatars } from "~~/.mock/assets";
-import { queryGlobalNavNotifications } from "~~/.msw/handlers";
 import { View } from ".";
 
 export default {

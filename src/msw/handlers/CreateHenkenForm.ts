@@ -1,9 +1,10 @@
 import { graphql } from "msw";
+
 import {
   CreateHenkenFormCreateHenkenDocument,
   CreateHenkenFormSearchContentDocument,
   CreateHenkenFormSearchUserDocument,
-} from "./codegen";
+} from "~/msw/codegen";
 
 export const queryCreateHenkenFormSearchUser = graphql.query(
   CreateHenkenFormSearchUserDocument,

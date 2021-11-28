@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { View } from "./ReceivedAnswer";
 
-import { mockAvatars } from "~~/.mock/assets";
+import { mockAvatars } from "~/mocks/assets";
 
 export default {
   title: "organisms/GlobalNav/Notification/Dropdown/ReceivedAnswer",

@@ -3,7 +3,7 @@ import React, { ComponentProps } from "react";
 
 import { NoAnswerView } from "./NoAnswer";
 
-import { mockAvatars } from "~~/.mock/assets";
+import { mockAvatars } from "~/mocks/assets";
 
 export default {
   title: "templates/HenkenPage/Timeline/ToComment/NoAnswer",

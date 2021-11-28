@@ -4,7 +4,7 @@ import React, { ComponentProps } from "react";
 
 import { Component } from "./SuggestionsList";
 
-import { mockAvatars } from "~~/.mock/assets";
+import { mockAvatars } from "~/mocks/assets";
 
 export default {
   title: "organisms/CreateHenkenForm/To/SearchBox/SuggestionsList",

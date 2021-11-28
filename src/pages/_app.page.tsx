@@ -14,7 +14,7 @@ import "~/styles/index.css";
 import { UrqlProvider } from "~/urql/UrqlProvider";
 
 if (process.env.NEXT_PUBLIC_MSW_ENABLED === "true") {
-  require("~~/.msw");
+  require("~/msw");
 }
 
 const App = (

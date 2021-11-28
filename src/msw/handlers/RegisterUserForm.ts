@@ -1,5 +1,6 @@
 import { graphql } from "msw";
-import { RegisterUserDocument, RegisterUserIsAliasUniqueDocument } from "./codegen";
+
+import { RegisterUserDocument, RegisterUserIsAliasUniqueDocument } from "~/msw/codegen";
 
 export const queryIsAliasUnique = graphql.query(
   RegisterUserIsAliasUniqueDocument,

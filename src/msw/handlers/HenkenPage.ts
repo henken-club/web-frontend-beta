@@ -1,6 +1,7 @@
 import { graphql } from "msw";
-import { mockAvatars } from "~~/.mock/assets";
-import { AllHenkenPagesDocument, AnswerType, HenkenPageDocument } from "./codegen";
+
+import { mockAvatars } from "~/mocks/assets";
+import { AllHenkenPagesDocument, AnswerType, HenkenPageDocument } from "~/msw/codegen";
 
 const mocks: Record<
   string,

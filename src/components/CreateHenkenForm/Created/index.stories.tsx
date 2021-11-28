@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { mockAvatars, mockBookcovers } from "~~/.mock/assets";
+import { mockAvatars, mockBookcovers } from "~/mocks/assets";
 import { Component } from ".";
 
 export default {

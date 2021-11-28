@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 export const mockAuth0Picture: string = require("./assets/auth0/picture.png");
 
 export const mockAvatars: Record<string, string> = {

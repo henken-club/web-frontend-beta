@@ -5,8 +5,8 @@ import { RecoilRoot } from "recoil";
 
 import { CreateHenkenFormContext } from "./context";
 
-import { mockAvatars, mockBookcovers } from "~~/.mock/assets";
-import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~~/.msw/handlers";
+import { mockAvatars, mockBookcovers } from "~/mocks/assets";
+import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~/msw/handlers";
 import { Component } from ".";
 
 export default {

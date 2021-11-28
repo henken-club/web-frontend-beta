@@ -1,6 +1,7 @@
 import { graphql } from "msw";
-import { mockAvatars, mockBookcovers } from "~~/.mock/assets";
-import { AllUsersPagesDocument, AnswerType, UserPageDocument, UserSendHenkensPageDocument } from "./codegen";
+
+import { mockAvatars, mockBookcovers } from "~/mocks/assets";
+import { AllUsersPagesDocument, AnswerType, UserPageDocument, UserSendHenkensPageDocument } from "~/msw/codegen";
 
 const mocks: Record<string, { id: string; displayName: string; avatar: string; }> = {
   viewer: {
