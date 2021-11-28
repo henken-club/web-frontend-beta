@@ -17,7 +17,7 @@
     "test": "jest --config=jest.config.ts --passWithNoTests",
     "test:watch": "yarn run test --watch",
     "test:update-snapshot": "yarn run test --updateSnapshot",
-    "storybook:dev": "start-storybook -p 6006",
+    "storybook:start": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "lint": "run-s -cn lint:*",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx --cache",
