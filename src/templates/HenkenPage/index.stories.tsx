@@ -7,8 +7,8 @@ import { HenkenPageContext } from "./types";
 
 import { viewerState } from "~/auth/useViewer";
 import { PageContainer } from "~/layouts/Default";
+import { mockAvatars, mockBookcovers } from "~/mocks/assets";
 import { HenkenPageAnswerHenkenDocument } from "~/mocks/codegen";
-import { mockAvatars, mockBookcovers } from "~/mocks/constraints";
 import { View } from ".";
 
 export default {

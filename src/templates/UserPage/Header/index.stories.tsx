@@ -2,7 +2,7 @@ import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
 import { PageContainer } from "~/layouts/Default";
-import { c } from "~/mocks/constraints";
+import { mockAvatars } from "~/mocks/assets";
 import { View } from ".";
 
 export default {
@@ -28,7 +28,7 @@ export const Primary: Story<StoryProps> = ({ ...props }) => {
 };
 Primary.args = {
   id: "user1",
-  alias: c.users.user1.alias,
-  displayName: c.users.user1.displayName,
-  avatar: c.users.user1.avatar,
+  alias: "user1",
+  displayName: "User 1",
+  avatar: mockAvatars[1],
 };

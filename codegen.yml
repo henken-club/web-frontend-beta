@@ -8,6 +8,21 @@ generates:
     config:
       sort: true
 
+  ./src/msw/codegen.ts:
+    documents:
+      - "src/**/*.{ts,tsx,graphql}"
+      - "!src/**/codegen.ts"
+      - "!src/**/*.codegen.ts"
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+    config:
+      nonOptionalTypename: true
+      onlyOperationTypes: true
+      scalars:
+        DateTime: string
+
   ./src/auth/codegen.ts:
     documents:
       - "src/auth/**/*.{ts,tsx}"
