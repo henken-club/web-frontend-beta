@@ -55,6 +55,23 @@ generates:
       scalars:
         DateTime: string
 
+  ./src/templates/:
+    preset: near-operation-file
+    documents:
+      - src/templates/**/*.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
+    config:
+      scalars:
+        DateTime: string
+      nonOptionalTypename: true
+      onlyOperationTypes: true
+    presetConfig:
+      baseTypesPath: ./codegen.ts
+      extension: .codegen.ts
+
   ./src/pages/codegen.ts:
     plugins:
       - typescript
@@ -78,3 +95,18 @@ generates:
     presetConfig:
       baseTypesPath: ./codegen.ts
       extension: .codegen.ts
+
+  ./src/mocks/codegen.ts:
+    documents:
+      - "src/**/*.{ts,tsx,graphql}"
+      - "!src/**/codegen.ts"
+      - "!src/**/*.codegen.ts"
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+    config:
+      nonOptionalTypename: true
+      onlyOperationTypes: true
+      scalars:
+        DateTime: string

@@ -1,4 +1,5 @@
 import { Meta, Story } from "@storybook/react";
+import { graphql } from "msw";
 import React, { ComponentProps, ContextType } from "react";
 import { RecoilRoot } from "recoil";
 
@@ -7,6 +8,7 @@ import { HenkenPageContext } from "./types";
 import { viewerState } from "~/auth/useViewer";
 import { PageContainer } from "~/layouts/Default";
 import { mockAvatars, mockBookcovers } from "~/mocks/assets";
+import { HenkenPageAnswerHenkenDocument } from "~/mocks/codegen";
 import { View } from ".";
 
 export default {
@@ -309,4 +311,22 @@ PostedToYouAndNoAnswer.args = {
       },
     },
   },
+};
+PostedToYouAndNoAnswer.parameters = {
+  msw: [
+    graphql.mutation(
+      HenkenPageAnswerHenkenDocument,
+      (req, res, ctx) =>
+        res(ctx.data({
+          __typename: "Mutation",
+          answerHenken: {
+            __typename: "AnswerHenkenPayload",
+            answer: {
+              __typename: "Answer",
+              id: "answer",
+            },
+          },
+        })),
+    ),
+  ],
 };

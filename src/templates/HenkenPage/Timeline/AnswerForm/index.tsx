@@ -1,49 +1,22 @@
 import clsx from "clsx";
-import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+import React, { useMemo } from "react";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+
+import { useHenkenPageAnswerHenkenMutation } from "./AnswerHenken.codegen";
+import { Comment } from "./Comment";
+import { convertType, FormValue } from "./form";
+import { SubmitButton } from "./SubmitButton";
+import { Switcher } from "./Switcher";
 
 import { useTranslation } from "~/i18n/useTranslation";
 
-export type FormValue = {
-  comment: string;
-  answerType: "right" | "wrong";
-};
-
-export const SubmitButton: React.VFC<{ className?: string; }> = ({ className }) => {
+export const View: React.VFC<{
+  className?: string;
+  disabled: boolean;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+}> = ({ className, onSubmit, disabled }) => {
   const { LL } = useTranslation();
-  return (
-    <button
-      type="submit"
-      className={clsx(
-        className,
-        [["px-3"], ["py-1.5"]],
-        ["inline-flex", ["items-center"]],
-        ["bg-blue-500", ["disabled:bg-gray-400"]],
-        ["text-white", ["disabled:text-gray-300"]],
-        ["rounded-md"],
-      )}
-    >
-      <span className={clsx([["text-base"]])}>
-        {LL.HenkenPage.Timeline.AnswerForm.Submit()}
-      </span>
-    </button>
-  );
-};
-
-export const AnswerForm: React.VFC<{ className?: string; }> = ({ className, ...props }) => {
-  const { LL } = useTranslation();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm<FormValue>({ defaultValues: { answerType: "right" } });
-  const { answerType } = watch();
-  const onSubmit: SubmitHandler<FormValue> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  };
 
   return (
     <div
@@ -55,55 +28,18 @@ export const AnswerForm: React.VFC<{ className?: string; }> = ({ className, ...p
         [["border"], ["border-gray-400"]],
       )}
     >
-      <div
-        className={clsx(
-          ["w-full"],
-          ["flex", ["items-center"]],
-          ["px-4", "md:px-6"],
-          ["py-2"],
-          ["bg-gray-100"],
-        )}
-      >
-        <span
-          className={clsx(
-            ["flex-grow"],
-            [["text-base"], ["text-gray-800"], ["font-bold"]],
-          )}
-        >
+      <div className={clsx(["w-full"], ["flex", ["items-center"]], ["px-4", "md:px-6"], ["py-2"], ["bg-gray-100"])}>
+        <span className={clsx(["flex-grow"], [["text-base"], ["text-gray-800"], ["font-bold"]])}>
           {LL.HenkenPage.Timeline.AnswerForm.Title()}
         </span>
       </div>
       <form
-        className={clsx(
-          ["px-4", "md:px-6"],
-          ["py-4"],
-        )}
-        onSubmit={handleSubmit(onSubmit)}
+        className={clsx(["px-4", "md:px-6"], ["py-4"])}
+        onSubmit={onSubmit}
       >
-        <label className={clsx(["w-full"], ["flex", ["flex-col"]])}>
-          <span className={clsx(["text-sm"])}>
-            {LL.HenkenPage.Timeline.AnswerForm.Comment.Label()}
-          </span>
-          <textarea
-            className={clsx(
-              ["mt-2"],
-              ["w-full"],
-              ["px-2"],
-              ["py-1"],
-              ["border", ["border-gray-300"]],
-              [["text-sm"]],
-              ["resize-none"],
-              ["overflow-y-scroll"],
-            )}
-            {...register("comment")}
-            autoComplete="off"
-            rows={4}
-            aria-label={LL.HenkenPage.Timeline.AnswerForm.Comment.Label()}
-            placeholder={LL.HenkenPage.Timeline.AnswerForm.Comment.PlaceHolder()}
-          />
-        </label>
+        <Comment className={clsx(["w-full"], ["flex", ["flex-col"]])} />
         <div className={clsx(["mt-4"], ["flex", ["justify-between"], ["items-center"]])}>
-          <div
+          <Switcher
             className={clsx(
               ["flex"],
               ["rounded"],
@@ -111,55 +47,32 @@ export const AnswerForm: React.VFC<{ className?: string; }> = ({ className, ...p
               ["border", ["border-gray-300"]],
               ["divide-x", ["divide-gray-300"]],
             )}
-          >
-            <label
-              className={clsx(
-                { "bg-gray-200": answerType !== "right", "bg-answer-right-normal": answerType === "right" },
-                { "text-gray-700": answerType !== "right", "text-white": answerType === "right" },
-                ["px-2"],
-                ["py-1"],
-                ["flex", ["items-center"]],
-              )}
-            >
-              <input
-                {...register("answerType")}
-                type="radio"
-                value="right"
-              />
-              <span
-                className={clsx(["ml-2"], ["text-sm"])}
-              >
-                {LL.AnswerType.Right()}
-              </span>
-            </label>
-            <label
-              className={clsx(
-                "appearance-none",
-                { "bg-gray-200": answerType !== "wrong", "bg-answer-wrong-normal": answerType === "wrong" },
-                { "text-gray-700": answerType !== "wrong", "text-white": answerType === "wrong" },
-                ["px-2"],
-                ["py-1"],
-                ["flex", ["items-center"]],
-              )}
-            >
-              <input
-                {...register("answerType")}
-                type="radio"
-                value="wrong"
-              />
-              <span
-                className={clsx(
-                  ["ml-2"],
-                  ["text-sm"],
-                )}
-              >
-                {LL.AnswerType.Wrong()}
-              </span>
-            </label>
-          </div>
-          <SubmitButton />
+          />
+          <SubmitButton disabled={disabled} />
         </div>
       </form>
     </div>
+  );
+};
+
+export const AnswerForm: React.VFC<{ className?: string; henkenId: string; }> = ({ henkenId, ...props }) => {
+  const router = useRouter();
+  const methods = useForm<FormValue>({ defaultValues: { answerType: "right" } });
+  const [result, mutateAnswer] = useHenkenPageAnswerHenkenMutation();
+
+  const onSubmit: SubmitHandler<FormValue> = async (data) => {
+    await mutateAnswer({ henkenId, comment: data.comment, type: convertType(data.answerType) });
+    await router.reload();
+  };
+
+  const disabled = useMemo(
+    () => result.fetching || Boolean(result.data?.answerHenken),
+    [result.data, result.fetching],
+  );
+
+  return (
+    <FormProvider {...methods}>
+      <View onSubmit={methods.handleSubmit(onSubmit)} {...props} disabled={disabled} />
+    </FormProvider>
   );
 };
