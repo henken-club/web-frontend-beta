@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 
 import { CreateHenkenFormContext } from "../context";
 
-import { c } from "~/mocks/constraints";
+import { mockAvatars, mockBookcovers } from "~/mocks/assets";
 import { Component } from ".";
 
 export default {
@@ -29,9 +29,26 @@ export const Primary: Story<StoryProps> = ({ contextValue, ...props }) => {
 };
 Primary.args = {
   contextValue: {
-    from: { id: "from", ...c.users.viewer },
-    to: { id: "to", ...c.users.user1 },
-    content: { type: "book", value: { id: "book1", ...c.books.book1 } },
+    from: {
+      id: "viewer",
+      alias: "viewer",
+      displayName: "Viewer",
+      avatar: mockAvatars.viewer,
+    },
+    to: {
+      id: "user1",
+      alias: "user_1",
+      displayName: "User 1",
+      avatar: mockAvatars[1],
+    },
+    content: {
+      type: "book",
+      value: {
+        id: "book1",
+        title: "虐殺器官",
+        cover: mockBookcovers[1],
+      },
+    },
     comment: "",
     setContent: action("set-content"),
     setTo: action("set-to-user"),

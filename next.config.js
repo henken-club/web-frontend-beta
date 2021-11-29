@@ -13,12 +13,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: [
-      "pbs.twimg.com",
-      ...(process.env.NEXT_PUBLIC_MSW_ENABLED === "true"
-        ? ["cdn.fakercloud.com", "placeimg.com"]
-        : []),
-    ],
+    domains: ["pbs.twimg.com"],
   },
   i18n: {
     locales: ["ja"],

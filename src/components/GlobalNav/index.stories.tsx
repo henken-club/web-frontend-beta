@@ -1,13 +1,14 @@
 import { Meta, Story } from "@storybook/react";
+import { graphql } from "msw";
 import React, { ComponentProps } from "react";
 import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";
 
 import { viewerState } from "~/auth/useViewer";
-import { c } from "~/mocks/constraints";
-import { queryGlobalNavNotifications } from "~/mocks/handlers";
+import { mockAvatars } from "~/mocks/assets";
 import { manualCreateHenkenModalState } from "~/modals/CreateHenken";
 import { manualRegisterUserModalState } from "~/modals/RegisterUser";
+import { GlobalNavFetchNotificationsDocument } from "~/msw/codegen";
 import { createUrqlClient } from "~/urql/UrqlProvider";
 import { View } from ".";
 
@@ -68,9 +69,9 @@ export const LoggedIn: Story<StoryProps> = ({ ...props }) => {
       initializeState={({ set }) => {
         set(viewerState, {
           id: "viewer",
-          alias: c.users.viewer.alias,
-          displayName: c.users.viewer.displayName,
-          avatar: c.users.viewer.avatar,
+          alias: "viewer",
+          displayName: "Viewer",
+          avatar: mockAvatars.viewer,
         });
         set(manualRegisterUserModalState, false);
         set(manualCreateHenkenModalState, false);
@@ -88,5 +89,39 @@ LoggedIn.args = {
   needRegister: false,
 };
 LoggedIn.parameters = {
-  msw: [queryGlobalNavNotifications],
+  msw: [graphql.query(
+    GlobalNavFetchNotificationsDocument,
+    (req, res, ctx) => {
+      return res(ctx.data({
+        __typename: "Query",
+        notifications: {
+          __typename: "NotificationConnection",
+          pageInfo: { __typename: "PageInfo", hasNextPage: true, endCursor: "cursor" },
+          edges: [
+            {
+              __typename: "NotificationEdge",
+              node: {
+                __typename: "ReceivedHenkenNotification",
+                id: "notification1",
+                read: true,
+                createdAt: "2021-01-01T12:00:00",
+                henken: {
+                  __typename: "Henken",
+                  id: "viewer-not-answer",
+                  comment: "はい",
+                  postedBy: {
+                    __typename: "User",
+                    id: "user1",
+                    alias: "user1",
+                    displayName: "User 1",
+                    avatar: mockAvatars[1],
+                  },
+                },
+              },
+            },
+          ],
+        },
+      }));
+    },
+  )],
 };

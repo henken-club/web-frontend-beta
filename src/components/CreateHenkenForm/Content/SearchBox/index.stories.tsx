@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
 
-import { mockBookcovers } from "~/mocks/constraints";
+import { mockBookcovers } from "~/mocks/assets";
 import { Component } from ".";
 
 export default {
