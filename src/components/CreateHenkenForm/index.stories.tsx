@@ -1,12 +1,13 @@
 import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
+import { graphql } from "msw";
 import React, { ComponentProps, ContextType } from "react";
 import { RecoilRoot } from "recoil";
 
 import { CreateHenkenFormContext } from "./context";
 
 import { mockAvatars, mockBookcovers } from "~/mocks/assets";
-import { queryCreateHenkenFormSearchContent, queryCreateHenkenFormSearchUser } from "~/msw/handlers";
+import { CreateHenkenFormCreateHenkenDocument, CreateHenkenFormSearchUserDocument } from "~/msw/codegen";
 import { Component } from ".";
 
 export default {
@@ -15,8 +16,35 @@ export default {
   argTypes: {},
   parameters: {
     msw: [
-      queryCreateHenkenFormSearchUser,
-      queryCreateHenkenFormSearchContent,
+      graphql.query(
+        CreateHenkenFormSearchUserDocument,
+        (req, res, ctx) => {
+          return res(
+            ctx.data({
+              __typename: "Query",
+              searchUser: {
+                __typename: "SearchUserPayload",
+                results: [],
+              },
+            }),
+          );
+        },
+      ),
+      graphql.mutation(
+        CreateHenkenFormCreateHenkenDocument,
+        (req, res, ctx) => {
+          return res(ctx.data({
+            __typename: "Mutation",
+            createHenken: {
+              __typename: "CreateHenkenPayload",
+              henken: {
+                __typename: "Henken",
+                id: "created",
+              },
+            },
+          }));
+        },
+      ),
     ],
   },
 } as Meta;

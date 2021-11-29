@@ -1,4 +1,5 @@
 import { Meta, Story } from "@storybook/react";
+import { graphql } from "msw";
 import React, { ComponentProps } from "react";
 import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";
@@ -7,7 +8,7 @@ import { viewerState } from "~/auth/useViewer";
 import { mockAvatars } from "~/mocks/assets";
 import { manualCreateHenkenModalState } from "~/modals/CreateHenken";
 import { manualRegisterUserModalState } from "~/modals/RegisterUser";
-import { queryGlobalNavNotifications } from "~/msw/handlers";
+import { GlobalNavFetchNotificationsDocument } from "~/msw/codegen";
 import { createUrqlClient } from "~/urql/UrqlProvider";
 import { View } from ".";
 
@@ -88,5 +89,39 @@ LoggedIn.args = {
   needRegister: false,
 };
 LoggedIn.parameters = {
-  msw: [queryGlobalNavNotifications],
+  msw: [graphql.query(
+    GlobalNavFetchNotificationsDocument,
+    (req, res, ctx) => {
+      return res(ctx.data({
+        __typename: "Query",
+        notifications: {
+          __typename: "NotificationConnection",
+          pageInfo: { __typename: "PageInfo", hasNextPage: true, endCursor: "cursor" },
+          edges: [
+            {
+              __typename: "NotificationEdge",
+              node: {
+                __typename: "ReceivedHenkenNotification",
+                id: "notification1",
+                read: true,
+                createdAt: "2021-01-01T12:00:00",
+                henken: {
+                  __typename: "Henken",
+                  id: "viewer-not-answer",
+                  comment: "はい",
+                  postedBy: {
+                    __typename: "User",
+                    id: "user1",
+                    alias: "user1",
+                    displayName: "User 1",
+                    avatar: mockAvatars[1],
+                  },
+                },
+              },
+            },
+          ],
+        },
+      }));
+    },
+  )],
 };
