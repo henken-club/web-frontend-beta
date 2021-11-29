@@ -4,7 +4,7 @@ import {
   queryCreateHenkenFormSearchUser,
 } from "./CreateHenkenForm";
 import { queryGlobalNavNotifications } from "./GlobalNav";
-import { queryAllHenkenPages, queryHenkenPage } from "./HenkenPage";
+import { mutationAnswerHenken, queryAllHenkenPages, queryHenkenPage } from "./HenkenPage";
 import { mutationRegisterUser, queryIsAliasUnique } from "./RegisterUserForm";
 import { queryAllUserPages, querySendHenkensUserPage, queryUserPage } from "./UserPage";
 import { queryFetchViewer } from "./Viewer";
@@ -16,6 +16,7 @@ export const handlers = [
   // Henken Page
   queryAllHenkenPages,
   queryHenkenPage,
+  mutationAnswerHenken,
 
   // User Page
   queryAllUserPages,

@@ -1,7 +1,7 @@
 import { graphql } from "msw";
 
 import { mockAvatars } from "~/mocks/assets";
-import { AllHenkenPagesDocument, AnswerType, HenkenPageDocument } from "~/msw/codegen";
+import { AllHenkenPagesDocument, AnswerType, HenkenPageAnswerHenkenDocument, HenkenPageDocument } from "~/msw/codegen";
 
 const mocks: Record<
   string,
@@ -76,3 +76,21 @@ export const queryHenkenPage = graphql.query(HenkenPageDocument, (req, res, ctx)
     }),
   );
 });
+
+export const mutationAnswerHenken = graphql.mutation(
+  HenkenPageAnswerHenkenDocument,
+  (req, res, ctx) => {
+    return res(
+      ctx.data({
+        __typename: "Mutation",
+        answerHenken: {
+          __typename: "AnswerHenkenPayload",
+          answer: {
+            __typename: "Answer",
+            id: "created",
+          },
+        },
+      }),
+    );
+  },
+);
